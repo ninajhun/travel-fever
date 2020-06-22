@@ -1,7 +1,7 @@
 {
-  "name": "full-stack-project",
+  "name": "travel-fever",
   "version": "1.0.0",
-  "description": "A Full Stack Node.js &amp; React app.",
+  "description": "A web application for travelers who want to connect with locals to get personalized travel information, itineraries, and tours in a marketplace",
   "main": "server/index.js",
   "scripts": {
     "dev": "npm-run-all --silent --parallel dev:*",
