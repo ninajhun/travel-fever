@@ -39,7 +39,8 @@ app.get('/api/locations', (req, res, next) => {
   select *
   from "locations";`;
   db.query(sql)
-    .then(results => res.json(results.rows));
+    .then(results => res.json(results.rows))
+    .catch(err => next(err));
 });
 
 app.use('/api', (req, res, next) => {
