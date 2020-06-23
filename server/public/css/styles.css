@@ -15,4 +15,11 @@ h1 {
   font-family: Pacifico, sans-serif;
   color: white;
   text-shadow: 1px 2px #000000;
+  font-size: 3.2rem;
+}
+
+
+.contain {
+  height: 70px;
+  object-fit: contain;
 }
