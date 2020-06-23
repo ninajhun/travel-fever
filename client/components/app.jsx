@@ -6,9 +6,9 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: 'login'
-      },
-      user: {}
+        name: 'login',
+        user: {}
+      }
     };
     this.setView = this.setView.bind(this);
   }

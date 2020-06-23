@@ -3,7 +3,10 @@ import React from 'react';
 class LoginPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: 'select-user' };
+    this.state = {
+      users: [],
+      value: 'select-user'
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -21,7 +24,19 @@ class LoginPage extends React.Component {
     event.preventDefault();
   }
 
+  componentDidMount() {
+    fetch('/api/users')
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          users: data
+        });
+      })
+      .catch(err => console.error(err));
+  }
+
   render() {
+
     return (
 
       <div className="login">
@@ -40,8 +55,12 @@ class LoginPage extends React.Component {
             <form className="col-9 mt-2" onSubmit={this.handleSubmit}>
               <select className="custom-select custom-select-sm" value={this.state.value} onChange={this.handleChange}>
                 <option value="select-user">Select User</option>
-                <option value="green-power-ranger">Green Power Ranger</option>
-                <option value="cody">Cody</option>
+                {
+                  this.state.users.map(user => {
+                    return <option key={user.userId} value={user.userId}> {user.username} </option>;
+                  })
+                }
+
               </select>
               <button className="btn btn-light btn-block btn-sm mt-3" type="submit">Log In</button>
 
