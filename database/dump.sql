@@ -380,7 +380,10 @@ COPY public.listings ("listingId", "sellerId", "locationId", title, description,
 --
 
 COPY public.locations ("locationId", name, "imageUrl") FROM stdin;
-1	Tokyo, Japan	/images/tokyo.png
+1	Tokyo, Japan	/images/tokyo.jpg
+2	Madrid, Spain	/images/madrid.jpg
+3	Irvine, US	/images/lfz.jpg
+4	Maui, US	/images/maui.jpg
 \.
 
 
@@ -406,6 +409,7 @@ COPY public.purchases ("purchaseId", "customerId", "listingId") FROM stdin;
 
 COPY public.users ("userId", username, "imageUrl") FROM stdin;
 1	Green Power Ranger	/images/greenpowerranger.png
+2	Cody	/images/coffeecody.png
 \.
 
 
@@ -434,7 +438,7 @@ SELECT pg_catalog.setval('public."lisitings_lisitingId_seq"', 1, false);
 -- Name: locations_locationId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."locations_locationId_seq"', 1, true);
+SELECT pg_catalog.setval('public."locations_locationId_seq"', 4, true);
 
 
 --
@@ -455,7 +459,7 @@ SELECT pg_catalog.setval('public."purchases_purchaseId_seq"', 1, false);
 -- Name: users_userId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."users_userId_seq"', 1, true);
+SELECT pg_catalog.setval('public."users_userId_seq"', 2, true);
 
 
 --
