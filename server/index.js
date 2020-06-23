@@ -23,7 +23,13 @@ app.get('/api/users', (req, res, next) => {
 });
 
 app.get('/api/users/:userId', (req, res, next) => {
-
+  const { userId } = parseInt(req.params);
+  const sql = `
+  select *
+  from "users"
+  where "userId" = $1;`;
+  const values = [userId];
+  db.query(sql, values);
 });
 
 app.use('/api', (req, res, next) => {
