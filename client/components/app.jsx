@@ -2,6 +2,7 @@ import React from 'react';
 import LoginPage from './login-page';
 import Headers from './header';
 import BottomNavBar from './bottom-nav-bar';
+import Header from './header';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -43,6 +44,7 @@ export default class App extends React.Component {
         </div>
       );
     }
+
   }
 
 }
