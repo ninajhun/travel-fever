@@ -18,7 +18,8 @@ app.get('/api/users', (req, res, next) => {
   select "username",
     "imageUrl"
   from "users";`;
-  db.query(sql);
+  db.query(sql)
+    .then(result => res.json(result.rows));
 });
 
 app.use('/api', (req, res, next) => {
