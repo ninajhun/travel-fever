@@ -20,14 +20,14 @@ ALTER TABLE ONLY public.users DROP CONSTRAINT users_pkey;
 ALTER TABLE ONLY public.purchases DROP CONSTRAINT purchases_pkey;
 ALTER TABLE ONLY public.messages DROP CONSTRAINT messages_pkey;
 ALTER TABLE ONLY public.locations DROP CONSTRAINT locations_pkey;
-ALTER TABLE ONLY public.lisitings DROP CONSTRAINT lisitings_pkey;
+ALTER TABLE ONLY public.listings DROP CONSTRAINT lisitings_pkey;
 ALTER TABLE ONLY public.favorites DROP CONSTRAINT favorites_pkey;
 ALTER TABLE ONLY public.chats DROP CONSTRAINT chats_pkey;
 ALTER TABLE public.users ALTER COLUMN "userId" DROP DEFAULT;
 ALTER TABLE public.purchases ALTER COLUMN "purchaseId" DROP DEFAULT;
 ALTER TABLE public.messages ALTER COLUMN "messageId" DROP DEFAULT;
 ALTER TABLE public.locations ALTER COLUMN "locationId" DROP DEFAULT;
-ALTER TABLE public.lisitings ALTER COLUMN "lisitingId" DROP DEFAULT;
+ALTER TABLE public.listings ALTER COLUMN "listingId" DROP DEFAULT;
 ALTER TABLE public.favorites ALTER COLUMN "favoriteId" DROP DEFAULT;
 ALTER TABLE public.chats ALTER COLUMN "chatId" DROP DEFAULT;
 DROP SEQUENCE public."users_userId_seq";
@@ -39,7 +39,7 @@ DROP TABLE public.messages;
 DROP SEQUENCE public."locations_locationId_seq";
 DROP TABLE public.locations;
 DROP SEQUENCE public."lisitings_lisitingId_seq";
-DROP TABLE public.lisitings;
+DROP TABLE public.listings;
 DROP SEQUENCE public."favorites_favoriteId_seq";
 DROP TABLE public.favorites;
 DROP SEQUENCE public."chats_chatId_seq";
@@ -85,7 +85,7 @@ SET default_with_oids = false;
 CREATE TABLE public.chats (
     "chatId" integer NOT NULL,
     "customerId" integer NOT NULL,
-    "lisitingId" integer NOT NULL
+    "listingId" integer NOT NULL
 );
 
 
@@ -141,11 +141,11 @@ ALTER SEQUENCE public."favorites_favoriteId_seq" OWNED BY public.favorites."favo
 
 
 --
--- Name: lisitings; Type: TABLE; Schema: public; Owner: -
+-- Name: listings; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.lisitings (
-    "lisitingId" integer NOT NULL,
+CREATE TABLE public.listings (
+    "listingId" integer NOT NULL,
     "sellerId" integer NOT NULL,
     "locationId" integer NOT NULL,
     title text NOT NULL,
@@ -172,7 +172,7 @@ CREATE SEQUENCE public."lisitings_lisitingId_seq"
 -- Name: lisitings_lisitingId_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public."lisitings_lisitingId_seq" OWNED BY public.lisitings."lisitingId";
+ALTER SEQUENCE public."lisitings_lisitingId_seq" OWNED BY public.listings."listingId";
 
 
 --
@@ -214,7 +214,7 @@ CREATE TABLE public.messages (
     "messageId" integer NOT NULL,
     "chatId" integer NOT NULL,
     "senderId" integer NOT NULL,
-    "recpientId" integer NOT NULL,
+    "recipientId" integer NOT NULL,
     content text NOT NULL,
     "sentAt" timestamp with time zone NOT NULL
 );
@@ -247,7 +247,7 @@ ALTER SEQUENCE public."messages_messageId_seq" OWNED BY public.messages."message
 CREATE TABLE public.purchases (
     "purchaseId" integer NOT NULL,
     "customerId" integer NOT NULL,
-    "lisitingId" integer NOT NULL
+    "listingId" integer NOT NULL
 );
 
 
@@ -317,10 +317,10 @@ ALTER TABLE ONLY public.favorites ALTER COLUMN "favoriteId" SET DEFAULT nextval(
 
 
 --
--- Name: lisitings lisitingId; Type: DEFAULT; Schema: public; Owner: -
+-- Name: listings listingId; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.lisitings ALTER COLUMN "lisitingId" SET DEFAULT nextval('public."lisitings_lisitingId_seq"'::regclass);
+ALTER TABLE ONLY public.listings ALTER COLUMN "listingId" SET DEFAULT nextval('public."lisitings_lisitingId_seq"'::regclass);
 
 
 --
@@ -355,7 +355,7 @@ ALTER TABLE ONLY public.users ALTER COLUMN "userId" SET DEFAULT nextval('public.
 -- Data for Name: chats; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.chats ("chatId", "customerId", "lisitingId") FROM stdin;
+COPY public.chats ("chatId", "customerId", "listingId") FROM stdin;
 \.
 
 
@@ -368,10 +368,10 @@ COPY public.favorites ("favoriteId", "listingId", "userId") FROM stdin;
 
 
 --
--- Data for Name: lisitings; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: listings; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.lisitings ("lisitingId", "sellerId", "locationId", title, description, price, "imageUrl") FROM stdin;
+COPY public.listings ("listingId", "sellerId", "locationId", title, description, price, "imageUrl") FROM stdin;
 \.
 
 
@@ -380,6 +380,7 @@ COPY public.lisitings ("lisitingId", "sellerId", "locationId", title, descriptio
 --
 
 COPY public.locations ("locationId", name, "imageUrl") FROM stdin;
+1	Tokyo, Japan	/images/tokyo.png
 \.
 
 
@@ -387,7 +388,7 @@ COPY public.locations ("locationId", name, "imageUrl") FROM stdin;
 -- Data for Name: messages; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.messages ("messageId", "chatId", "senderId", "recpientId", content, "sentAt") FROM stdin;
+COPY public.messages ("messageId", "chatId", "senderId", "recipientId", content, "sentAt") FROM stdin;
 \.
 
 
@@ -395,7 +396,7 @@ COPY public.messages ("messageId", "chatId", "senderId", "recpientId", content, 
 -- Data for Name: purchases; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.purchases ("purchaseId", "customerId", "lisitingId") FROM stdin;
+COPY public.purchases ("purchaseId", "customerId", "listingId") FROM stdin;
 \.
 
 
@@ -404,6 +405,7 @@ COPY public.purchases ("purchaseId", "customerId", "lisitingId") FROM stdin;
 --
 
 COPY public.users ("userId", username, "imageUrl") FROM stdin;
+1	Green Power Ranger	/images/greenpowerranger.png
 \.
 
 
@@ -432,7 +434,7 @@ SELECT pg_catalog.setval('public."lisitings_lisitingId_seq"', 1, false);
 -- Name: locations_locationId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."locations_locationId_seq"', 1, false);
+SELECT pg_catalog.setval('public."locations_locationId_seq"', 1, true);
 
 
 --
@@ -453,7 +455,7 @@ SELECT pg_catalog.setval('public."purchases_purchaseId_seq"', 1, false);
 -- Name: users_userId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."users_userId_seq"', 1, false);
+SELECT pg_catalog.setval('public."users_userId_seq"', 1, true);
 
 
 --
@@ -473,11 +475,11 @@ ALTER TABLE ONLY public.favorites
 
 
 --
--- Name: lisitings lisitings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: listings lisitings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.lisitings
-    ADD CONSTRAINT lisitings_pkey PRIMARY KEY ("lisitingId");
+ALTER TABLE ONLY public.listings
+    ADD CONSTRAINT lisitings_pkey PRIMARY KEY ("listingId");
 
 
 --
