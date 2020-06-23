@@ -13,8 +13,23 @@ app.use(sessionMiddleware);
 
 app.use(express.json());
 
-app.get('/api/health-check', (req, res, next) => {
-  db.query(`select 'successfully connected' as "message"`)
+app.get('/api/users', (req, res, next) => {
+  const sql = `
+  select *
+  from "users";`;
+  db.query(sql)
+    .then(result => res.json(result.rows))
+    .catch(err => next(err));
+});
+
+app.get('/api/users/:userId', (req, res, next) => {
+  const userId = parseInt(req.params.userId);
+  const sql = `
+  select *
+  from "users"
+  where "userId" = $1;`;
+  const values = [userId];
+  db.query(sql, values)
     .then(result => res.json(result.rows[0]))
     .catch(err => next(err));
 });
