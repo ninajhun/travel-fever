@@ -1,17 +1,6 @@
-* {
-  font-family: montserrat, arial, sans-serif;
-}
 body {
   background-color: whitesmoke
 }
-
-h1 {
-  font-family: Pacifico, sans-serif;
-  color: white;
-  text-shadow: 1px 2px #000000;
-  font-size: 3.2rem;
-}
-
 
 .login {
   width: 100%;
@@ -22,7 +11,6 @@ h1 {
   justify-content: center;
 }
 
-
 .contain {
   height: 70px;
   object-fit: contain;
@@ -31,15 +19,6 @@ h1 {
 .navbar{
   height: 45px;
   background-color: white;
-}
-
-h2 {
-  font-family: 'Pacifico', cursive;
-  color: #FB4D3D;
-}
-
-h4 {
-  font-family: 'Montserrat', sans-serif;
 }
 
 .icon-container{
