@@ -30,7 +30,8 @@ app.get('/api/users/:userId', (req, res, next) => {
   where "userId" = $1;`;
   const values = [userId];
   db.query(sql, values)
-    .then(result => res.json(result.rows[0]));
+    .then(result => res.json(result.rows[0]))
+    .catch(err => next(err));
 });
 
 app.use('/api', (req, res, next) => {
