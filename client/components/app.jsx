@@ -1,6 +1,5 @@
 import React from 'react';
 import LoginPage from './login-page';
-import Headers from './header';
 import BottomNavBar from './bottom-nav-bar';
 import Header from './header';
 
@@ -39,7 +38,7 @@ export default class App extends React.Component {
     } else {
       return (
         <div>
-          <Headers userImg={this.state.user.imageUrl}/>
+          <Header userImg={this.state.user.imageUrl}/>
           <BottomNavBar />
         </div>
       );
