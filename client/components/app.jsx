@@ -1,25 +1,41 @@
 import React from 'react';
+import LoginPage from './login-page';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: null,
-      isLoading: true
+      view: 'login',
+      user: {}
     };
+    this.setView = this.setView.bind(this);
+    this.getUser = this.getUser.bind(this);
   }
 
-  componentDidMount() {
-    fetch('/api/health-check')
-      .then(res => res.json())
-      .then(data => this.setState({ message: data.message || data.error }))
-      .catch(err => this.setState({ message: err.message }))
-      .finally(() => this.setState({ isLoading: false }));
+  setView(name) {
+    this.setState({
+      view: name
+    });
+  }
+
+  getUser(userId) {
+    fetch(`api/users/${userId}`)
+      .then(result => result.json())
+      .then(data => {
+        this.setState({
+          user: data
+        });
+      })
+      .catch(err => console.error(err));
   }
 
   render() {
-    return this.state.isLoading
-      ? <h1>Testing connections...</h1>
-      : <h1>{this.state.message.toUpperCase()}</h1>;
+
+    if (this.state.view === 'login') {
+      return <LoginPage setView={this.setView} getUser={this.getUser}/>;
+    } else {
+      return <h1>Home Page</h1>;
+    }
   }
+
 }
