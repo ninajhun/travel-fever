@@ -3,7 +3,7 @@ import React from 'react';
 class LoginPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: 'Select User' };
+    this.state = { value: 'select-user' };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -13,6 +13,11 @@ class LoginPage extends React.Component {
   }
 
   handleSubmit(event) {
+    if (this.state.value !== 'select-user') {
+      this.props.setView('home');
+      // pass userId to App!!
+    }
+
     event.preventDefault();
   }
 
@@ -38,7 +43,7 @@ class LoginPage extends React.Component {
                 <option value="green-power-ranger">Green Power Ranger</option>
                 <option value="cody">Cody</option>
               </select>
-              <button className="btn btn-light btn-block btn-sm mt-3">Log In</button>
+              <button className="btn btn-light btn-block btn-sm mt-3" type="submit">Log In</button>
 
             </form>
 

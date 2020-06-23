@@ -5,9 +5,20 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // message: null,
-      // isLoading: true
+      view: {
+        name: 'login'
+      },
+      user: {}
     };
+    this.setView = this.setView.bind(this);
+  }
+
+  setView(name) {
+    this.setState({
+      view: {
+        name: name
+      }
+    });
   }
 
   // componentDidMount() {
@@ -15,8 +26,11 @@ export default class App extends React.Component {
   // }
 
   render() {
-    return (
-      <LoginPage />
-    );
+
+    if (this.state.view.name === 'login') {
+      return <LoginPage setView = {this.setView}/>;
+    } else {
+      return <h1>Home Page</h1>;
+    }
   }
 }
