@@ -23,13 +23,14 @@ app.get('/api/users', (req, res, next) => {
 });
 
 app.get('/api/users/:userId', (req, res, next) => {
-  const { userId } = parseInt(req.params);
+  const userId = parseInt(req.params.userId);
   const sql = `
   select *
   from "users"
   where "userId" = $1;`;
   const values = [userId];
-  db.query(sql, values);
+  db.query(sql, values)
+    .then(result => res.json(result.rows[0]));
 });
 
 app.use('/api', (req, res, next) => {
