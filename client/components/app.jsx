@@ -1,5 +1,6 @@
 import React from 'react';
 import LoginPage from './login-page';
+import Headers from './header';
 import BottomNavBar from './bottom-nav-bar';
 
 export default class App extends React.Component {
@@ -35,7 +36,12 @@ export default class App extends React.Component {
     if (this.state.view === 'login') {
       return <LoginPage setView={this.setView} getUser={this.getUser}/>;
     } else {
-      return <BottomNavBar />;
+      return (
+        <div>
+          <Headers userImg={this.state.user.imageUrl}/>
+          <BottomNavBar />
+        </div>
+      );
     }
   }
 
