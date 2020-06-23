@@ -44,7 +44,13 @@ app.get('/api/locations', (req, res, next) => {
 });
 
 app.get('/api/locations/:locationId', (req, res, next) => {
-
+  const locationId = parseInt(req.params.locationId);
+  const sql = `
+  select *
+  from "locations"
+  where "locationId" = $1;`;
+  const values = [locationId];
+  db.query(sql, values);
 });
 
 app.use('/api', (req, res, next) => {
