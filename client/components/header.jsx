@@ -25,6 +25,9 @@ class Logout extends React.Component {
     const overlayClass = menuOpen
       ? 'overlay'
       : '';
+    const returnOverlay = menuOpen
+      ? 'return-overlay'
+      : '';
     return (
       <div>
         <div className='navbar travel-header'>
@@ -35,7 +38,8 @@ class Logout extends React.Component {
             </div>
           </div>
         </div>
-        <div className={`${overlayClass}`}>
+        <div className={`${overlayClass}`} >
+          <div className={`${returnOverlay}`} onClick={this.handleClickOpen}></div>
           <div className={`${menuClass}`}>
             <h4>My Listings</h4>
             <h4>Log Out</h4>
