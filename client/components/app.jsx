@@ -1,6 +1,7 @@
 import React from 'react';
 import LoginPage from './login-page';
-import BottomNavBar from './bottom-nav-bar';
+// import BottomNavBar from './bottom-nav-bar';
+import SearchCity from './search-city';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -35,7 +36,8 @@ export default class App extends React.Component {
     if (this.state.view === 'login') {
       return <LoginPage setView={this.setView} getUser={this.getUser}/>;
     } else {
-      return <BottomNavBar />;
+      return <SearchCity />;
+      // return <BottomNavBar />;
     }
   }
 
