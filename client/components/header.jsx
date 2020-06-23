@@ -31,7 +31,7 @@ class Logout extends React.Component {
           <div className='container d-flex justify-content-end'>
             <h2>Travel Fever</h2>
             <div className='icon-container' >
-              <img src='/images/greenpowerranger.png' alt="user-profile-image" className='icon' onClick={this.handleClickOpen} />
+              <img src={this.props.userImg} alt="user-profile-image" className='icon' onClick={this.handleClickOpen} />
             </div>
           </div>
         </div>
