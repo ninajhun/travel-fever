@@ -35,7 +35,10 @@ app.get('/api/users/:userId', (req, res, next) => {
 });
 
 app.get('/api/locations', (req, res, next) => {
-
+  const sql = `
+  select *
+  from "locations";`;
+  db.query(sql);
 });
 
 app.use('/api', (req, res, next) => {
