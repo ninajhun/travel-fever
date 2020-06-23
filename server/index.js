@@ -19,7 +19,8 @@ app.get('/api/users', (req, res, next) => {
     "imageUrl"
   from "users";`;
   db.query(sql)
-    .then(result => res.json(result.rows));
+    .then(result => res.json(result.rows))
+    .catch(err => next(err));
 });
 
 app.use('/api', (req, res, next) => {
