@@ -17,10 +17,9 @@ class LoginPage extends React.Component {
 
   handleSubmit(event) {
     if (this.state.value !== 'select-user') {
+      this.props.getUser(this.state.value);
       this.props.setView('home');
-      // pass userId to App!!
     }
-
     event.preventDefault();
   }
 
@@ -51,7 +50,6 @@ class LoginPage extends React.Component {
           </div>
 
           <div className="row justify-content-center">
-
             <form className="col-9 mt-2" onSubmit={this.handleSubmit}>
               <select className="custom-select custom-select-sm" value={this.state.value} onChange={this.handleChange}>
                 <option value="select-user">Select User</option>
@@ -60,12 +58,9 @@ class LoginPage extends React.Component {
                     return <option key={user.userId} value={user.userId}> {user.username} </option>;
                   })
                 }
-
               </select>
               <button className="btn btn-light btn-block btn-sm mt-3" type="submit">Log In</button>
-
             </form>
-
           </div>
 
         </div>
