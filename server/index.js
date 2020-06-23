@@ -1,7 +1,7 @@
 require('dotenv/config');
 const express = require('express');
 
-// const db = require('./database');
+const db = require('./database');
 const ClientError = require('./client-error');
 const staticMiddleware = require('./static-middleware');
 const sessionMiddleware = require('./session-middleware');
@@ -14,7 +14,11 @@ app.use(sessionMiddleware);
 app.use(express.json());
 
 app.get('/api/users', (req, res, next) => {
-
+  const sql = `
+  select "username",
+    "imageUrl"
+  from "users";`;
+  db.query(sql);
 });
 
 app.use('/api', (req, res, next) => {
