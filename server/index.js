@@ -34,6 +34,27 @@ app.get('/api/users/:userId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/locations', (req, res, next) => {
+  const sql = `
+  select *
+  from "locations";`;
+  db.query(sql)
+    .then(results => res.json(results.rows))
+    .catch(err => next(err));
+});
+
+app.get('/api/locations/:locationId', (req, res, next) => {
+  const locationId = parseInt(req.params.locationId);
+  const sql = `
+  select *
+  from "locations"
+  where "locationId" = $1;`;
+  const values = [locationId];
+  db.query(sql, values)
+    .then(result => res.json(result.rows[0]))
+    .catch(err => next(err));
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
