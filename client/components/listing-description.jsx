@@ -9,7 +9,8 @@ class ListingDescription extends React.Component {
   }
 
   getListingDetails(listingId) {
-    fetch(`/api/listings/${listingId}`);
+    fetch(`/api/listings/${listingId}`)
+      .then(result => result.json());
   }
 
   render() {
