@@ -8,7 +8,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'login', // change back
+      view: 'home', // change back
       user: {}
     };
     this.setView = this.setView.bind(this);

@@ -34,8 +34,8 @@ body {
 }
 
 .travel-header {
-  padding-right: 0;
-  padding-left: 0;
+  /* padding-right: 0;
+  padding-left: 0; */
   border-bottom: 1px solid lightgray;
   padding-bottom: 12%;
 }
@@ -81,6 +81,7 @@ body {
   height: 100%;
   background-color: black;
   opacity: 0.3;
+
 }
 
 .hidden {
