@@ -3,12 +3,17 @@ import React from 'react';
 class SearchCity extends React.Component {
   constructor(props) {
     super(props);
-    this.state = [];
+    this.state = {
+      locations: []
+    };
   }
 
   getLocations() {
     fetch('/api/locations')
-      .then(response => response.json());
+      .then(response => response.json())
+      .then(data => this.setState({
+        locations: data
+      }));
   }
 
   render() {
