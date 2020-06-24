@@ -14,10 +14,11 @@ export default class App extends React.Component {
     this.getUser = this.getUser.bind(this);
   }
 
-  setView(name) {
+  setView(name, user) {
     this.setState({
       view: name
     });
+
   }
 
   getUser(userId) {
@@ -38,7 +39,7 @@ export default class App extends React.Component {
     } else {
       return (
         <div>
-          <Header userImg={this.state.user.imageUrl}/>
+          <Header userImg={this.state.user.imageUrl} setView={this.setView}/>
 
           <BottomNavBar />
         </div>
