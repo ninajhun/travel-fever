@@ -67,6 +67,18 @@ app.get('/api/listings', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/listings/:listingId', (req, res, next) => {
+  const listingId = parseInt(req.params.listingId);
+  const sql = `
+  select *
+  from "listings"
+  where "listingId" = $1;`;
+  const values = [listingId];
+  db.query(sql, values)
+    .then(result => res.json(result.rows[0]))
+    .catch(err => next(err));
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
