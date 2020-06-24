@@ -28,6 +28,13 @@ class SearchCity extends React.Component {
           <form className="col-9 mt-2 ml-auto mr-auto">
             <select className="custom-select custom-select-sm">
               <option value="select-user">Select Location</option>
+              {
+                this.state.locations.map(data => {
+                  return (
+                    <option key={ data.locationId } >{ data.name }</option>
+                  );
+                })
+              }
             </select>
           </form>
         </div>
