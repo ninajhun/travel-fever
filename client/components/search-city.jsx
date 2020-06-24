@@ -6,6 +6,10 @@ class SearchCity extends React.Component {
     this.state = [];
   }
 
+  getLocations() {
+    fetch('/api/locations');
+  }
+
   render() {
     return (
       <div className="container">
