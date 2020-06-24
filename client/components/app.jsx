@@ -1,12 +1,13 @@
 import React from 'react';
 import LoginPage from './login-page';
 import BottomNavBar from './bottom-nav-bar';
+import Header from './header';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'login',
+      view: 'login', // change back
       user: {}
     };
     this.setView = this.setView.bind(this);

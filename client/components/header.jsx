@@ -30,9 +30,9 @@ class Logout extends React.Component {
       : '';
     return (
       <div>
-        <div className='navbar travel-header'>
+        <div className='navbar fixed-top travel-header'>
           <div className='container d-flex justify-content-end'>
-            <h2>Travel Fever</h2>
+            <h2 className="header-text">Travel Fever</h2>
             <div className='icon-container' >
               <img src={this.props.userImg} alt="user-profile-image" className='icon' onClick={this.handleClickOpen} />
             </div>
@@ -41,8 +41,8 @@ class Logout extends React.Component {
         <div className={`${overlayClass}`} >
           <div className={`${returnOverlay}`} onClick={this.handleClickOpen}></div>
           <div className={`${menuClass}`}>
-            <h4>My Listings</h4>
-            <h4>Log Out</h4>
+            <h5>My Listings</h5>
+            <h5>Log Out</h5>
           </div>
         </div>
       </div>
