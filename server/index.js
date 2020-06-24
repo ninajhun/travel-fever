@@ -43,6 +43,8 @@ app.get('/api/locations', (req, res, next) => {
     .catch(err => next(err));
 });
 
+// Might have to change this down the line for when the search-city bar gets
+// added to the popular page and view all listings page
 app.get('/api/locations/:locationId', (req, res, next) => {
   const locationId = parseInt(req.params.locationId);
   const sql = `
