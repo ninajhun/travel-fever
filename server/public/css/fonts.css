@@ -9,9 +9,11 @@ h1 {
   font-size: 3.2rem;
 }
 
-h2 {
+h2.header-text{
   font-family: 'Pacifico', cursive;
   color: #FB4D3D;
+  font-size: 1.5rem;
+
 }
 
 .small {

@@ -43,6 +43,8 @@ app.get('/api/locations', (req, res, next) => {
     .catch(err => next(err));
 });
 
+// Might have to change this down the line for when the search-city bar gets
+// added to the popular page and view all listings page
 app.get('/api/locations/:locationId', (req, res, next) => {
   const locationId = parseInt(req.params.locationId);
   const sql = `
@@ -50,6 +52,28 @@ app.get('/api/locations/:locationId', (req, res, next) => {
   from "locations"
   where "locationId" = $1;`;
   const values = [locationId];
+  db.query(sql, values)
+    .then(result => res.json(result.rows[0]))
+    .catch(err => next(err));
+});
+
+app.get('/api/listings', (req, res, next) => {
+  const sql = `
+  select *
+  from "listings";
+  `;
+  db.query(sql)
+    .then(results => res.json(results.rows))
+    .catch(err => next(err));
+});
+
+app.get('/api/listings/:listingId', (req, res, next) => {
+  const listingId = parseInt(req.params.listingId);
+  const sql = `
+  select *
+  from "listings"
+  where "listingId" = $1;`;
+  const values = [listingId];
   db.query(sql, values)
     .then(result => res.json(result.rows[0]))
     .catch(err => next(err));

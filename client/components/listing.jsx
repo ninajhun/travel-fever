@@ -1,22 +1,41 @@
 import React from 'react';
+import ListingCard from './listing-card';
 
-function listing() {
-  return (
-    <div className='card mb-3'>
-      <div className='row no-gutters'>
-        <div className='col-md-4'>
-          <img src="/images/tokyo.jpg" alt="tokyo" className='card-img'/>
-        </div>
-        <div className='col-md-8'>
-          <div className='card-body'>
-            <h5 className='card-title'>Title</h5>
-            <p className='card-text'>$100</p>
-            {/* <i className="far fa-heart"></i> */}
-          </div>
-        </div>
+class Listing extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      listing: []
+    };
+    this.getListing = this.getListing.bind(this);
+  }
+
+  componentDidMount() {
+    this.getListing();
+  }
+
+  getListing() {
+    fetch('api/listings')
+      .then(res => res.json())
+      .then(list => {
+        this.setState({
+          listing: list
+        });
+      });
+  }
+
+  render() {
+    return (
+      <div>
+        {
+          this.state.listing.map(listing => {
+            return <ListingCard key={listing.listingId} imageUrl={listing.imageUrl} title={listing.title} price={listing.price}/>;
+          })
+        }
       </div>
-    </div>
-  );
+    );
+  }
+
 }
 
-export default listing;
+export default Listing;

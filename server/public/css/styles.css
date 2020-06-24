@@ -49,7 +49,7 @@ body {
 }
 
 .icon {
-  height: 100%;
+  height: 90%;
   border-radius: 50%;
   border: 2px solid lightgray ;
 }
@@ -65,10 +65,9 @@ body {
   transition: 0.3s ease-in-out;
   height: 100%;
   position: fixed;
-  z-index: 1;
   right: 0;
   background-color: #EBEBEB;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   padding-top: 40px;
   padding-right: 9%;
   padding-left: 9%;
@@ -80,24 +79,33 @@ body {
 .sidenav-closed {
   height: 100vh;
   position: fixed;
-  right: -150px;
+  right: -160px;
   transition: 0.3s ease-in-out;
   background-color: #EBEBEB;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
 }
 
 .overlay {
   position: absolute;
+  margin-top: 45px;
   width: 100%;
-  height: 86%;
-  background-color: black;
-  opacity: 0.3;
-  transition: all 0.3s ease;
+  height: 100%;
+  transition: all 0.3s ease-in-out;
 }
 
 .return-overlay {
   position: fixed;
-  width: 49%;
-  height: 86%;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.3;
+}
+
+.image-listing{
+  height: 100%;
 }
 
 .hidden {

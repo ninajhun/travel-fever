@@ -20,7 +20,6 @@ ALTER TABLE ONLY public.users DROP CONSTRAINT users_pkey;
 ALTER TABLE ONLY public.purchases DROP CONSTRAINT purchases_pkey;
 ALTER TABLE ONLY public.messages DROP CONSTRAINT messages_pkey;
 ALTER TABLE ONLY public.locations DROP CONSTRAINT locations_pkey;
-ALTER TABLE ONLY public.listings DROP CONSTRAINT lisitings_pkey;
 ALTER TABLE ONLY public.favorites DROP CONSTRAINT favorites_pkey;
 ALTER TABLE ONLY public.chats DROP CONSTRAINT chats_pkey;
 ALTER TABLE public.users ALTER COLUMN "userId" DROP DEFAULT;
@@ -372,6 +371,8 @@ COPY public.favorites ("favoriteId", "listingId", "userId") FROM stdin;
 --
 
 COPY public.listings ("listingId", "sellerId", "locationId", title, description, price, "imageUrl") FROM stdin;
+1	2	3	Tour of the LFZ Coding Facility	I will take you on a tour of the fabulous LFZ coding facility where web development dreams are made! You will even get to meet famous developers such as Cody Miller and Tim Davis! You might even get to take a photo with our mascot -- the Green Power Ranger!	9000	/images/lfz.jpg
+2	1	1	Akihabara Anime and Gaming Adventure Tour!	In case one anime store is not enough, why not book a tour instead? Akihabara anime and gaming adventure tour will take you to various highly recommended anime and game centers around Tokyo. Travel back into the past anime world with old school video game stores before heading over to a popular maid café where you can order a drink or two. After that, you are then free to wander around huge anime stores, with expert guidance and recommendations from your local Green Power Ranger!	90	/images/akihabara.jpg
 \.
 
 
@@ -431,7 +432,7 @@ SELECT pg_catalog.setval('public."favorites_favoriteId_seq"', 1, false);
 -- Name: lisitings_lisitingId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."lisitings_lisitingId_seq"', 1, false);
+SELECT pg_catalog.setval('public."lisitings_lisitingId_seq"', 2, true);
 
 
 --
@@ -476,14 +477,6 @@ ALTER TABLE ONLY public.chats
 
 ALTER TABLE ONLY public.favorites
     ADD CONSTRAINT favorites_pkey PRIMARY KEY ("favoriteId");
-
-
---
--- Name: listings lisitings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.listings
-    ADD CONSTRAINT lisitings_pkey PRIMARY KEY ("listingId");
 
 
 --
