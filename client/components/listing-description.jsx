@@ -17,6 +17,10 @@ class ListingDescription extends React.Component {
       .catch(err => console.error(err));
   }
 
+  componentDidMount() {
+    this.getListingDetails();
+  }
+
   render() {
     return (
       <div className="card mt-5">
@@ -26,11 +30,9 @@ class ListingDescription extends React.Component {
             <img className="listing-icon" src="" alt="" />
             <h6 className="mb-0 ml-1">Cody</h6>
           </div>
-          <h5 className="card-title">Card title</h5>
+          <h5 className="card-title">{ this.state.listing.title }</h5>
           <h5 className="card-title">Location</h5>
-          <p className="card-text">The text in this element is being displayed
-          on the view. This text is never going to make sense to any of us. But
-          thank you for taking the time out of your day for reading this.</p>
+          <p className="card-text">{ this.state.listing.description }</p>
         </div>
       </div>
     );
