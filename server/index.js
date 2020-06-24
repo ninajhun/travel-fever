@@ -57,6 +57,16 @@ app.get('/api/locations/:locationId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/listings', (req, res, next) => {
+  const sql = `
+  select *
+  from "listings";
+  `;
+  db.query(sql)
+    .then(results => res.json(results.rows))
+    .catch(err => next(err));
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });

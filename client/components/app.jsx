@@ -1,23 +1,24 @@
 import React from 'react';
 import LoginPage from './login-page';
-// import BottomNavBar from './bottom-nav-bar';
-import SearchCity from './search-city';
+import BottomNavBar from './bottom-nav-bar';
+import Header from './header';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'login',
+      view: 'login', // change back
       user: {}
     };
     this.setView = this.setView.bind(this);
     this.getUser = this.getUser.bind(this);
   }
 
-  setView(name) {
+  setView(name, user) {
     this.setState({
       view: name
     });
+
   }
 
   getUser(userId) {
@@ -38,9 +39,9 @@ export default class App extends React.Component {
     } else {
       return (
         <div>
-          <SearchCity />
-          {/* <Header userImg={this.state.user.imageUrl}/> */}
-          {/* <BottomNavBar /> */}
+          <Header userImg={this.state.user.imageUrl} setView={this.setView}/>
+
+          <BottomNavBar />
         </div>
       );
     }
