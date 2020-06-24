@@ -74,7 +74,8 @@ app.get('/api/listings/:listingId', (req, res, next) => {
   from "listings"
   where "listingId" = $1;`;
   const values = [listingId];
-  db.query(sql, values);
+  db.query(sql, values)
+    .then(result => res.json(result.rows[0]));
 });
 
 app.use('/api', (req, res, next) => {
