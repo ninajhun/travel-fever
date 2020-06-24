@@ -1,21 +1,17 @@
 import React from 'react';
 import SearchCity from './search-city';
-import PopularCityListing from './popular-city-listing';
+import PopularCityList from './popular-city-list';
 
 class HomePage extends React.Component {
 
   render() {
-
     return (
       <div>
         <SearchCity />
+        {/* <div className="row justify-content-center"> */}
+        <PopularCityList/>
 
-        <div className="row justify-content-center">
-          <PopularCityListing />
-          <PopularCityListing />
-          <PopularCityListing />
-          <PopularCityListing />
-        </div>
+        {/* </div> */}
       </div>
     );
 

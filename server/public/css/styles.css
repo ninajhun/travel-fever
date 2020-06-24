@@ -16,10 +16,6 @@ body {
   object-fit: contain;
 }
 
-.card-img-top.contain{
-  height: 125px;
-  object-fit: cover;
-}
 .navbar{
   height: 45px;
   background-color: white;
@@ -44,6 +40,8 @@ body {
   padding-bottom: 12%;
 }
 
+
+/* User Navigation App Drawer */
 .sidenav-open {
   transition: 0.3s ease-in-out;
   height: 100%;
@@ -88,14 +86,21 @@ body {
 
 }
 
-.hidden {
-  display: none;
-}
 
+
+/* popular city card */
+.card-img-top.contain{
+  height: 125px;
+  object-fit: cover;
+}
 
 /* spacing */
 .row.search {
   /* position: fixed; */
   margin-top: 55px;
 
+}
+
+.hidden {
+  display: none;
 }
