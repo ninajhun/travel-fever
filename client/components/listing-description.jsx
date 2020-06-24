@@ -1,6 +1,12 @@
 import React from 'react';
 
 class ListingDescription extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      listing: {}
+    };
+  }
 
   getListingDetails(listingId) {
     fetch(`/api/listings/${listingId}`);
