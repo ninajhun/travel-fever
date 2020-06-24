@@ -27,6 +27,27 @@ body {
   margin-left: 16%;
 }
 
+.listing {
+  width: 90%;
+  margin: 5%;
+  box-shadow: -5px 5px 5px grey;
+}
+
+.listing-price {
+  color: #FB4D3D;
+  position: absolute;
+  top: 75%;
+  right: 10%;
+  font-weight: bold;
+}
+
+.fav-heart {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  color: #FB4D3D;
+}
+
 .icon {
   height: 100%;
   border-radius: 50%;
