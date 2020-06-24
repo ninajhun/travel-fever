@@ -16,6 +16,10 @@ body {
   object-fit: contain;
 }
 
+.card-img-top.contain{
+  height: 125px;
+  object-fit: cover;
+}
 .navbar{
   height: 45px;
   background-color: white;

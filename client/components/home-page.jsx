@@ -11,7 +11,10 @@ class HomePage extends React.Component {
         <SearchCity />
 
         <div className="row justify-content-center">
-          <PopularCityListing /> <PopularCityListing />
+          <PopularCityListing />
+          <PopularCityListing />
+          <PopularCityListing />
+          <PopularCityListing />
         </div>
       </div>
     );
