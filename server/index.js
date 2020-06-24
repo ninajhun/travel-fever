@@ -68,7 +68,13 @@ app.get('/api/listings', (req, res, next) => {
 });
 
 app.get('/api/listings/:listingId', (req, res, next) => {
-
+  const listingId = parseInt(req.params.listingId);
+  const sql = `
+  select *
+  from "listings"
+  where "listingId" = $1;`;
+  const values = [listingId];
+  db.query(sql, values);
 });
 
 app.use('/api', (req, res, next) => {
