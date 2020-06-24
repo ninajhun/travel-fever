@@ -13,7 +13,8 @@ class ListingDescription extends React.Component {
       .then(result => result.json())
       .then(data => this.setState({
         listing: data
-      }));
+      }))
+      .catch(err => console.error(err));
   }
 
   render() {
