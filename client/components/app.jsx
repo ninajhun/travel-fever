@@ -36,9 +36,15 @@ export default class App extends React.Component {
     if (this.state.view === 'login') {
       return <LoginPage setView={this.setView} getUser={this.getUser}/>;
     } else {
-      return <SearchCity />;
-      // return <BottomNavBar />;
+      return (
+        <div>
+          <SearchCity />
+          {/* <Header userImg={this.state.user.imageUrl}/> */}
+          {/* <BottomNavBar /> */}
+        </div>
+      );
     }
+
   }
 
 }
