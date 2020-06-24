@@ -107,7 +107,10 @@ body {
 
 }
 
-
+.main-screen{
+  position: absolute;
+  z-index: -1;
+}
 
 /* popular city card */
 .card-img-top.contain{

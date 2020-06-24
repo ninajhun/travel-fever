@@ -47,7 +47,9 @@ export default class App extends React.Component {
       return (
         <div>
           <Header userImg={this.state.user.imageUrl} setView={this.setView} />
-          {body}
+          <div className='main-screen'>
+            {body}
+          </div>
           <BottomNavBar setView={this.setView} />
         </div>
       );
