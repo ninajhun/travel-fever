@@ -2,8 +2,8 @@ import React from 'react';
 
 class ListingDescription extends React.Component {
 
-  getListingDetails() {
-
+  getListingDetails(listingId) {
+    fetch(`/api/listings/${listingId}`);
   }
 
   render() {
@@ -12,7 +12,7 @@ class ListingDescription extends React.Component {
         <img className="card-img-top" src="" alt=""/>
         <div className="card-body">
           <div className="card-title d-flex align-items-center">
-            <img src="" alt="" className="listing-icon" />
+            <img className="listing-icon" src="" alt="" />
             <h6 className="mb-0 ml-1">Cody</h6>
           </div>
           <h5 className="card-title">Card title</h5>
