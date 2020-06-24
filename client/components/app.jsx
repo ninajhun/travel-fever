@@ -1,6 +1,7 @@
 import React from 'react';
 import LoginPage from './login-page';
 import BottomNavBar from './bottom-nav-bar';
+// import Listing from './listing';
 import Header from './header';
 import HomePage from './home-page';
 
@@ -51,7 +52,5 @@ export default class App extends React.Component {
         </div>
       );
     }
-
   }
-
 }
