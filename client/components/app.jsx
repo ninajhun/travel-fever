@@ -2,6 +2,7 @@ import React from 'react';
 import LoginPage from './login-page';
 import BottomNavBar from './bottom-nav-bar';
 import Header from './header';
+import ListingDescription from './listing-description';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -40,7 +41,7 @@ export default class App extends React.Component {
       return (
         <div>
           <Header userImg={this.state.user.imageUrl} setView={this.setView}/>
-
+          <ListingDescription profileImg={ this.state.user.imageUrl }/>
           <BottomNavBar />
         </div>
       );
