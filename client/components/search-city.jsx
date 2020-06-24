@@ -7,7 +7,8 @@ class SearchCity extends React.Component {
   }
 
   getLocations() {
-    fetch('/api/locations');
+    fetch('/api/locations')
+      .then(response => response.json());
   }
 
   render() {
