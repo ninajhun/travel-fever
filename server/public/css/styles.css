@@ -86,3 +86,11 @@ body {
 .hidden {
   display: none;
 }
+
+
+/* spacing */
+.row.search {
+  /* position: fixed; */
+  margin-top: 55px;
+
+}
