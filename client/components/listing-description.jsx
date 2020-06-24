@@ -2,13 +2,17 @@ import React from 'react';
 
 class ListingDescription extends React.Component {
 
+  getListingDetails() {
+
+  }
+
   render() {
     return (
       <div className="card mt-5">
         <img className="card-img-top" src="" alt=""/>
         <div className="card-body">
           <div className="card-title d-flex align-items-center">
-            <img src={this.props.profileImg} alt="" className="listing-icon" />
+            <img src="" alt="" className="listing-icon" />
             <h6 className="mb-0 ml-1">Cody</h6>
           </div>
           <h5 className="card-title">Card title</h5>

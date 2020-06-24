@@ -41,7 +41,7 @@ export default class App extends React.Component {
       return (
         <div>
           <Header userImg={this.state.user.imageUrl} setView={this.setView}/>
-          <ListingDescription profileImg={ this.state.user.imageUrl }/>
+          <ListingDescription />
           <BottomNavBar />
         </div>
       );
