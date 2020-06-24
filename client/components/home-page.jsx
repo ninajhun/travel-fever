@@ -8,10 +8,7 @@ class HomePage extends React.Component {
     return (
       <div>
         <SearchCity />
-        {/* <div className="row justify-content-center"> */}
         <PopularCityList/>
-
-        {/* </div> */}
       </div>
     );
 
