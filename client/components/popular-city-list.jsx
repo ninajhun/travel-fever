@@ -25,12 +25,19 @@ class PopularCityList extends React.Component {
   render() {
 
     return (
-      <div className="row justify-content-center">
-        {
-          this.state.locations.map(location => {
-            return <PopularCityListing key={location.locationId} imageUrl={location.imageUrl} locationId={location.locationId} name={location.name} />;
-          })
-        }
+      <div className="container mt-3">
+        <div className="row">
+          <h5 className="ml-3">Popular Cities</h5>
+        </div>
+
+        <div className="row justify-content-center">
+          {
+            this.state.locations.map(location => {
+              return <PopularCityListing key={location.locationId} imageUrl={location.imageUrl} locationId={location.locationId} name={location.name} />;
+            })
+          }
+        </div>
+
       </div>
 
     );
