@@ -38,6 +38,7 @@ export default class App extends React.Component {
       return (
         <div>
           <Header userImg={this.state.user.imageUrl}/>
+
           <BottomNavBar />
         </div>
       );
