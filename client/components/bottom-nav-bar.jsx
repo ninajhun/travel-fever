@@ -6,7 +6,7 @@ class BottomNavBar extends React.Component {
     return (
       <div className="container h-45">
         <nav className="navbar fixed-bottom border-top justify-content-around">
-          <i className="fas fa-home fa-lg"></i>
+          <i className="fas fa-home fa-lg" onClick={() => this.props.setView('home')}></i>
           {/* <i className="far fa-heart fa-lg"></i> */}
           {/* <i className="fas fa-search fa-lg"></i> */}
           {/* <i className="far fa-envelope fa-lg"></i> */}

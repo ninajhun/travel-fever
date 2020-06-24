@@ -8,14 +8,14 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'home', // change back
+      view: 'login', // change back
       user: {}
     };
     this.setView = this.setView.bind(this);
     this.getUser = this.getUser.bind(this);
   }
 
-  setView(name, user) {
+  setView(name) {
     this.setState({
       view: name
     });
@@ -34,15 +34,20 @@ export default class App extends React.Component {
   }
 
   render() {
+    let body;
+
+    this.state.view === 'home'
+      ? body = <HomePage />
+      : body = null;
 
     if (this.state.view === 'login') {
       return <LoginPage setView={this.setView} getUser={this.getUser}/>;
     } else {
       return (
         <div>
-          <Header userImg={this.state.user.imageUrl} setView={this.setView}/>
-          <HomePage />
-          <BottomNavBar />
+          <Header userImg={this.state.user.imageUrl} setView={this.setView} />
+          {body}
+          <BottomNavBar setView={this.setView} />
         </div>
       );
     }
