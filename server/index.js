@@ -79,6 +79,28 @@ app.get('/api/listings/:listingId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.post('/api/listings', (req, res, next) => {
+
+  if (isNaN(req.body.sellerId) || req.body.sellerId <= 0) {
+    throw next(new ClientError('sellerId must be a positive integer', 400));
+
+    // return res.status(400).json({
+    //   error: 'sellerId must be a positive integer'
+    // });
+  }
+
+  if (isNaN(req.body.locationId) || req.body.locationId <= 0) {
+    throw next(new ClientError('locationId must be a positive integer', 400));
+  }
+
+  const sql = `
+
+
+  `;
+
+  const values = [req.body.sellerId, req.body.locationId, req.title, req.body.description, req.body.price, req.imageUrl];
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
