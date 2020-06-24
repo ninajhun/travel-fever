@@ -55,12 +55,14 @@ body {
 }
 
 .travel-header {
-  padding-right: 0;
-  padding-left: 0;
+  /* padding-right: 0;
+  padding-left: 0; */
   border-bottom: 1px solid lightgray;
   padding-bottom: 12%;
 }
 
+
+/* User Navigation App Drawer */
 .sidenav-open {
   transition: 0.3s ease-in-out;
   height: 100%;
@@ -102,6 +104,22 @@ body {
   height: 100%;
   background-color: black;
   opacity: 0.3;
+
+}
+
+
+
+/* popular city card */
+.card-img-top.contain{
+  height: 125px;
+  object-fit: cover;
+}
+
+/* spacing */
+.row.search {
+  /* position: fixed; */
+  margin-top: 55px;
+
 }
 
 .image-listing{

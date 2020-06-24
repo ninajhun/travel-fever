@@ -24,7 +24,7 @@ class SearchCity extends React.Component {
   render() {
     return (
       <div className="container">
-        <div className="row">
+        <div className="row search">
           <form className="col-9 mt-2 ml-auto mr-auto">
             <select className="custom-select custom-select-sm">
               <option value="select-user">Select Location</option>
