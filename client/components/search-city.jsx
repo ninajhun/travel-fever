@@ -6,6 +6,7 @@ class SearchCity extends React.Component {
     this.state = {
       locations: []
     };
+    this.getLocations = this.getLocations.bind(this);
   }
 
   getLocations() {
@@ -14,6 +15,10 @@ class SearchCity extends React.Component {
       .then(data => this.setState({
         locations: data
       }));
+  }
+
+  componentDidMount() {
+    this.getLocations();
   }
 
   render() {
