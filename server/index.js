@@ -81,24 +81,32 @@ app.get('/api/listings/:listingId', (req, res, next) => {
 
 app.post('/api/listings', (req, res, next) => {
 
-  if (isNaN(req.body.sellerId) || req.body.sellerId <= 0) {
-    throw next(new ClientError('sellerId must be a positive integer', 400));
+  const sellerId = parseInt(req.body.sellerId);
+  const locationId = parseInt(req.body.locationId);
+  const price = parseInt(req.body.price);
 
-    // return res.status(400).json({
-    //   error: 'sellerId must be a positive integer'
-    // });
+  if (!req.body.sellerId || !req.body.locationId || !req.body.title || !req.body.description || !req.body.price || !req.body.imageUrl) {
+    throw next(new ClientError('missing listings items', 400));
   }
 
-  if (isNaN(req.body.locationId) || req.body.locationId <= 0) {
-    throw next(new ClientError('locationId must be a positive integer', 400));
+  if (isNaN(price) || price <= 0) {
+    throw next(new ClientError('price must be a positive integer', 400));
   }
 
   const sql = `
-
-
+  insert into "listings"("sellerId", "locationId", "title", "description", "price" "imageUrl")
+    values($1, $2, $3, $4, $5, $6)
+    returning * ;
   `;
 
-  const values = [req.body.sellerId, req.body.locationId, req.title, req.body.description, req.body.price, req.imageUrl];
+  const values = [sellerId, locationId, req.body.title, req.body.description, price, req.body.imageUrl];
+
+  db.query(sql, values)
+    .then(result => {
+      res.status(201).json(result.rows[0]);
+    })
+    .catch(err => next(err));
+
 });
 
 app.use('/api', (req, res, next) => {
