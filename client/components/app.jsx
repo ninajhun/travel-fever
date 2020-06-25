@@ -4,6 +4,7 @@ import BottomNavBar from './bottom-nav-bar';
 // import Listing from './listing';
 import Header from './header';
 import HomePage from './home-page';
+// import CreateListing from './create-listing';
 
 export default class App extends React.Component {
   constructor(props) {
