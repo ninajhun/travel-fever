@@ -54,6 +54,12 @@ body {
   border: 2px solid lightgray ;
 }
 
+.listing-icon {
+  width: 10%;
+  border-radius: 50%;
+  border: 2px solid lightgray ;
+}
+
 .travel-header {
   /* padding-right: 0;
   padding-left: 0; */
@@ -126,6 +132,11 @@ body {
 
 .image-listing{
   height: 100%;
+}
+
+.purchase-button {
+  background-color: #FB4D3D;
+  border: 0
 }
 
 .hidden {
