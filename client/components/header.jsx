@@ -38,9 +38,9 @@ class Logout extends React.Component {
             </div>
           </div>
         </div>
-        <div className={`${overlayClass}`} >
-          <div className={`${returnOverlay}`} onClick={this.handleClickOpen}></div>
-          <div className={`${menuClass}`}>
+        <div className={ overlayClass } >
+          <div className={ returnOverlay } onClick={this.handleClickOpen}></div>
+          <div className={ menuClass }>
             {/* <h5>My Listings</h5> */}
             <h5 onClick={() => this.props.setView('login')}>Log Out</h5>
           </div>
