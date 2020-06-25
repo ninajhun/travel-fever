@@ -1,8 +1,9 @@
 import React from 'react';
 import LoginPage from './login-page';
 import BottomNavBar from './bottom-nav-bar';
+// import Listing from './listing';
 import Header from './header';
-import ListingDescription from './listing-description';
+import HomePage from './home-page';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -15,7 +16,7 @@ export default class App extends React.Component {
     this.getUser = this.getUser.bind(this);
   }
 
-  setView(name, user) {
+  setView(name) {
     this.setState({
       view: name
     });
@@ -34,19 +35,24 @@ export default class App extends React.Component {
   }
 
   render() {
+    let body;
+
+    this.state.view === 'home'
+      ? body = <HomePage />
+      : body = null;
 
     if (this.state.view === 'login') {
       return <LoginPage setView={this.setView} getUser={this.getUser}/>;
     } else {
       return (
         <div>
-          <Header userImg={this.state.user.imageUrl} setView={this.setView}/>
-          <ListingDescription />
-          <BottomNavBar />
+          <Header userImg={this.state.user.imageUrl} setView={this.setView} />
+          <div className='main-screen'>
+            {body}
+          </div>
+          <BottomNavBar setView={this.setView} />
         </div>
       );
     }
-
   }
-
 }

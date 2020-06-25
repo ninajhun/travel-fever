@@ -27,6 +27,27 @@ body {
   margin-left: 16%;
 }
 
+.listing {
+  width: 90%;
+  margin: 5%;
+  box-shadow: -5px 5px 5px grey;
+}
+
+.listing-price {
+  color: #FB4D3D;
+  position: absolute;
+  top: 75%;
+  right: 10%;
+  font-weight: bold;
+}
+
+.fav-heart {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  color: #FB4D3D;
+}
+
 .icon {
   height: 90%;
   border-radius: 50%;
@@ -40,12 +61,14 @@ body {
 }
 
 .travel-header {
-  padding-right: 0;
-  padding-left: 0;
+  /* padding-right: 0;
+  padding-left: 0; */
   border-bottom: 1px solid lightgray;
   padding-bottom: 12%;
 }
 
+
+/* User Navigation App Drawer */
 .sidenav-open {
   transition: 0.3s ease-in-out;
   height: 100%;
@@ -87,6 +110,29 @@ body {
   height: 100%;
   background-color: black;
   opacity: 0.3;
+
+}
+
+.main-screen{
+  position: absolute;
+  z-index: -1;
+}
+
+/* popular city card */
+.card-img-top.contain{
+  height: 125px;
+  object-fit: cover;
+}
+
+/* spacing */
+.row.search {
+  /* position: fixed; */
+  margin-top: 55px;
+
+}
+
+.image-listing{
+  height: 100%;
 }
 
 .hidden {
