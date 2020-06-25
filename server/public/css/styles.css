@@ -54,6 +54,12 @@ body {
   border: 2px solid lightgray ;
 }
 
+.listing-icon {
+  width: 10%;
+  border-radius: 50%;
+  border: 2px solid lightgray ;
+}
+
 .travel-header {
   /* padding-right: 0;
   padding-left: 0; */
@@ -92,7 +98,7 @@ body {
 
 .overlay {
   position: absolute;
-  margin-top: 45px;
+  z-index: 1;
   width: 100%;
   height: 100%;
   transition: all 0.3s ease-in-out;
@@ -107,7 +113,9 @@ body {
 
 }
 
+.main-screen{
 
+}
 
 /* popular city card */
 .card-img-top.contain{
@@ -124,6 +132,11 @@ body {
 
 .image-listing{
   height: 100%;
+}
+
+.purchase-button {
+  background-color: #FB4D3D;
+  border: 0
 }
 
 .hidden {
