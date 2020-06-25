@@ -4,12 +4,13 @@ const express = require('express');
 const multer = require('multer');
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, '/server/public/images/uploads');
+    cb(null, 'server/public/images/uploads');
   },
   filename: (req, file, cb) => {
-    cb(null, file.originalname + '-' + Date.now());
+    cb(null, file.originalname);
   }
 });
+
 const upload = multer({ storage: storage });
 
 const db = require('./database');
@@ -100,7 +101,7 @@ app.get('/api/listings/:listingId', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.post('/api/listings', upload.single('upload'), (req, res, next) => {
+app.post('/api/listings', upload.single('image'), (req, res, next) => {
 
   console.log(req.file);
 
