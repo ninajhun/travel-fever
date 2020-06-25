@@ -89,6 +89,36 @@ app.get('/api/listings/:listingId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.post('/api/listings', (req, res, next) => {
+
+  const sellerId = parseInt(req.body.sellerId);
+  const locationId = parseInt(req.body.locationId);
+  const price = parseInt(req.body.price);
+
+  if (!req.body.sellerId || !req.body.locationId || !req.body.title || !req.body.description || !req.body.price || !req.body.imageUrl) {
+    throw next(new ClientError('missing listings items', 400));
+  }
+
+  if (isNaN(price) || price <= 0) {
+    throw next(new ClientError('price must be a positive integer', 400));
+  }
+
+  const sql = `
+  insert into "listings"("sellerId", "locationId", "title", "description", "price" "imageUrl")
+    values($1, $2, $3, $4, $5, $6)
+    returning * ;
+  `;
+
+  const values = [sellerId, locationId, req.body.title, req.body.description, price, req.body.imageUrl];
+
+  db.query(sql, values)
+    .then(result => {
+      res.status(201).json(result.rows[0]);
+    })
+    .catch(err => next(err));
+
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
