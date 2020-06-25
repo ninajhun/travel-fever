@@ -102,36 +102,32 @@ app.get('/api/listings/:listingId', (req, res, next) => {
 });
 
 app.post('/api/listings', upload.single('image'), (req, res, next) => {
+  const imageUrl = req.file.path;
+  const sellerId = parseInt(req.body.sellerId);
+  const locationId = parseInt(req.body.locationId);
+  const price = parseInt(req.body.price);
 
-  console.log(req.file);
+  if (!req.body.sellerId || !req.body.locationId || !req.body.title || !req.body.description || !req.body.price || !req.file) {
+    throw next(new ClientError('missing listings items', 400));
+  }
 
-  // const imageURl = req.file.path;
+  if (isNaN(price) || price <= 0) {
+    throw next(new ClientError('price must be a positive integer', 400));
+  }
 
-  // const sellerId = parseInt(req.body.sellerId);
-  // const locationId = parseInt(req.body.locationId);
-  // const price = parseInt(req.body.price);
+  const sql = `
+  insert into "listings"("sellerId", "locationId", "title", "description", "price", "imageUrl")
+    values($1, $2, $3, $4, $5, $6)
+    returning * ;
+  `;
 
-  // if (!req.body.sellerId || !req.body.locationId || !req.body.title || !req.body.description || !req.body.price || !req.body.imageUrl) {
-  //   throw next(new ClientError('missing listings items', 400));
-  // }
+  const values = [sellerId, locationId, req.body.title, req.body.description, price, imageUrl];
 
-  // if (isNaN(price) || price <= 0) {
-  //   throw next(new ClientError('price must be a positive integer', 400));
-  // }
-
-  // const sql = `
-  // insert into "listings"("sellerId", "locationId", "title", "description", "price" "imageUrl")
-  //   values($1, $2, $3, $4, $5, $6)
-  //   returning * ;
-  // `;
-
-  // const values = [sellerId, locationId, req.body.title, req.body.description, price, imageUrl];
-
-  // db.query(sql, values)
-  //   .then(result => {
-  //     res.status(201).json(result.rows[0]);
-  //   })
-  //   .catch(err => next(err));
+  db.query(sql, values)
+    .then(result => {
+      res.status(201).json(result.rows[0]);
+    })
+    .catch(err => next(err));
 
 });
 
