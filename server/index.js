@@ -11,7 +11,9 @@ const storage = multer.diskStorage({
   }
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({
+  storage: storage
+});
 
 const db = require('./database');
 const ClientError = require('./client-error');
@@ -108,7 +110,7 @@ app.post('/api/listings', upload.single('image'), (req, res, next) => {
   const price = parseInt(req.body.price);
 
   if (!req.body.sellerId || !req.body.locationId || !req.body.title || !req.body.description || !req.body.price || !req.file) {
-    throw next(new ClientError('missing listings items', 400));
+    throw next(new ClientError('missing listings field(s)', 400));
   }
 
   if (isNaN(price) || price <= 0) {
