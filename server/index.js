@@ -70,8 +70,17 @@ app.get('/api/listings', (req, res, next) => {
 app.get('/api/listings/:listingId', (req, res, next) => {
   const listingId = parseInt(req.params.listingId);
   const sql = `
-  select *
-  from "listings"
+  select "l"."listingId",
+    "l"."title",
+    "l"."description",
+    "l"."price",
+    "l"."imageUrl",
+    "locations"."name" as "location",
+    "users"."username" as "sellerName",
+    "users"."imageUrl" as "sellerPicture"
+  from "listings" as "l"
+  join "locations" using ("locationId")
+  inner join "users" on "l"."listingId" = "users"."userId"
   where "listingId" = $1;`;
   const values = [listingId];
   db.query(sql, values)
