@@ -18,7 +18,7 @@ class ListingDescription extends React.Component {
   }
 
   componentDidMount() {
-    this.getListingDetails();
+    this.getListingDetails(1);
   }
 
   render() {
@@ -33,6 +33,11 @@ class ListingDescription extends React.Component {
           <h5 className="card-title">{ this.state.listing.title }</h5>
           <h5 className="card-title">{ this.state.listing.location }</h5>
           <p className="card-text">{ this.state.listing.description }</p>
+          <div className="text-center">
+            <a href="#" className="btn btn-primary purchase-button">{
+              `Purchase $${(this.state.listing.price / 100).toFixed(2)}`
+            }</a>
+          </div>
         </div>
       </div>
     );

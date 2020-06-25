@@ -135,6 +135,11 @@ body {
   height: 100%;
 }
 
+.purchase-button {
+  background-color: #FB4D3D;
+  border: 0
+}
+
 .hidden {
   display: none;
 }
