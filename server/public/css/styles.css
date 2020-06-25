@@ -70,21 +70,36 @@ body {
 
 /* User Navigation App Drawer */
 .sidenav-open {
+  height: 100vh;
+  width: 35%;
+  background-color: #EBEBEB;
+  transition: 0.3s;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* .sidenav-open {
   transition: 0.3s ease-in-out;
   height: 100%;
   position: fixed;
   right: 0;
   background-color: #EBEBEB;
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
   padding-top: 40px;
   padding-right: 9%;
   padding-left: 9%;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+} */
 
-.sidenav-closed {
+/* .sidenav-closed {
   height: 100vh;
   position: fixed;
   right: -160px;
@@ -93,7 +108,22 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+} */
 
+.sidenav-closed {
+  height: 100%;
+  width: 0;
+  background-color: #EBEBEB;
+  transition: 0.3s;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 0;
+  overflow: hidden;
+
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
 }
 
 .overlay {
@@ -110,7 +140,6 @@ body {
   height: 100%;
   background-color: black;
   opacity: 0.3;
-
 }
 
 .main-screen{
