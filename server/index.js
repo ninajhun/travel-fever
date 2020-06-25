@@ -1,6 +1,20 @@
 require('dotenv/config');
 const express = require('express');
 
+const multer = require('multer');
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'server/public/images/uploads');
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  }
+});
+
+const upload = multer({
+  storage: storage
+});
+
 const db = require('./database');
 const ClientError = require('./client-error');
 const staticMiddleware = require('./static-middleware');
@@ -89,14 +103,14 @@ app.get('/api/listings/:listingId', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.post('/api/listings', (req, res, next) => {
-
+app.post('/api/listings', upload.single('image'), (req, res, next) => {
+  const imageUrl = req.file.path;
   const sellerId = parseInt(req.body.sellerId);
   const locationId = parseInt(req.body.locationId);
   const price = parseInt(req.body.price);
 
-  if (!req.body.sellerId || !req.body.locationId || !req.body.title || !req.body.description || !req.body.price || !req.body.imageUrl) {
-    throw next(new ClientError('missing listings items', 400));
+  if (!req.body.sellerId || !req.body.locationId || !req.body.title || !req.body.description || !req.body.price || !req.file) {
+    throw next(new ClientError('missing listings field(s)', 400));
   }
 
   if (isNaN(price) || price <= 0) {
@@ -104,12 +118,12 @@ app.post('/api/listings', (req, res, next) => {
   }
 
   const sql = `
-  insert into "listings"("sellerId", "locationId", "title", "description", "price" "imageUrl")
+  insert into "listings"("sellerId", "locationId", "title", "description", "price", "imageUrl")
     values($1, $2, $3, $4, $5, $6)
     returning * ;
   `;
 
-  const values = [sellerId, locationId, req.body.title, req.body.description, price, req.body.imageUrl];
+  const values = [sellerId, locationId, req.body.title, req.body.description, price, imageUrl];
 
   db.query(sql, values)
     .then(result => {
