@@ -61,8 +61,6 @@ body {
 }
 
 .travel-header {
-  /* padding-right: 0;
-  padding-left: 0; */
   border-bottom: 1px solid lightgray;
   padding-bottom: 12%;
 }
@@ -84,31 +82,6 @@ body {
   align-items: center;
 }
 
-/* .sidenav-open {
-  transition: 0.3s ease-in-out;
-  height: 100%;
-  position: fixed;
-  right: 0;
-  background-color: #EBEBEB;
-  overflow-x: hidden;
-  padding-top: 40px;
-  padding-right: 9%;
-  padding-left: 9%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-} */
-
-/* .sidenav-closed {
-  height: 100vh;
-  position: fixed;
-  right: -160px;
-  transition: 0.3s ease-in-out;
-  background-color: #EBEBEB;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-} */
 
 .sidenav-closed {
   height: 100%;
@@ -120,10 +93,6 @@ body {
   top: 0;
   z-index: 0;
   overflow: hidden;
-
-  /* display: flex;
-  flex-direction: column;
-  align-items: center; */
 }
 
 .overlay {
@@ -143,8 +112,8 @@ body {
 }
 
 .main-screen{
-  margin-top: 50px;
-
+  position: absolute;
+  margin-top: 14%;
 }
 
 /* popular city card */
@@ -155,9 +124,7 @@ body {
 
 /* spacing */
 .row.search {
-  /* position: fixed; */
   margin-top: 55px;
-
 }
 
 .image-listing{

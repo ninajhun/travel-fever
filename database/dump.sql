@@ -373,7 +373,7 @@ COPY public.favorites ("favoriteId", "listingId", "userId") FROM stdin;
 COPY public.listings ("listingId", "sellerId", "locationId", title, description, price, "imageUrl") FROM stdin;
 1	2	3	Tour of the LFZ Coding Facility	I will take you on a tour of the fabulous LFZ coding facility where web development dreams are made! You will even get to meet famous developers such as Cody Miller and Tim Davis! You might even get to take a photo with our mascot -- the Green Power Ranger!	9000	/images/lfz.jpg
 2	1	1	Akihabara Anime and Gaming Adventure Tour!	In case one anime store is not enough, why not book a tour instead? Akihabara anime and gaming adventure tour will take you to various highly recommended anime and game centers around Tokyo. Travel back into the past anime world with old school video game stores before heading over to a popular maid café where you can order a drink or two. After that, you are then free to wander around huge anime stores, with expert guidance and recommendations from your local Green Power Ranger!	90	/images/akihabara.jpg
-5	2	3	Cody's Wonderful Zoo!	Come one, come all! Cody’s Zoo is finally open for business! Come see the wild Googley Bear Cat and hear his famous ~rawr~! You’ll even get to see Oogie Boogie the Sand Boa or Naveen the Leopard Gecko! We also have a real life DRAGON… Jack the Bearded Dragon! And don’t forget to give Annie the Doggo all the pets in the world! It’s a bonafide! magical! extravaganza! for all ages to experience!	50	/image/codyzoo.jpg
+5	2	3	Cody's Wonderful Zoo!	Come one, come all! Cody’s Zoo is finally open for business! Come see the wild Googley Bear Cat and hear his famous ~rawr~! You’ll even get to see Oogie Boogie the Sand Boa or Naveen the Leopard Gecko! We also have a real life DRAGON… Jack the Bearded Dragon! And don’t forget to give Annie the Doggo all the pets in the world! It’s a bonafide! magical! extravaganza! for all ages to experience!	50	/images/codyzoo.jpg
 \.
 
 
@@ -433,7 +433,7 @@ SELECT pg_catalog.setval('public."favorites_favoriteId_seq"', 1, false);
 -- Name: lisitings_lisitingId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."lisitings_lisitingId_seq"', 5, true);
+SELECT pg_catalog.setval('public."lisitings_lisitingId_seq"', 10, true);
 
 
 --

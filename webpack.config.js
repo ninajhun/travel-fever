@@ -3,6 +3,7 @@ const path = require('path');
 
 const clientPath = path.join(__dirname, 'client/');
 const publicPath = path.join(__dirname, 'server/public/');
+const uploadsPath = path.join(__dirname, 'server/public/images/uploads');
 
 module.exports = {
   resolve: {
@@ -37,6 +38,9 @@ module.exports = {
       '/api': `http://localhost:${process.env.PORT}`
     },
     stats: 'minimal',
-    watchContentBase: true
+    watchContentBase: true,
+    watchOptions: {
+      ignored: uploadsPath
+    }
   }
 };
