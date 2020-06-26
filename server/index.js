@@ -107,9 +107,7 @@ app.get('/api/listings/:listingId', (req, res, next) => {
 });
 
 app.post('/api/listings', upload.single('image'), (req, res, next) => {
-
-  // console.log(req.file);
-  const imageUrl = req.file.path;
+  const imageUrl = '/uploads/' + req.file.filename;
   const sellerId = parseInt(req.body.sellerId);
   const locationId = parseInt(req.body.locationId);
   const price = parseInt(req.body.price);
