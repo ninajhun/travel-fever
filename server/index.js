@@ -1,10 +1,13 @@
 require('dotenv/config');
 const express = require('express');
 
+const path = require('path');
+const filePath = path.join(__dirname, '/public', 'images', 'uploads');
+
 const multer = require('multer');
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'server/public/images/uploads');
+    cb(null, filePath);
   },
   filename: (req, file, cb) => {
     cb(null, file.originalname);
@@ -104,6 +107,8 @@ app.get('/api/listings/:listingId', (req, res, next) => {
 });
 
 app.post('/api/listings', upload.single('image'), (req, res, next) => {
+
+  // console.log(req.file);
   const imageUrl = req.file.path;
   const sellerId = parseInt(req.body.sellerId);
   const locationId = parseInt(req.body.locationId);
