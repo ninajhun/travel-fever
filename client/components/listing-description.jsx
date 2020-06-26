@@ -8,8 +8,14 @@ class ListingDescription extends React.Component {
     };
   }
 
-  getListingDetails(listingId) {
-    fetch(`/api/listings/${listingId}`)
+  // getListingDetails(listingId) {
+
+  // }
+
+  componentDidMount() {
+    // this.getListingDetails(1);
+
+    fetch('/api/listings/1')
       .then(result => result.json())
       .then(data => this.setState({
         listing: data
@@ -17,9 +23,9 @@ class ListingDescription extends React.Component {
       .catch(err => console.error(err));
   }
 
-  componentDidMount() {
-    this.getListingDetails(1);
-  }
+  // getListingId(){
+
+  // }
 
   render() {
     return (

@@ -1,13 +1,12 @@
 import React from 'react';
 import LoginPage from './login-page';
 import BottomNavBar from './bottom-nav-bar';
-import Listing from './listing';
+import ListingsPage from './listings-page';
 import Header from './header';
-
-// import CheckoutPage from './checkout-page';
-
+import CheckoutPage from './checkout-page';
 import HomePage from './home-page';
 import CreateListing from './create-listing';
+import ListingDescription from './listing-description';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -44,11 +43,17 @@ export default class App extends React.Component {
       case 'home':
         body = <HomePage user={this.state.user.userId} setView={this.setView}/>;
         break;
-      case 'listing':
-        body = <Listing user={this.state.user.userId} setView={this.setView}/>;
+      case 'listings-page':
+        body = <ListingsPage user={this.state.user.userId} setView={this.setView}/>;
         break;
       case 'create-listing':
         body = <CreateListing user={this.state.user.userId} setView={this.setView}/>;
+        break;
+      case 'check-out':
+        body = <CheckoutPage user={this.state.user.userId} setView={this.setView} />;
+        break;
+      case 'listing-description':
+        body = <ListingDescription user={this.state.user.userId} setView={this.setView} />;
         break;
       default: body = null;
     }
