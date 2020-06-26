@@ -355,6 +355,7 @@ ALTER TABLE ONLY public.users ALTER COLUMN "userId" SET DEFAULT nextval('public.
 --
 
 COPY public.chats ("chatId", "customerId", "listingId") FROM stdin;
+1	1	3
 \.
 
 
@@ -402,6 +403,7 @@ COPY public.messages ("messageId", "chatId", "senderId", "recipientId", content,
 --
 
 COPY public.purchases ("purchaseId", "customerId", "listingId") FROM stdin;
+1	1	3
 \.
 
 
@@ -419,7 +421,7 @@ COPY public.users ("userId", username, "imageUrl") FROM stdin;
 -- Name: chats_chatId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."chats_chatId_seq"', 1, false);
+SELECT pg_catalog.setval('public."chats_chatId_seq"', 1, true);
 
 
 --
@@ -454,7 +456,7 @@ SELECT pg_catalog.setval('public."messages_messageId_seq"', 1, false);
 -- Name: purchases_purchaseId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."purchases_purchaseId_seq"', 1, false);
+SELECT pg_catalog.setval('public."purchases_purchaseId_seq"', 1, true);
 
 
 --
