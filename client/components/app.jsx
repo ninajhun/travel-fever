@@ -3,7 +3,8 @@ import LoginPage from './login-page';
 import BottomNavBar from './bottom-nav-bar';
 // import Listing from './listing';
 import Header from './header';
-import HomePage from './home-page';
+// import HomePage from './home-page';
+import CheckoutPage from './checkout-page';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -38,7 +39,7 @@ export default class App extends React.Component {
     let body;
 
     this.state.view === 'home'
-      ? body = <HomePage />
+      ? body = <CheckoutPage />
       : body = null;
 
     if (this.state.view === 'login') {
