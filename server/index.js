@@ -1,5 +1,7 @@
 require('dotenv/config');
 const express = require('express');
+const path = require('path');
+const filePath = path.join(__dirname, '/public', 'images');
 
 const multer = require('multer');
 const storage = multer.diskStorage({

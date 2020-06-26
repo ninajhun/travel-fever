@@ -3,8 +3,8 @@ import LoginPage from './login-page';
 import BottomNavBar from './bottom-nav-bar';
 // import Listing from './listing';
 import Header from './header';
-import HomePage from './home-page';
-// import CreateListing from './create-listing';
+// import HomePage from './home-page';
+import CreateListing from './create-listing';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -39,7 +39,7 @@ export default class App extends React.Component {
     let body;
 
     this.state.view === 'home'
-      ? body = <HomePage />
+      ? body = <CreateListing user={this.state.user.userId}/>
       : body = null;
 
     if (this.state.view === 'login') {
