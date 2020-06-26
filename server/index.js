@@ -135,6 +135,10 @@ app.post('/api/listings', upload.single('image'), (req, res, next) => {
 
 });
 
+app.post('/api/purchases', (req, res, next) => {
+
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
