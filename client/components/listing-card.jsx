@@ -7,8 +7,8 @@ class ListingCard extends React.Component {
   }
 
   handleClick() {
-    this.props.setView('listingDescription');
-
+    this.props.getListingId(this.props.listingId);
+    this.props.setView('listing-description');
   }
 
   render() {

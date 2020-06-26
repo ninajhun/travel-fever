@@ -8,14 +8,8 @@ class ListingDescription extends React.Component {
     };
   }
 
-  // getListingDetails(listingId) {
-
-  // }
-
   componentDidMount() {
-    // this.getListingDetails(1);
-
-    fetch('/api/listings/1')
+    fetch(`/api/listings/${this.props.listingId}`)
       .then(result => result.json())
       .then(data => this.setState({
         listing: data
@@ -23,13 +17,9 @@ class ListingDescription extends React.Component {
       .catch(err => console.error(err));
   }
 
-  // getListingId(){
-
-  // }
-
   render() {
     return (
-      <div className="card mt-5">
+      <div className="card">
         <img className="card-img-top" src={ this.state.listing.imageUrl } alt=""/>
         <div className="card-body">
           <div className="card-title d-flex align-items-center">

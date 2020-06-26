@@ -13,10 +13,12 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: 'login', // change back
-      user: {}
+      user: {},
+      listingId: null
     };
     this.setView = this.setView.bind(this);
     this.getUser = this.getUser.bind(this);
+    this.getListingId = this.getListingId.bind(this);
   }
 
   setView(name) {
@@ -36,6 +38,12 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
 
+  getListingId(listingId) {
+    this.setState({
+      listingId: listingId
+    });
+  }
+
   render() {
     let body;
 
@@ -44,7 +52,7 @@ export default class App extends React.Component {
         body = <HomePage user={this.state.user.userId} setView={this.setView}/>;
         break;
       case 'listings-page':
-        body = <ListingsPage user={this.state.user.userId} setView={this.setView}/>;
+        body = <ListingsPage user={this.state.user.userId} setView={this.setView} getListingId ={this.getListingId}/>;
         break;
       case 'create-listing':
         body = <CreateListing user={this.state.user.userId} setView={this.setView}/>;
@@ -53,7 +61,7 @@ export default class App extends React.Component {
         body = <CheckoutPage user={this.state.user.userId} setView={this.setView} />;
         break;
       case 'listing-description':
-        body = <ListingDescription user={this.state.user.userId} setView={this.setView} />;
+        body = <ListingDescription user={this.state.user.userId} setView={this.setView} listingId={this.state.listingId} />; // pass this.state.listingId
         break;
       default: body = null;
     }
