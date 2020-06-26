@@ -1,6 +1,5 @@
 import React from 'react';
 import SearchCity from './search-city';
-// import Button from './button';
 
 class CreateListing extends React.Component {
   constructor(props) {
@@ -16,27 +15,6 @@ class CreateListing extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleReset = this.handleReset.bind(this);
     this.getLocationId = this.getLocationId.bind(this);
-    this.postListing = this.postListing.bind(this);
-  }
-
-  postListing() {
-    fetch('/api/listings', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        path: this.state.imageUrl,
-        price: this.state.price,
-        title: this.state.title,
-        description: this.state.description,
-        locationId: this.state.locationId,
-        sellerId: this.props.user
-      })
-    })
-      .then(res => res.json())
-      .then(data =>
-        console.log('data', data)
-      )
-      .catch(err => console.error(err));
   }
 
   handleChange(event) {
@@ -53,7 +31,6 @@ class CreateListing extends React.Component {
         break;
       case 'image':
         this.setState({ imageUrl: event.target.value });
-        console.log('imageUrl', { imageUrl: event.target.value });
         break;
       default:
         break;
@@ -64,7 +41,23 @@ class CreateListing extends React.Component {
     this.setState({ locationId });
   }
 
-  handleSubmit() {
+  handleSubmit(event) {
+    const formData = new FormData(event.target);
+    fetch('/api/listings', {
+      method: 'POST',
+      body: formData
+    })
+      .then(res => res.json())
+      .then(data =>
+        this.setState({
+          imageUrl: '',
+          price: '',
+          title: '',
+          description: '',
+          locationId: ''
+        })
+      )
+      .catch(err => console.error(err));
     event.preventDefault();
   }
 
@@ -81,39 +74,42 @@ class CreateListing extends React.Component {
   render() {
     return (
       <div>
-        <form encType="multipart/form-data" className="col-12 mt-5 pt-4 ml-auto mr-auto">
+        <form encType="multipart/form-data" className="col-12 mt-5 pt-4 ml-auto mr-auto" onSubmit={this.handleSubmit} onReset={this.handleReset}>
           <h4>Create Listing</h4>
+          <input type="hidden" name="sellerId" defaultValue={this.props.user}/>
           <div className="form-group">
-            <SearchCity getLocationId={this.getLocationId}/>
+            <SearchCity getLocationId={this.getLocationId} name="locationId"/>
           </div>
           <div className="form-group">
-            <input required className="form-control" type="text" name="title" id="title" placeholder="Listing Title" title={this.state.title} onChange={this.handleChange}/>
+            <input required className="form-control" type="text" name="title" id="title" placeholder="Listing Title" value={this.state.title} onChange={this.handleChange}/>
           </div>
           <div className="form-group">
             <div className="form-row">
               <div className="col-12">
-                <input required className="form-control" type="number" name="price" id="price" placeholder="Price" price={this.state.price} onChange={this.handleChange}/>
+                <input required className="form-control" type="number" name="price" id="price" placeholder="Price" value={this.state.price} onChange={this.handleChange}/>
               </div>
             </div>
           </div>
-          <div className="form-group">
+          <div>
+            <div className='d-flex align-items-baseline'>
+              <h4>Upload Image</h4><i className="fas fa-cloud-upload-alt ml-1"></i>
+            </div>
             <label>
-              <h4>Upload Image<i className="fas fa-cloud-upload-alt"></i></h4>
               <div className="form-group">
-                <input type="file" name="image" id="imageUrl" accept="image/png, image/jpeg" className="form-control-file" image={this.state.imageUrl} onChange={this.handleChange}/>
+                <input type="file" name="image" id="imageUrl" accept="image/png, image/jpeg" className="form-control-file" value={this.state.imageUrl} onChange={this.handleChange}/>
               </div>
             </label>
           </div>
           <div className="form-group mb-0 pb-0">
             <label><h4>Description</h4>
-              <textarea name="description" id="description" cols="41" rows="5" description={this.state.description} onChange={this.handleChange}></textarea>
+              <textarea name="description" id="description" cols="41" rows="5" value={this.state.description} onChange={this.handleChange}></textarea>
             </label>
           </div>
           <div className="d-flex justify-content-end mb-3">
             <button type="reset" className="btn btn-light">Clear Form</button>
           </div>
           <div className='d-flex justify-content-center' >
-            <button type="button" className="uni-button ml-2 mt-1 py-2 px-1" onClick={this.postListing}>Preview Listing</button>
+            <button type="submit" className="uni-button ml-2 mt-1 py-2 px-1">Preview Listing</button>
           </div>
         </form>
       </div>

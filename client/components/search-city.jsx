@@ -33,7 +33,7 @@ class SearchCity extends React.Component {
       <div className="container pr-0 pl-0">
         <div>
           <div className="col-12 mt-4 pr-0 pl-0">
-            <select className="custom-select custom-select-sm" onChange={this.handleChange} value={this.state.value}>
+            <select className="custom-select custom-select-sm" onChange={this.handleChange} value={this.state.value} name={this.props.name}>
               <option value="select-location">Select Location</option>
               {
                 this.state.locations.map(data => {
