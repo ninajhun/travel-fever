@@ -135,6 +135,28 @@ app.post('/api/listings', upload.single('image'), (req, res, next) => {
 
 });
 
+app.post('/api/purchases', (req, res, next) => {
+  const userId = parseInt(req.body.userId);
+  const listingId = parseInt(req.body.listingId);
+  const sql = `
+  with "double_or_nothing" as (
+    insert into "purchases" ("customerId", "listingId")
+    values ($1, $2)
+    returning *
+  )
+  insert into "chats" ("customerId", "listingId")
+  select "customerId",
+    "listingId"
+  from "double_or_nothing"
+  returning *`;
+  const values = [userId, listingId];
+  db.query(sql, values)
+    .then(result => {
+      res.status(201).json(result.rows[0]);
+    })
+    .catch(err => next(err));
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
