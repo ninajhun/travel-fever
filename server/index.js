@@ -150,7 +150,10 @@ app.post('/api/purchases', (req, res, next) => {
   from "double_or_nothing"
   returning *`;
   const values = [userId, listingId];
-  db.query(sql, values);
+  db.query(sql, values)
+    .then(result => {
+      res.status(201).json(result.rows[0]);
+    });
 });
 
 app.use('/api', (req, res, next) => {
