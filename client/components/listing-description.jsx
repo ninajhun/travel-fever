@@ -17,6 +17,10 @@ class ListingDescription extends React.Component {
       .catch(err => console.error(err));
   }
 
+  handleClick() {
+    console.log('hi');
+  }
+
   render() {
     return (
       <div className="card">
@@ -30,7 +34,7 @@ class ListingDescription extends React.Component {
           <h5 className="card-title">{ this.state.listing.location }</h5>
           <p className="card-text">{ this.state.listing.description }</p>
           <div className="text-center">
-            <a href="#" className="btn btn-primary purchase-button">{
+            <a href="#" className="btn btn-primary purchase-button" onClick={this.handleClick}>{
               `Purchase $${(this.state.listing.price / 100).toFixed(2)}`
             }</a>
           </div>

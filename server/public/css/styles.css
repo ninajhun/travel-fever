@@ -114,6 +114,7 @@ body {
 .main-screen{
   position: absolute;
   margin-top: 14%;
+  margin-bottom: 12%
 }
 
 /* popular city card */
