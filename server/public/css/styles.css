@@ -143,7 +143,7 @@ body {
 }
 
 .main-screen{
-
+ margin-top: 14%;
 }
 
 /* popular city card */
@@ -156,7 +156,6 @@ body {
 .row.search {
   /* position: fixed; */
   margin-top: 55px;
-
 }
 
 .image-listing{
