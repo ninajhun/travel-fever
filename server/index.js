@@ -105,6 +105,10 @@ app.get('/api/listings/:listingId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.delete('/api/listings/:listingId', (req, res, next) => {
+
+});
+
 app.post('/api/listings', upload.single('image'), (req, res, next) => {
   const imageUrl = '/uploads/' + req.file.filename;
   const sellerId = parseInt(req.body.sellerId);
