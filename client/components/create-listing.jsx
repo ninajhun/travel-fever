@@ -74,7 +74,7 @@ class CreateListing extends React.Component {
   render() {
     return (
       <div>
-        <form encType="multipart/form-data" className="col-12 mt-5 pt-4 ml-auto mr-auto" onSubmit={this.handleSubmit} onReset={this.handleReset}>
+        <form encType="multipart/form-data" className="col-12 pt-4 ml-auto mr-auto" onSubmit={this.handleSubmit} onReset={this.handleReset}>
           <h4>Create Listing</h4>
           <input type="hidden" name="sellerId" defaultValue={this.props.user}/>
           <div className="form-group">
