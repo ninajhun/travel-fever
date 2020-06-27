@@ -42,7 +42,8 @@ class ListingCard extends React.Component {
           listingId: this.props.listingId
         })
       };
-      fetch('/api/favorites', req);
+      fetch('/api/favorites', req)
+        .then(result => result.json());
     }
   }
 
