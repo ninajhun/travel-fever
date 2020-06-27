@@ -8,8 +8,8 @@ class ListingDescription extends React.Component {
     };
   }
 
-  getListingDetails(listingId) {
-    fetch(`/api/listings/${listingId}`)
+  componentDidMount() {
+    fetch(`/api/listings/${this.props.listingId}`)
       .then(result => result.json())
       .then(data => this.setState({
         listing: data
@@ -17,13 +17,13 @@ class ListingDescription extends React.Component {
       .catch(err => console.error(err));
   }
 
-  componentDidMount() {
-    this.getListingDetails(1);
+  handleClick() {
+    console.log('hi');
   }
 
   render() {
     return (
-      <div className="card mt-5">
+      <div className="card">
         <img className="card-img-top" src={ this.state.listing.imageUrl } alt=""/>
         <div className="card-body">
           <div className="card-title d-flex align-items-center">
@@ -34,8 +34,8 @@ class ListingDescription extends React.Component {
           <h5 className="card-title">{ this.state.listing.location }</h5>
           <p className="card-text">{ this.state.listing.description }</p>
           <div className="text-center">
-            <a href="#" className="btn btn-primary purchase-button">{
-              `Purchase $${(this.state.listing.price / 100).toFixed(2)}`
+            <a href="#" className="btn btn-primary purchase-button" onClick={this.handleClick}>{
+              `Purchase $${(this.state.listing.price)}`
             }</a>
           </div>
         </div>
