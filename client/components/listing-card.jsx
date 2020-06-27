@@ -46,7 +46,8 @@ class ListingCard extends React.Component {
         .then(result => result.json())
         .then(this.setState({
           favorite: false
-        }));
+        }))
+        .catch(err => console.error(err));
     }
   }
 
