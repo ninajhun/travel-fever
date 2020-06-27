@@ -186,6 +186,35 @@ app.post('/api/purchases', (req, res, next) => {
     .catch(err => next(err));
 });
 
+// User can favorite a listing
+app.post('/api/favorites', (req, res, next) => {
+  const userId = parseInt(req.body.userId);
+  const listingId = parseInt(req.body.listingId);
+  const sql = `
+  insert into "favorites" ("userId", "listingId")
+  values ($1, $2)
+  returning *`;
+  const values = [userId, listingId];
+  db.query(sql, values)
+    .then(result => res.json(result.rows[0]))
+    .catch(err => next(err));
+});
+
+// User can unfavorite a listing
+app.delete('/api/favorites', (req, res, next) => {
+  const userId = parseInt(req.body.userId);
+  const listingId = parseInt(req.body.listingId);
+  const sql = `
+  delete from "favorites"
+  where "userId" = $1 and
+    "listingId" = $2
+  returning *`;
+  const values = [userId, listingId];
+  db.query(sql, values)
+    .then(result => res.json(result.rows[0]))
+    .catch(err => next(err));
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
