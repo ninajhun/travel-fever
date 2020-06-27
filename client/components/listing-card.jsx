@@ -28,7 +28,10 @@ class ListingCard extends React.Component {
         }
       };
       fetch('/api/favorites', req)
-        .then(result => result.json);
+        .then(result => result.json)
+        .then(this.setState({
+          favorite: true
+        }));
     }
   }
 
