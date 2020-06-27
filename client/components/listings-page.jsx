@@ -29,7 +29,7 @@ class ListingsPage extends React.Component {
       <div>
         {
           this.state.listing.map(listing => {
-            return <ListingCard key={listing.listingId} listingId ={listing.listingId} imageUrl={listing.imageUrl} title={listing.title} price={listing.price} setView = {this.props.setView} getListingId={this.props.getListingId}/>;
+            return <ListingCard key={listing.listingId} listingId ={listing.listingId} imageUrl={listing.imageUrl} title={listing.title} price={listing.price} setView = {this.props.setView} getListingId={this.props.getListingId} userId={this.props.user}/>;
           })
         }
       </div>
