@@ -105,6 +105,23 @@ app.get('/api/listings/:listingId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/sellerListing/:sellerId', (req, res, next) => {
+  const userId = parseInt(req.params.sellerId);
+  const sql = `
+  select "l"."sellerId",
+  "l"."title",
+  "l"."description",
+  "l"."imageUrl",
+  "l"."listingId",
+  "l"."price"
+  from "listings" as "l"
+  where "sellerId" = $1;`;
+  const values = [userId];
+  db.query(sql, values)
+    .then(result => res.json(result.rows))
+    .catch(err => next(err));
+});
+
 app.post('/api/listings', upload.single('image'), (req, res, next) => {
   const imageUrl = '/uploads/' + req.file.filename;
   const sellerId = parseInt(req.body.sellerId);
