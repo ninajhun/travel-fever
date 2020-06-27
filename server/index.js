@@ -210,7 +210,8 @@ app.delete('/api/favorites', (req, res, next) => {
     "listingId" = $2
   returning *`;
   const values = [userId, listingId];
-  db.query(sql, values);
+  db.query(sql, values)
+    .then(result => res.json(result.rows[0]));
 });
 
 app.use('/api', (req, res, next) => {
