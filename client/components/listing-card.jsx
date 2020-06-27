@@ -7,6 +7,7 @@ class ListingCard extends React.Component {
       favorite: false
     };
     this.handleClick = this.handleClick.bind(this);
+    this.favoriteOnClick = this.favoriteOnClick.bind(this);
   }
 
   handleClick() {
