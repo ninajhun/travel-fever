@@ -33,6 +33,16 @@ class ListingCard extends React.Component {
           favorite: true
         }))
         .catch(err => console.error(err));
+    } else {
+      const req = {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          userId: this.props.userId,
+          listingId: this.props.listingId
+        })
+      };
+      fetch('/api/favorites', req);
     }
   }
 
