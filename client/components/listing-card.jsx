@@ -17,7 +17,7 @@ class ListingCard extends React.Component {
 
   favoriteOnClick() {
     this.state.favorite ? this.setState({ favorite: false })
-      : this.state({ favorite: true });
+      : this.setState({ favorite: true });
   }
 
   render() {
@@ -34,8 +34,8 @@ class ListingCard extends React.Component {
                 <h5 className='card-title'>{this.props.title}</h5>
                 <p className='listing-price'>${this.props.price}</p>
                 <div className='fav-heart'>
-                  {this.state.favorite ? <i className="fas fa-heart" />
-                    : <i className="far fa-heart" />}
+                  {this.state.favorite ? <i className="fas fa-heart" onClick={this.favoriteOnClick} />
+                    : <i className="far fa-heart" onClick={this.favoriteOnClick} />}
                 </div>
               </div>
             </div>
