@@ -202,7 +202,15 @@ app.post('/api/favorites', (req, res, next) => {
 
 // User can unfavorite a listing
 app.delete('/api/favorites', (req, res, next) => {
-
+  const userId = parseInt(req.body.userId);
+  const listingId = parseInt(req.body.listingId);
+  const sql = `
+  delete from "favorites"
+  where "userId" = $1 and
+    "listingId" = $2
+  returning *`;
+  const values = [userId, listingId];
+  db.query(sql, values);
 });
 
 app.use('/api', (req, res, next) => {
