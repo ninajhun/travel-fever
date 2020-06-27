@@ -186,7 +186,7 @@ app.post('/api/purchases', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// Add a Listing to Favorites
+// User can favorite a listing
 app.post('/api/favorites', (req, res, next) => {
   const userId = parseInt(req.body.userId);
   const listingId = parseInt(req.body.listingId);
@@ -198,6 +198,11 @@ app.post('/api/favorites', (req, res, next) => {
   db.query(sql, values)
     .then(result => res.json(result.rows[0]))
     .catch(err => next(err));
+});
+
+// User can unfavorite a listing
+app.delete('/api/favorites', (req, res, next) => {
+
 });
 
 app.use('/api', (req, res, next) => {
