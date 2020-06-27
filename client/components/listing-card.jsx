@@ -10,9 +10,11 @@ class ListingCard extends React.Component {
     this.favoriteOnClick = this.favoriteOnClick.bind(this);
   }
 
-  handleClick() {
-    this.props.getListingId(this.props.listingId);
-    this.props.setView('listing-description');
+  handleClick(event) {
+    if (!event.target.classList.contains('fa-heart')) {
+      this.props.getListingId(this.props.listingId);
+      this.props.setView('listing-description');
+    }
   }
 
   favoriteOnClick() {
@@ -22,9 +24,9 @@ class ListingCard extends React.Component {
 
   render() {
     return (
-      <div className='listing' >
+      <div className='listing' onClick={this.handleClick}>
         {/* add on click to get pass listingId */}
-        <div className='card mb-3' onClick={this.handleClick}>
+        <div className='card mb-3' >
           <div className='row no-gutters flex-nowrap'>
             <div className='col-md-4'>
               <img src={this.props.imageUrl} alt={this.props.imageUrl} className='card-img image-listing' />
