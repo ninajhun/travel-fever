@@ -35,7 +35,7 @@ class ListingDescription extends React.Component {
           <p className="card-text">{ this.state.listing.description }</p>
           <div className="text-center">
             <a href="#" className="btn btn-primary purchase-button" onClick={this.handleClick}>{
-              `Purchase $${(this.state.listing.price / 100).toFixed(2)}`
+              `Purchase $${(this.state.listing.price)}`
             }</a>
           </div>
         </div>
