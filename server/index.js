@@ -112,7 +112,8 @@ app.delete('/api/listings/:listingId', (req, res, next) => {
   where "listingId" = $1
   returning *`;
   const values = [listingId];
-  db.query(sql, values);
+  db.query(sql, values)
+    .then(result => res.json(result.rows[0]));
 });
 
 app.post('/api/listings', upload.single('image'), (req, res, next) => {
