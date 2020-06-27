@@ -24,9 +24,9 @@ class ListingCard extends React.Component {
               <div className='card-body'>
                 <h5 className='card-title'>{this.props.title}</h5>
                 <p className='listing-price'>${this.props.price}</p>
-                {/* <div className='fav-heart'>
+                <div className='fav-heart'>
                   <i className="far fa-heart"></i>
-                </div> */}
+                </div>
               </div>
             </div>
           </div>
