@@ -21,14 +21,14 @@ class ListingCard extends React.Component {
     if (!this.state.favorite) {
       const req = {
         method: 'POST',
-        header: "Content-Type': 'application/json",
-        body: {
-          userId: this.props.user,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          userId: this.props.userId,
           listingId: this.props.listingId
-        }
+        })
       };
       fetch('/api/favorites', req)
-        .then(result => result.json)
+        .then(result => result.json())
         .then(this.setState({
           favorite: true
         }))
