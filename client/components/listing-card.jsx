@@ -28,7 +28,8 @@ class ListingCard extends React.Component {
                 <h5 className='card-title'>{this.props.title}</h5>
                 <p className='listing-price'>${this.props.price}</p>
                 <div className='fav-heart'>
-                  <i className="far fa-heart"></i>
+                  {this.state.favorite ? <i className="fas fa-heart" />
+                    : <i className="far fa-heart" />}
                 </div>
               </div>
             </div>
