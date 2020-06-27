@@ -3,6 +3,9 @@ import React from 'react';
 class ListingCard extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      favorite: false
+    };
     this.handleClick = this.handleClick.bind(this);
   }
 
