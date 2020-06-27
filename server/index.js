@@ -105,6 +105,18 @@ app.get('/api/listings/:listingId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.delete('/api/listings/:listingId', (req, res, next) => {
+  const listingId = parseInt(req.params.listingId);
+  const sql = `
+  delete from "listings"
+  where "listingId" = $1
+  returning *`;
+  const values = [listingId];
+  db.query(sql, values)
+    .then(result => res.json(result.rows[0]))
+    .catch(err => next(err));
+});
+
 app.get('/api/sellerListing/:sellerId', (req, res, next) => {
   const userId = parseInt(req.params.sellerId);
   const sql = `
