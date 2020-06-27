@@ -14,6 +14,11 @@ class ListingCard extends React.Component {
     this.props.setView('listing-description');
   }
 
+  favoriteOnClick() {
+    this.state.favorite ? this.setState({ favorite: false })
+      : this.state({ favorite: true });
+  }
+
   render() {
     return (
       <div className='listing' >
