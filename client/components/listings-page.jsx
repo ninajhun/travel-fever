@@ -1,7 +1,7 @@
 import React from 'react';
 import ListingCard from './listing-card';
 
-class Listing extends React.Component {
+class ListingsPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,7 +29,7 @@ class Listing extends React.Component {
       <div>
         {
           this.state.listing.map(listing => {
-            return <ListingCard key={listing.listingId} imageUrl={listing.imageUrl} title={listing.title} price={listing.price}/>;
+            return <ListingCard key={listing.listingId} listingId ={listing.listingId} imageUrl={listing.imageUrl} title={listing.title} price={listing.price} setView = {this.props.setView} getListingId={this.props.getListingId}/>;
           })
         }
       </div>
@@ -38,4 +38,4 @@ class Listing extends React.Component {
 
 }
 
-export default Listing;
+export default ListingsPage;
