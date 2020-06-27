@@ -186,6 +186,11 @@ app.post('/api/purchases', (req, res, next) => {
     .catch(err => next(err));
 });
 
+// Add a Listing to Favorites
+app.post('/api/favorites', (req, res, next) => {
+
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
