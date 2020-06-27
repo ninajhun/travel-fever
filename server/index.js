@@ -188,7 +188,14 @@ app.post('/api/purchases', (req, res, next) => {
 
 // Add a Listing to Favorites
 app.post('/api/favorites', (req, res, next) => {
-
+  const userId = parseInt(req.body.userId);
+  const listingId = parseInt(req.body.listingId);
+  const sql = `
+  insert into "favorites" ("userId", "listingId")
+  values ($1, $2)
+  returning *`;
+  const values = [userId, listingId];
+  db.query(sql, values);
 });
 
 app.use('/api', (req, res, next) => {
