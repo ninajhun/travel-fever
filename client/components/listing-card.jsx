@@ -18,6 +18,17 @@ class ListingCard extends React.Component {
   }
 
   favoriteOnClick() {
+    if (!this.state.favorite) {
+      const req = {
+        method: 'POST',
+        header: "Content-Type': 'application/json",
+        body: {
+          userId: this.props.user,
+          listingId: this.props.listingId
+        }
+      };
+      fetch('/api/favorites', req);
+    }
     this.state.favorite ? this.setState({ favorite: false })
       : this.setState({ favorite: true });
   }
