@@ -1,12 +1,13 @@
 import React from 'react';
 import LoginPage from './login-page';
 import BottomNavBar from './bottom-nav-bar';
-import ListingsPage from './listings-page';
+// import ListingsPage from './listings-page';
 import Header from './header';
-import CheckoutPage from './checkout-page';
-import HomePage from './home-page';
-import CreateListing from './create-listing';
-import ListingDescription from './listing-description';
+// import CheckoutPage from './checkout-page';
+// import HomePage from './home-page';
+// import CreateListing from './create-listing';
+// import ListingDescription from './listing-description';
+import SellerListingCard from './seller-listing-page';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -45,26 +46,29 @@ export default class App extends React.Component {
   }
 
   render() {
-    let body;
+    // let body;
 
-    switch (this.state.view) {
-      case 'home':
-        body = <HomePage user={this.state.user.userId} setView={this.setView}/>;
-        break;
-      case 'listings-page':
-        body = <ListingsPage user={this.state.user.userId} setView={this.setView} getListingId ={this.getListingId}/>;
-        break;
-      case 'create-listing':
-        body = <CreateListing user={this.state.user.userId} setView={this.setView}/>;
-        break;
-      case 'check-out':
-        body = <CheckoutPage user={this.state.user.userId} setView={this.setView} />;
-        break;
-      case 'listing-description':
-        body = <ListingDescription user={this.state.user.userId} setView={this.setView} listingId={this.state.listingId} />; // pass this.state.listingId
-        break;
-      default: body = null;
-    }
+    // switch (this.state.view) {
+    //   case 'home':
+    //     body = <HomePage user={this.state.user.userId} setView={this.setView}/>;
+    //     break;
+    //   case 'listings-page':
+    //     body = <ListingsPage user={this.state.user.userId} setView={this.setView} getListingId ={this.getListingId}/>;
+    //     break;
+    //   case 'create-listing':
+    //     body = <CreateListing user={this.state.user.userId} setView={this.setView}/>;
+    //     break;
+    //   case 'check-out':
+    //     body = <CheckoutPage user={this.state.user.userId} setView={this.setView} />;
+    //     break;
+    //   case 'listing-description':
+    //     body = <ListingDescription user={this.state.user.userId} setView={this.setView} listingId={this.state.listingId} />; // pass this.state.listingId
+    //     break;
+    //   case 'seller-listing-page':
+
+    //     break;
+    //   default: body = null;
+    // }
 
     if (this.state.view === 'login') {
       return <LoginPage setView={this.setView} getUser={this.getUser} user={this.state.user.userId}/>;
@@ -73,7 +77,7 @@ export default class App extends React.Component {
         <div>
           <Header userImg={this.state.user.imageUrl} setView={this.setView} user={this.state.user.userId}/>
           <div className='main-screen'>
-            {body}
+            <SellerListingCard user={this.state.user.userId} setView={this.setView} getListingId={this.getListingId}/>
           </div>
           <BottomNavBar setView={this.setView} user={this.state.user.userId}/>
         </div>
