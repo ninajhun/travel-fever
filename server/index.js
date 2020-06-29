@@ -65,13 +65,9 @@ app.delete('/api/auth', (req, res, next) => {
 app.get('/api/users/:userId', (req, res, next) => {
   const userId = parseInt(req.params.userId);
   const sql = `
-  select "u"."userId",
-    "u"."username",
-    "u"."imageUrl",
-    array_remove(array_agg(distinct "f"."listingId"), null) as "favoriteListings"
-  from "users" as "u"
-  left join "favorites" as "f" using ("userId")
-  where "u"."userId" = $1;`;
+  select *
+  from "users"
+  where "userId" = $1;`;
   const values = [userId];
   db.query(sql, values)
     .then(result => {
