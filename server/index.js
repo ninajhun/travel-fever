@@ -137,6 +137,20 @@ app.get('/api/listings/:listingId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/listingsLocations/:locationId', (req, res, next) => {
+  const locationId = parseInt(req.params.locationId);
+  const sql = `
+    select *
+    from "listings"
+    where "locationId" = $1;
+  `;
+  const values = [locationId];
+
+  db.query(sql, values)
+    .then(result => res.json(result.rows))
+    .catch(err => next(err));
+});
+
 app.delete('/api/listings/:listingId', (req, res, next) => {
   const listingId = parseInt(req.params.listingId);
   const sql = `
