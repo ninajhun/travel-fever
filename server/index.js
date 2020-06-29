@@ -45,7 +45,8 @@ app.get('/api/users/:userId', (req, res, next) => {
     "u"."username",
     "u"."imageUrl"
   from "users" as "u"
-  where "userId" = $1;`;
+  left join "favorites" as "f" using ("userId")
+  where "u"."userId" = $1;`;
   const values = [userId];
   db.query(sql, values)
     .then(result => res.json(result.rows[0]))
