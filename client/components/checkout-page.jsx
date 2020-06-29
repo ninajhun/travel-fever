@@ -7,6 +7,7 @@ class CheckoutPage extends React.Component {
       listing: {},
       user: {}
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -25,6 +26,23 @@ class CheckoutPage extends React.Component {
         });
       })
       .catch(err => console.error(err));
+  }
+
+  handleSubmit() {
+    const purchaseInfo = {
+      userId: this.state.user.userId,
+      listingId: this.state.listing.listingId
+    };
+
+    fetch('/api/purchases', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(purchaseInfo)
+    })
+      .catch(err => console.error(err));
+
   }
 
   render() {
@@ -79,7 +97,7 @@ class CheckoutPage extends React.Component {
           </form>
 
           <div className="justify-content-center">
-            <button type="button" className="uni-button mb-4 mt-1 py-2 px-1" onClick={() => console.log('hi')} >Confirm</button>
+            <button type="button" className="uni-button mb-4 mt-1 py-2 px-1" onClick={this.handleSubmit} >Confirm</button>
           </div>
 
         </div>
