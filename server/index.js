@@ -41,8 +41,10 @@ app.get('/api/users', (req, res, next) => {
 app.get('/api/users/:userId', (req, res, next) => {
   const userId = parseInt(req.params.userId);
   const sql = `
-  select *
-  from "users"
+  select "u"."userId",
+    "u"."username",
+    "u"."imageUrl"
+  from "users" as "u"
   where "userId" = $1;`;
   const values = [userId];
   db.query(sql, values)
