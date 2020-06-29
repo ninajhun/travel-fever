@@ -77,7 +77,7 @@ app.get('/api/users/:userId', (req, res, next) => {
   db.query(sql, values)
     .then(result => {
       req.session.userId = result.rows[0].userId;
-      res.json({ user: result.rows });
+      res.json({ user: result.rows[0] });
     })
     .catch(err => next(err));
 });
@@ -87,7 +87,7 @@ app.get('/api/locations', (req, res, next) => {
   select *
   from "locations";`;
   db.query(sql)
-    .then(results => res.json(results.rows[0]))
+    .then(results => res.json(results.rows))
     .catch(err => next(err));
 });
 
