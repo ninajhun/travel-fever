@@ -14,7 +14,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'listings-page', // change back
+      view: 'home', // change back
       currentUser: null,
       listingId: null,
       isAuthorizing: true

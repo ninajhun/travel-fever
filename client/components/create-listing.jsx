@@ -59,6 +59,7 @@ class CreateListing extends React.Component {
       )
       .catch(err => console.error(err));
     event.preventDefault();
+    this.props.setView('seller-listing-page');
   }
 
   handleReset() {

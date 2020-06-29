@@ -15,6 +15,10 @@ class ListingCard extends React.Component {
       this.props.getListingId(this.props.listingId);
       this.props.setView('listing-description');
     }
+    if (this.props.userId === this.props.sellerId) {
+      this.props.getListingId(this.props.listingId);
+      this.props.setView('seller-listing-description');
+    }
   }
 
   favoriteOnClick() {
@@ -70,7 +74,6 @@ class ListingCard extends React.Component {
           </div>
         </div>
       </div>
-
     );
   }
 }
