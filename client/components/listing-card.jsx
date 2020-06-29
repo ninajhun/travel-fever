@@ -17,6 +17,10 @@ class ListingCard extends React.Component {
     }
   }
 
+  toBeOrNotToBe(listingId) {
+
+  }
+
   favoriteOnClick() {
     if (!this.state.favorite) {
       const req = {
