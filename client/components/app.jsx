@@ -82,6 +82,10 @@ export default class App extends React.Component {
     return this.state.currentUser.favoriteListings.includes(listingId);
   }
 
+  toggleFavorite(listingId) {
+
+  }
+
   setView(name) {
     this.setState({
       view: name
