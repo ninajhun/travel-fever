@@ -1,6 +1,7 @@
 require('dotenv/config');
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 const filePath = path.join(__dirname, '/public', 'images', 'uploads');
 
 const multer = require('multer');
@@ -145,7 +146,10 @@ app.delete('/api/listings/:listingId', (req, res, next) => {
   returning *`;
   const values = [listingId];
   db.query(sql, values)
-    .then(result => res.json(result.rows[0]))
+    .then(result => {
+      res.json(result.rows[0]);
+      fs.unlink(`./server/public/${result.rows[0].imageUrl}`, err => { if (err) console.error(err); });
+    })
     .catch(err => next(err));
 });
 

@@ -42,6 +42,7 @@ class CreateListing extends React.Component {
   }
 
   handleSubmit(event) {
+    event.preventDefault();
     const formData = new FormData(event.target);
     fetch('/api/listings', {
       method: 'POST',
@@ -55,11 +56,10 @@ class CreateListing extends React.Component {
           title: '',
           description: '',
           locationId: ''
-        })
+        },
+        () => this.props.setView('seller-listing-page'))
       )
       .catch(err => console.error(err));
-    event.preventDefault();
-    this.props.setView('seller-listing-page');
   }
 
   handleReset() {
