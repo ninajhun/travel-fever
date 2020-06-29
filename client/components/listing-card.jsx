@@ -36,7 +36,7 @@ class ListingCard extends React.Component {
       fetch('/api/favorites', req)
         .then(result => result.json())
         .then(() => {
-          const { favoriteListings } = this.state.myFavorites;
+          const favoriteListings = this.state.myFavorites;
           const updateFavorites = favoriteListings.concat(this.props.listingId);
           this.setState({
             myFavorites: updateFavorites
@@ -55,7 +55,7 @@ class ListingCard extends React.Component {
       fetch('/api/favorites', req)
         .then(result => result.json())
         .then(() => {
-          const { favoriteListings } = this.state.myFavorites;
+          const favoriteListings = this.state.myFavorites;
           const updateFavorites = favoriteListings.filter(fav => fav !== this.props.listingId);
           this.setState({
             myFavorites: updateFavorites
