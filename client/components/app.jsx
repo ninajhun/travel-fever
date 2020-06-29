@@ -85,7 +85,7 @@ export default class App extends React.Component {
         body = <CreateListing user={this.state.currentUser.userId} setView={this.setView}/>;
         break;
       case 'check-out':
-        body = <CheckoutPage user={this.state.currentUser.userId} setView={this.setView} />;
+        body = <CheckoutPage user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId}/>;
         break;
       case 'listing-description':
         body = <ListingDescription user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId} />; // pass this.state.listingId

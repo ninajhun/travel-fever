@@ -1,5 +1,5 @@
 import React from 'react';
-import ListingDescription from './listing-description';
+import ListingCard from './listing-card';
 
 class CheckoutPage extends React.Component {
   // constructor(props) {
@@ -13,7 +13,7 @@ class CheckoutPage extends React.Component {
 
   render() {
     return (
-      <ListingDescription />
+      <ListingCard listingId={this.props.listingId} />
     );
   }
 }
