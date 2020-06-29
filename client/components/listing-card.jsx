@@ -54,9 +54,13 @@ class ListingCard extends React.Component {
       };
       fetch('/api/favorites', req)
         .then(result => result.json())
-        .then(this.setState({
-          favorite: false
-        }))
+        .then(() => {
+          const { favoriteListings } = this.state.myFavorites;
+          const updateFavorites = favoriteListings.filter(fav => fav !== this.props.listingId);
+          this.setState({
+            myFavorites: updateFavorites
+          });
+        })
         .catch(err => console.error(err));
     }
   }
