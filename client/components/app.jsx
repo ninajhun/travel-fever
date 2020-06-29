@@ -22,6 +22,10 @@ export default class App extends React.Component {
     this.userLogout = this.userLogout.bind(this);
     this.getUser = this.getUser.bind(this);
     this.getListingId = this.getListingId.bind(this);
+    this.favoriteListing = this.favoriteListing.bind(this);
+    this.toggleFavorite = this.toggleFavorite.bind(this);
+    this.addFavorite = this.addFavorite.bind(this);
+    this.removeFavorite = this.removeFavorite.bind(this);
   }
 
   componentDidMount() {
@@ -34,6 +38,60 @@ export default class App extends React.Component {
         });
       })
       .catch(err => console.error(err));
+  }
+
+  addFavorite(listingId) {
+    const req = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        userId: this.state.currentUser.userId,
+        listingId: listingId
+      })
+    };
+    fetch('/api/favorites', req)
+      .then(() => {
+        const { favoriteListings } = this.state.currentUser;
+        const updateFavorites = favoriteListings.concat(listingId);
+        this.setState({
+          currentUser: {
+            ...this.state.currentUser,
+            favoriteListings: updateFavorites
+          }
+        });
+      });
+  }
+
+  removeFavorite(listingId) {
+    const req = {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        userId: this.state.currentUser.userId,
+        listingId: listingId
+      })
+    };
+    fetch('/api/favorites', req)
+      .then(() => {
+        const { favoriteListings } = this.state.currentUser;
+        const updateFavorites = favoriteListings.filter(fav => fav !== listingId);
+        this.setState({
+          currentUser: {
+            ...this.state.currentUser,
+            favoriteListings: updateFavorites
+          }
+        });
+      });
+  }
+
+  favoriteListing(listingId) {
+    return this.state.currentUser.favoriteListings.includes(listingId);
+  }
+
+  toggleFavorite(listingId) {
+    this.favoriteListing(listingId)
+      ? this.removeFavorite(listingId)
+      : this.addFavorite(listingId);
   }
 
   setView(name) {
@@ -79,7 +137,11 @@ export default class App extends React.Component {
         body = <HomePage user={this.state.currentUser.userId} setView={this.setView}/>;
         break;
       case 'listings-page':
-        body = <ListingsPage user={this.state.currentUser.userId} setView={this.setView} getListingId ={this.getListingId}/>;
+        body = <ListingsPage user={this.state.currentUser.userId}
+          setView={this.setView}
+          getListingId ={this.getListingId}
+          favoriteListing={this.favoriteListing}
+          toggleFavorite={this.toggleFavorite}/>;
         break;
       case 'create-listing':
         body = <CreateListing user={this.state.currentUser.userId} setView={this.setView}/>;
