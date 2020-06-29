@@ -83,7 +83,9 @@ export default class App extends React.Component {
   }
 
   toggleFavorite(listingId) {
-
+    this.favoriteListing(listingId)
+      ? this.removeFavorite(listingId)
+      : this.favoriteListing(listingId);
   }
 
   setView(name) {
