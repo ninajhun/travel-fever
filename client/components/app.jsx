@@ -7,18 +7,33 @@ import CheckoutPage from './checkout-page';
 import HomePage from './home-page';
 import CreateListing from './create-listing';
 import ListingDescription from './listing-description';
+import SellerListingCard from './seller-listing-page';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       view: 'login', // change back
-      user: {},
-      listingId: null
+      currentUser: null,
+      listingId: null,
+      isAuthorizing: true
     };
     this.setView = this.setView.bind(this);
+    this.userLogout = this.userLogout.bind(this);
     this.getUser = this.getUser.bind(this);
     this.getListingId = this.getListingId.bind(this);
+  }
+
+  componentDidMount() {
+    fetch('/api/auth')
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          isAuthorizing: false,
+          currentUser: data.user
+        });
+      })
+      .catch(err => console.error(err));
   }
 
   setView(name) {
@@ -27,12 +42,21 @@ export default class App extends React.Component {
     });
   }
 
+  userLogout() {
+    fetch('api/auth', { method: 'DELETE' })
+      .then(() => this.setState({
+        currentUser: null,
+        view: 'login'
+      }));
+  }
+
   getUser(userId) {
     fetch(`api/users/${userId}`)
       .then(result => result.json())
       .then(data => {
         this.setState({
-          user: data
+          currentUser: data.user,
+          view: 'home'
         });
       })
       .catch(err => console.error(err));
@@ -45,39 +69,41 @@ export default class App extends React.Component {
   }
 
   render() {
+    if (this.state.isAuthorizing) return null;
+    if (!this.state.currentUser) return <LoginPage setView={this.setView} getUser={this.getUser}/>;
+
     let body;
 
     switch (this.state.view) {
       case 'home':
-        body = <HomePage user={this.state.user.userId} setView={this.setView}/>;
+        body = <HomePage user={this.state.currentUser.userId} setView={this.setView}/>;
         break;
       case 'listings-page':
-        body = <ListingsPage user={this.state.user.userId} setView={this.setView} getListingId ={this.getListingId}/>;
+        body = <ListingsPage user={this.state.currentUser.userId} setView={this.setView} getListingId ={this.getListingId}/>;
         break;
       case 'create-listing':
-        body = <CreateListing user={this.state.user.userId} setView={this.setView}/>;
+        body = <CreateListing user={this.state.currentUser.userId} setView={this.setView}/>;
         break;
       case 'check-out':
-        body = <CheckoutPage user={this.state.user.userId} setView={this.setView} />;
+        body = <CheckoutPage user={this.state.currentUser.userId} setView={this.setView} />;
         break;
       case 'listing-description':
-        body = <ListingDescription user={this.state.user.userId} setView={this.setView} listingId={this.state.listingId} />; // pass this.state.listingId
+        body = <ListingDescription user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId} />; // pass this.state.listingId
+        break;
+      case 'seller-listing-page':
+        body = <SellerListingCard user={this.state.currentUser.userId} setView={this.setView}/>;
         break;
       default: body = null;
     }
 
-    if (this.state.view === 'login') {
-      return <LoginPage setView={this.setView} getUser={this.getUser} user={this.state.user.userId}/>;
-    } else {
-      return (
-        <div>
-          <Header userImg={this.state.user.imageUrl} setView={this.setView} user={this.state.user.userId}/>
-          <div className='main-screen'>
-            {body}
-          </div>
-          <BottomNavBar setView={this.setView} user={this.state.user.userId}/>
+    return (
+      <div>
+        <Header userImg={this.state.currentUser.imageUrl} user={this.state.currentUser.userId} userLogout={this.userLogout}/>
+        <div className='main-screen'>
+          {body}
         </div>
-      );
-    }
+        <BottomNavBar setView={this.setView} user={this.state.currentUser.userId}/>
+      </div>
+    );
   }
 }
