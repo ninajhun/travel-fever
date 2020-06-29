@@ -37,7 +37,15 @@ export default class App extends React.Component {
   }
 
   favoriteListing(listing) {
-
+    const req = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: {
+        userId: this.state.currentUser.userId,
+        listingId: listing
+      }
+    };
+    fetch('/api/favorites', req);
   }
 
   setView(name) {
