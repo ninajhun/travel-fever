@@ -15,11 +15,9 @@ class SellerListingCard extends React.Component {
   }
 
   getSellerListing() {
-    console.log('user', this.props.user);
-    fetch('/api/sellerListing/2')
+    fetch(`/api/sellerListing/${this.props.user}`)
       .then(res => res.json())
       .then(listing => {
-        console.log('listings', listing);
         this.setState({ sellerListing: listing });
       })
       .catch(err => console.error(err));

@@ -38,6 +38,30 @@ app.get('/api/users', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/auth', (req, res, next) => {
+  if (!req.session.userId) {
+    res.json({ user: null });
+  } else {
+    const sql = `
+    select *
+    from "users"
+    where "userId" = $1;`;
+    const values = [req.session.userId];
+    db.query(sql, values)
+      .then(result => {
+        res.json({ user: result.rows[0] });
+      })
+      .catch(err => next(err));
+  }
+});
+
+app.delete('/api/auth', (req, res, next) => {
+  req.session.destroy(err => {
+    if (err) return next(err);
+    res.sendStatus(204);
+  });
+});
+
 app.get('/api/users/:userId', (req, res, next) => {
   const userId = parseInt(req.params.userId);
   const sql = `
@@ -46,7 +70,10 @@ app.get('/api/users/:userId', (req, res, next) => {
   where "userId" = $1;`;
   const values = [userId];
   db.query(sql, values)
-    .then(result => res.json(result.rows[0]))
+    .then(result => {
+      req.session.userId = result.rows[0].userId;
+      res.json({ user: result.rows[0] });
+    })
     .catch(err => next(err));
 });
 
