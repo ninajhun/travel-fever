@@ -81,7 +81,7 @@ class CreateListing extends React.Component {
             <SearchCity getLocationId={this.getLocationId} name="locationId"/>
           </div>
           <div className="form-group">
-            <input required className="form-control" type="text" name="title" id="title" placeholder="Listing Title" value={this.state.title} onChange={this.handleChange}/>
+            <input required className="form-control" type="text" name="title" id="title" maxLength="50" placeholder="Listing Title" value={this.state.title} onChange={this.handleChange}/>
           </div>
           <div className="form-group">
             <div className="form-row">
