@@ -1,9 +1,14 @@
 import React from 'react';
 
 class PopularCityListing extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
 
   handleClick() {
     console.log('hi');
+    this.props.setView('listings-page');
   }
 
   render() {
