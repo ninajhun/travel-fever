@@ -38,6 +38,7 @@ class ListingsPage extends React.Component {
               setView = {this.props.setView}
               getListingId={this.props.getListingId}
               userId={this.props.user}
+              favoriteListings={this.props.favoriteListings}
             />;
           })
         }
