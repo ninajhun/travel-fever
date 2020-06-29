@@ -236,6 +236,11 @@ app.post('/api/purchases', (req, res, next) => {
     .catch(err => next(err));
 });
 
+// User can view favroites
+app.get('/api/favorites/:userId', (req, res, next) => {
+
+});
+
 // User can favorite a listing
 app.post('/api/favorites', (req, res, next) => {
   const userId = parseInt(req.body.userId);
