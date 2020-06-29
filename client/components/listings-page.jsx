@@ -1,5 +1,6 @@
 import React from 'react';
 import ListingCard from './listing-card';
+import SearchCity from './search-city';
 
 class ListingsPage extends React.Component {
   constructor(props) {
@@ -27,6 +28,9 @@ class ListingsPage extends React.Component {
   render() {
     return (
       <div>
+        <div className="m-4">
+          <SearchCity />
+        </div>
         {
           this.state.listing.map(listing => {
             return <ListingCard

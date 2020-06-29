@@ -16,12 +16,14 @@ export default class App extends React.Component {
       view: 'home', // change back
       currentUser: null,
       listingId: null,
+      locationId: null,
       isAuthorizing: true
     };
     this.setView = this.setView.bind(this);
     this.userLogout = this.userLogout.bind(this);
     this.getUser = this.getUser.bind(this);
     this.getListingId = this.getListingId.bind(this);
+    this.getLocationId = this.getLocationId.bind(this);
   }
 
   componentDidMount() {
@@ -68,6 +70,12 @@ export default class App extends React.Component {
     });
   }
 
+  getLocationId(locationId) {
+    this.setState({
+      locationId: locationId
+    });
+  }
+
   render() {
     if (this.state.isAuthorizing) return null;
     if (!this.state.currentUser) return <LoginPage setView={this.setView} getUser={this.getUser}/>;
@@ -76,10 +84,10 @@ export default class App extends React.Component {
 
     switch (this.state.view) {
       case 'home':
-        body = <HomePage user={this.state.currentUser.userId} setView={this.setView}/>;
+        body = <HomePage user={this.state.currentUser.userId} setView={this.setView} getLocationId={this.getLocationId} />;
         break;
       case 'listings-page':
-        body = <ListingsPage user={this.state.currentUser.userId} setView={this.setView} getListingId ={this.getListingId}/>;
+        body = <ListingsPage user={this.state.currentUser.userId} setView={this.setView} getListingId={this.getListingId} getLocationId={this.getLocationId}/>;
         break;
       case 'create-listing':
         body = <CreateListing user={this.state.currentUser.userId} setView={this.setView}/>;

@@ -22,10 +22,6 @@ class PopularCityList extends React.Component {
       }));
   }
 
-  handleClick() {
-    console.log('hi');
-  }
-
   render() {
 
     return (
