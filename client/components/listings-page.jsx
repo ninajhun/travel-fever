@@ -9,6 +9,7 @@ class ListingsPage extends React.Component {
       listing: []
     };
     this.getListing = this.getListing.bind(this);
+    this.filterListingLocation = this.filterListingLocation.bind(this);
   }
 
   componentDidMount() {
@@ -25,11 +26,21 @@ class ListingsPage extends React.Component {
       });
   }
 
+  filterListingLocation() {
+    fetch(`/api/listingsLocations/${this.props.locationId}`)
+      .then(res => res.json())
+      .then(list => {
+        this.setState({
+          listing: list
+        });
+      });
+  }
+
   render() {
     return (
       <div>
         <div className="m-4">
-          <SearchCity />
+          <SearchCity getLocationId={this.props.getLocationId} filterListingLocation={this.filterListingLocation} />
         </div>
         {
           this.state.listing.map(listing => {

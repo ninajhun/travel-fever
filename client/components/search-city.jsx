@@ -24,8 +24,10 @@ class SearchCity extends React.Component {
   }
 
   handleChange(event) {
+    event.preventDefault();
     this.setState({ value: event.target.value });
     this.props.getLocationId(event.target.value);
+    this.props.filterListingLocation();
   }
 
   render() {

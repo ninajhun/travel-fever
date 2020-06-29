@@ -8,7 +8,7 @@ class HomePage extends React.Component {
     return (
       <div>
         <div className="m-4">
-          <SearchCity />
+          <SearchCity getLocationId = {this.props.getLocationId}/>
         </div>
         <div className="d-flex justify-content-around m-2">
           <div className="">
@@ -18,7 +18,7 @@ class HomePage extends React.Component {
             <button type="button" className="uni-button mt-1 py-2 px-1" onClick={() => { this.props.setView('create-listing'); }}>Create Listing</button>
           </div>
         </div>
-        <PopularCityList setView={this.props.setView}/>
+        <PopularCityList setView={this.props.setView} getLocationId={this.props.getLocationId}/>
       </div>
     );
 

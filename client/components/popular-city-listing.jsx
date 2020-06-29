@@ -7,7 +7,7 @@ class PopularCityListing extends React.Component {
   }
 
   handleClick() {
-    console.log('hi');
+    this.props.getLocationId(this.props.locationId);
     this.props.setView('listings-page');
   }
 
