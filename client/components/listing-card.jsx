@@ -19,8 +19,12 @@ class ListingCard extends React.Component {
     }
   }
 
-  toBeOrNotToBe(listingId) {
-    return this.props.favoriteListings.includes(listingId);
+  handleHeartClick() {
+    this.props.toggleFavorite(this.props.listingId);
+    const { isFavorite } = this.state;
+    this.setState({
+      isFavorite: !isFavorite
+    });
   }
 
   render() {
