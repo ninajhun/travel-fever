@@ -36,6 +36,10 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
 
+  favoriteListing(listingId) {
+    return this.state.currentUser.favoriteListings.includes(listingId);
+  }
+
   setView(name) {
     this.setState({
       view: name
