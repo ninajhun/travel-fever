@@ -58,7 +58,7 @@ class ListingCard extends React.Component {
           <div className='col-4'>
             <img src={this.props.imageUrl} alt={this.props.imageUrl} className='card-img image-listing' />
           </div>
-          <div className='col-8'>
+          <div className='col-8 d-flex align-items-center'>
             <div className='card-body'>
               <p className='card-title'>{this.props.title}</p>
               <p className='listing-price'>${this.props.price}</p>

@@ -57,19 +57,18 @@ class CheckoutPage extends React.Component {
         <div className="container">
 
           <div className="row justify-content-center">
-            <div className='listing'>
-              <div className='card' >
-                <div className='row no-gutters flex-nowrap'>
-                  <div className='col-md-4'>
-                    <img src={this.state.listing.imageUrl} alt={this.state.listing.imageUrl} className='card-img image-listing' />
-                  </div>
-                  <div className='col-md-8 d-flex align-items-center'>
-                    <div className='card-body'>
-                      <h5 className='card-title'>{this.state.listing.title}</h5>
-                      <p className='listing-price'>${this.state.listing.price}</p>
-                      <div className='fav-heart'>
-                        <i className="fas fa-heart" />
-                      </div>
+
+            <div className='card mb-3 listing' onClick={this.handleClick}>
+              <div className='row no-gutters flex-nowrap card-row'>
+                <div className='col-4'>
+                  <img src={this.state.listing.imageUrl} alt={this.state.listing.imageUrl} className='card-img image-listing' />
+                </div>
+                <div className='col-8 d-flex align-items-center'>
+                  <div className='card-body'>
+                    <p className='card-title'>{this.state.listing.title}</p>
+                    <p className='listing-price'>${this.state.listing.price}</p>
+                    <div className='fav-heart'>
+                      <i className="fas fa-heart"/>
                     </div>
                   </div>
                 </div>

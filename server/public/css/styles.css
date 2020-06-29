@@ -30,9 +30,8 @@ body {
 
 /* listing card */
 .listing {
-  width: 90%;
   margin: 5%;
-  height: 110px;
+  height: 115px;
   box-shadow: -3px 4px 7px grey;
 }
 
@@ -138,7 +137,6 @@ body {
 
 .image-listing{
   height: 100%;
-  /* object-fit: cover; */
 }
 
 .uni-button {
