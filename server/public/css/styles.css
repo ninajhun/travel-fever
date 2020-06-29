@@ -27,10 +27,12 @@ body {
   margin-left: 16%;
 }
 
+
+/* listing card */
 .listing {
-  width: 90%;
   margin: 5%;
-  box-shadow: -5px 5px 5px grey;
+  height: 115px;
+  box-shadow: -3px 4px 7px grey;
 }
 
 .listing-price {
@@ -43,7 +45,7 @@ body {
 
 .fav-heart {
   position: absolute;
-  top: 10%;
+  top: 4%;
   right: 10%;
   color: #FB4D3D;
 }
@@ -60,6 +62,11 @@ body {
   border: 2px solid lightgray ;
 }
 
+.card-row {
+  height: 100%
+}
+
+
 .travel-header {
   border-bottom: 1px solid lightgray;
   padding-bottom: 12%;
@@ -74,7 +81,7 @@ body {
   transition: 0.3s;
   position: absolute;
   right: 0;
-  top: 0;
+  top: 50px;
   z-index: 1;
   overflow-x: hidden;
   display: flex;

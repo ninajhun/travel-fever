@@ -6,6 +6,7 @@ class ListingDescription extends React.Component {
     this.state = {
       listing: {}
     };
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -18,7 +19,8 @@ class ListingDescription extends React.Component {
   }
 
   handleClick() {
-    console.log('hi');
+    this.props.setView('check-out');
+
   }
 
   render() {
