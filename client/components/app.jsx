@@ -57,6 +57,10 @@ export default class App extends React.Component {
       });
   }
 
+  removeFavorite(listingId) {
+
+  }
+
   favoriteListing(listingId) {
     return this.state.currentUser.favoriteListings.includes(listingId);
   }
