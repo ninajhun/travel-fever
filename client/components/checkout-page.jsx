@@ -4,7 +4,8 @@ class CheckoutPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      listing: {}
+      listing: {},
+      user: {}
     };
   }
 
@@ -15,28 +16,51 @@ class CheckoutPage extends React.Component {
         listing: data
       }))
       .catch(err => console.error(err));
+
+    fetch(`api/users/${this.props.user}`)
+      .then(result => result.json())
+      .then(data => {
+        this.setState({
+          user: data.user
+        });
+      })
+      .catch(err => console.error(err));
   }
 
   render() {
     return (
-      <div className='listing'>
-        <div className='card mb-3' >
-          <div className='row no-gutters flex-nowrap'>
-            <div className='col-md-4'>
-              <img src={this.state.listing.imageUrl} alt={this.state.listing.imageUrl} className='card-img image-listing' />
-            </div>
-            <div className='col-md-8 d-flex align-items-center'>
-              <div className='card-body'>
-                <h5 className='card-title'>{this.state.listing.title}</h5>
-                <p className='listing-price'>${this.state.listing.price}</p>
-                <div className='fav-heart'>
-                  <i className="fas fa-heart" />
+      <div className="">
+
+        <div className='listing'>
+          <div className='card mb-3' >
+            <div className='row no-gutters flex-nowrap'>
+              <div className='col-md-4'>
+                <img src={this.state.listing.imageUrl} alt={this.state.listing.imageUrl} className='card-img image-listing' />
+              </div>
+              <div className='col-md-8 d-flex align-items-center'>
+                <div className='card-body'>
+                  <h5 className='card-title'>{this.state.listing.title}</h5>
+                  <p className='listing-price'>${this.state.listing.price}</p>
+                  <div className='fav-heart'>
+                    <i className="fas fa-heart" />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+        <h5 className="text-center">Payment Information</h5>
+
+        <form className="col-12">
+          <div className="form-group">
+            <h6>Name</h6>
+            <input type="text" className="col-12" placeholder={this.state.user.username}></input>
+          </div>
+        </form>
+
       </div>
+
     );
   }
 
