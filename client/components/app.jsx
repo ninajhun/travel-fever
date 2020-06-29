@@ -13,7 +13,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'login', // change back
+      view: 'listings-page', // change back
       currentUser: null,
       listingId: null,
       isAuthorizing: true
