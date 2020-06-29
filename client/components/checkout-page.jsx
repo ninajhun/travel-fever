@@ -55,8 +55,24 @@ class CheckoutPage extends React.Component {
         <form className="col-12">
           <div className="form-group">
             <h6>Name</h6>
-            <input type="text" className="col-12" placeholder={this.state.user.username}></input>
+            <input type="text" className="col-12 form-control" placeholder={this.state.user.username}></input>
           </div>
+
+          <div className="form-group">
+            <h6>Card Numbers</h6>
+            <input type="text" className="col-12 form-control" placeholder="123 456 7890"></input>
+          </div>
+
+          <div className="form-group">
+            <h6>Name</h6>
+            <input type="text" className="col-12 form-control" placeholder="04/20"></input>
+          </div>
+
+          <div className="form-group">
+            <h6>Name</h6>
+            <input type="text" className="col-12 form-control" placeholder="12345"></input>
+          </div>
+
         </form>
 
       </div>
