@@ -60,7 +60,7 @@ class ListingCard extends React.Component {
           </div>
           <div className='col-8 d-flex align-items-center'>
             <div className='card-body'>
-              <p className='card-title'>{this.props.title}</p>
+              <p className='card-title mt-3'>{this.props.title}</p>
               <p className='listing-price'>${this.props.price}</p>
               <div className='fav-heart'>
                 {this.state.favorite ? <i className="fas fa-heart" onClick={this.favoriteOnClick} />

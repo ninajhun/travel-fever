@@ -65,7 +65,7 @@ class CheckoutPage extends React.Component {
                 </div>
                 <div className='col-8 d-flex align-items-center'>
                   <div className='card-body'>
-                    <p className='card-title'>{this.state.listing.title}</p>
+                    <p className='card-title mt-3'>{this.state.listing.title}</p>
                     <p className='listing-price'>${this.state.listing.price}</p>
                     <div className='fav-heart'>
                       <i className="fas fa-heart"/>
