@@ -13,7 +13,11 @@ class ListingsPage extends React.Component {
   }
 
   componentDidMount() {
-    this.getListing();
+    if (this.props.locationId !== null) {
+      this.filterListingLocation();
+    } else if (this.props.view === 'listings-page') {
+      this.getListing();
+    }
   }
 
   getListing() {
@@ -27,18 +31,21 @@ class ListingsPage extends React.Component {
   }
 
   filterListingLocation() {
-    fetch(`/api/listingsLocations/${this.props.locationId}`)
-      .then(res => res.json())
-      .then(list => {
-        this.setState({
-          listing: list
+    if (this.props.locationId !== null) {
+      fetch(`/api/listingsLocations/${this.props.locationId}`)
+        .then(res => res.json())
+        .then(list => {
+          this.setState({
+            listing: list
+          });
         });
-      });
+    }
+
   }
 
   render() {
 
-    if (this.props.locationId) {
+    if (this.props.locationId !== null) {
       this.filterListingLocation();
     }
 
@@ -51,11 +58,11 @@ class ListingsPage extends React.Component {
           this.state.listing.map(listing => {
             return <ListingCard
               key={listing.listingId}
-              listingId ={listing.listingId}
+              listingId={listing.listingId}
               imageUrl={listing.imageUrl}
               title={listing.title}
               price={listing.price}
-              setView = {this.props.setView}
+              setView={this.props.setView}
               getListingId={this.props.getListingId}
               userId={this.props.user}
             />;
@@ -63,6 +70,7 @@ class ListingsPage extends React.Component {
         }
       </div>
     );
+
   }
 
 }

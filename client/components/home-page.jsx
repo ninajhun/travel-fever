@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchCity from './search-city';
+// import SearchCity from './search-city';
 import PopularCityList from './popular-city-list';
 
 class HomePage extends React.Component {
@@ -8,7 +8,7 @@ class HomePage extends React.Component {
     return (
       <div>
         <div className="m-4">
-          <SearchCity getLocationId = {this.props.getLocationId}/>
+          {/* <SearchCity getLocationId = {this.props.getLocationId}/> */}
         </div>
         <div className="d-flex justify-content-around m-2">
           <div className="">
