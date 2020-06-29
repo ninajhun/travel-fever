@@ -29,51 +29,60 @@ class CheckoutPage extends React.Component {
 
   render() {
     return (
-      <div className="">
+      <div className="container">
 
-        <div className='listing'>
-          <div className='card mb-3' >
-            <div className='row no-gutters flex-nowrap'>
-              <div className='col-md-4'>
-                <img src={this.state.listing.imageUrl} alt={this.state.listing.imageUrl} className='card-img image-listing' />
-              </div>
-              <div className='col-md-8 d-flex align-items-center'>
-                <div className='card-body'>
-                  <h5 className='card-title'>{this.state.listing.title}</h5>
-                  <p className='listing-price'>${this.state.listing.price}</p>
-                  <div className='fav-heart'>
-                    <i className="fas fa-heart" />
+        <div className="row justify-content-center">
+          <div className='listing'>
+            <div className='card' >
+              <div className='row no-gutters flex-nowrap'>
+                <div className='col-md-4'>
+                  <img src={this.state.listing.imageUrl} alt={this.state.listing.imageUrl} className='card-img image-listing' />
+                </div>
+                <div className='col-md-8 d-flex align-items-center'>
+                  <div className='card-body'>
+                    <h5 className='card-title'>{this.state.listing.title}</h5>
+                    <p className='listing-price'>${this.state.listing.price}</p>
+                    <div className='fav-heart'>
+                      <i className="fas fa-heart" />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
         </div>
 
-        <h5 className="text-center">Payment Information</h5>
+        <div className="row justify-content-center">
+          <h5 className="text-center">Payment Information</h5>
 
-        <form className="col-12">
-          <div className="form-group">
-            <h6>Name</h6>
-            <input type="text" className="col-12 form-control" placeholder={this.state.user.username}></input>
+          <form className="col-12">
+            <div className="form-group">
+              <h6>Name</h6>
+              <input type="text" className="col-12 form-control" placeholder={this.state.user.username}></input>
+            </div>
+
+            <div className="form-group">
+              <h6>Card Numbers</h6>
+              <input type="text" className="col-12 form-control" placeholder="123 456 7890"></input>
+            </div>
+
+            <div className="form-group">
+              <h6>Name</h6>
+              <input type="text" className="col-12 form-control" placeholder="04/20"></input>
+            </div>
+
+            <div className="form-group">
+              <h6>Name</h6>
+              <input type="text" className="col-12 form-control" placeholder="12345"></input>
+            </div>
+          </form>
+
+          <div className="justify-content-center">
+            <button type="button" className="uni-button mb-4 mt-1 py-2 px-1" onClick={() => console.log('hi')} >Confirm</button>
           </div>
 
-          <div className="form-group">
-            <h6>Card Numbers</h6>
-            <input type="text" className="col-12 form-control" placeholder="123 456 7890"></input>
-          </div>
-
-          <div className="form-group">
-            <h6>Name</h6>
-            <input type="text" className="col-12 form-control" placeholder="04/20"></input>
-          </div>
-
-          <div className="form-group">
-            <h6>Name</h6>
-            <input type="text" className="col-12 form-control" placeholder="12345"></input>
-          </div>
-
-        </form>
+        </div>
 
       </div>
 
