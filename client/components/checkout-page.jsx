@@ -30,19 +30,19 @@ class CheckoutPage extends React.Component {
   }
 
   handleSubmit() {
-    // const purchaseInfo = {
-    //   userId: this.state.user.userId,
-    //   listingId: this.state.listing.listingId
-    // };
+    const purchaseInfo = {
+      userId: this.state.user.userId,
+      listingId: this.state.listing.listingId
+    };
 
-    // fetch('/api/purchases', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify(purchaseInfo)
-    // })
-    //   .catch(err => console.error(err));
+    fetch('/api/purchases', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(purchaseInfo)
+    })
+      .catch(err => console.error(err));
 
     this.setState({
       purchaseComplete: true
@@ -113,7 +113,16 @@ class CheckoutPage extends React.Component {
       );
 
     } else {
-      return null;
+      return (
+        <div className="container">
+          <div className="row justify-content-center mt-5">
+            <h4 className="text-center mt-5">Thank you for choosing to connect with {this.state.listing.sellerName}! </h4>
+            <p className="text-center my-2">Please continue your purchase by discussing with {this.state.listing.sellerName} in the messages inbox.</p>
+            {/* <button type="submit" className="uni-button mt-2 mt-1 py-2 px-1" onClick = {() => this.props.setView('inbox')}>Go to Inbox</button> */}
+          </div>
+
+        </div>
+      );
     }
 
   }
