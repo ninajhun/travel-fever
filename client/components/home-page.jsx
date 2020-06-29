@@ -18,7 +18,7 @@ class HomePage extends React.Component {
             <button type="button" className="uni-button mt-1 py-2 px-1" onClick={() => { this.props.setView('create-listing'); }}>Create Listing</button>
           </div>
         </div>
-        <PopularCityList/>
+        <PopularCityList setView={this.props.setView}/>
       </div>
     );
 

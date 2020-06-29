@@ -22,6 +22,10 @@ class PopularCityList extends React.Component {
       }));
   }
 
+  handleClick() {
+    console.log('hi');
+  }
+
   render() {
 
     return (
@@ -33,7 +37,7 @@ class PopularCityList extends React.Component {
         <div className="row justify-content-center">
           {
             this.state.locations.map(location => {
-              return <PopularCityListing key={location.locationId} imageUrl={location.imageUrl} locationId={location.locationId} name={location.name} />;
+              return <PopularCityListing key={location.locationId} imageUrl={location.imageUrl} locationId={location.locationId} name={location.name} setView={this.props.setView} />;
             })
           }
         </div>
