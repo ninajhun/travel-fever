@@ -4,6 +4,7 @@ class ListingCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      myFavorites: this.props.favoriteListings,
       isFavorite: this.toBeOrNotToBe(this.props.listingId)
     };
     this.handleClick = this.handleClick.bind(this);
@@ -23,7 +24,7 @@ class ListingCard extends React.Component {
   }
 
   favoriteOnClick() {
-    if (!this.state.favorite) {
+    if (!this.state.isFavorite) {
       const req = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -34,9 +35,13 @@ class ListingCard extends React.Component {
       };
       fetch('/api/favorites', req)
         .then(result => result.json())
-        .then(this.setState({
-          favorite: true
-        }))
+        .then(() => {
+          const { favoriteListings } = this.state.myFavorites;
+          const updateFavorites = favoriteListings.concat(this.props.listingId);
+          this.setState({
+            myFavorites: updateFavorites
+          });
+        })
         .catch(err => console.error(err));
     } else {
       const req = {
@@ -70,7 +75,7 @@ class ListingCard extends React.Component {
                 <h5 className='card-title'>{this.props.title}</h5>
                 <p className='listing-price'>${this.props.price}</p>
                 <div className='fav-heart'>
-                  {this.state.favorite ? <i className="fas fa-heart" onClick={this.favoriteOnClick} />
+                  {this.state.isFavorite ? <i className="fas fa-heart" onClick={this.favoriteOnClick} />
                     : <i className="far fa-heart" onClick={this.favoriteOnClick} />}
                 </div>
               </div>
