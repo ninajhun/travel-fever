@@ -33,7 +33,7 @@ body {
   width: 90%;
   margin: 5%;
   height: 110px;
-  box-shadow: -5px 5px 5px grey;
+  box-shadow: -3px 4px 7px grey;
 }
 
 .listing-price {
@@ -46,7 +46,7 @@ body {
 
 .fav-heart {
   position: absolute;
-  top: 10%;
+  top: 4%;
   right: 10%;
   color: #FB4D3D;
 }
