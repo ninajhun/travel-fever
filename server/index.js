@@ -43,7 +43,8 @@ app.get('/api/users/:userId', (req, res, next) => {
   const sql = `
   select "u"."userId",
     "u"."username",
-    "u"."imageUrl"
+    "u"."imageUrl",
+    array_remove(array_agg(distinct "f"."listingId"), null) as "favoriteListings"
   from "users" as "u"
   left join "favorites" as "f" using ("userId")
   where "u"."userId" = $1;`;
