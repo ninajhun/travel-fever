@@ -45,7 +45,8 @@ export default class App extends React.Component {
         listingId: listing
       }
     };
-    fetch('/api/favorites', req);
+    fetch('/api/favorites', req)
+      .then(response => response.json());
   }
 
   setView(name) {
