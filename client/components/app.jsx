@@ -36,6 +36,10 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
 
+  addFavorite(listingId) {
+
+  }
+
   favoriteListing(listingId) {
     return this.state.currentUser.favoriteListings.includes(listingId);
   }
