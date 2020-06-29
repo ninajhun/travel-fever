@@ -79,7 +79,10 @@ export default class App extends React.Component {
         body = <HomePage user={this.state.currentUser.userId} setView={this.setView}/>;
         break;
       case 'listings-page':
-        body = <ListingsPage user={this.state.currentUser.userId} setView={this.setView} getListingId ={this.getListingId}/>;
+        body = <ListingsPage user={this.state.currentUser.userId}
+          setView={this.setView}
+          getListingId ={this.getListingId}
+          favoriteListings={this.state.currentUser.favoriteListings}/>;
         break;
       case 'create-listing':
         body = <CreateListing user={this.state.currentUser.userId} setView={this.setView}/>;
