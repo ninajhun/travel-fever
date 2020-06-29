@@ -23,48 +23,6 @@ class ListingCard extends React.Component {
     return this.props.favoriteListings.includes(listingId);
   }
 
-  favoriteOnClick() {
-    if (!this.state.isFavorite) {
-      const req = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userId: this.props.userId,
-          listingId: this.props.listingId
-        })
-      };
-      fetch('/api/favorites', req)
-        .then(result => result.json())
-        .then(() => {
-          const favoriteListings = this.state.myFavorites;
-          const updateFavorites = favoriteListings.concat(this.props.listingId);
-          this.setState({
-            myFavorites: updateFavorites
-          });
-        })
-        .catch(err => console.error(err));
-    } else {
-      const req = {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userId: this.props.userId,
-          listingId: this.props.listingId
-        })
-      };
-      fetch('/api/favorites', req)
-        .then(result => result.json())
-        .then(() => {
-          const favoriteListings = this.state.myFavorites;
-          const updateFavorites = favoriteListings.filter(fav => fav !== this.props.listingId);
-          this.setState({
-            myFavorites: updateFavorites
-          });
-        })
-        .catch(err => console.error(err));
-    }
-  }
-
   render() {
     return (
       <div className='listing' onClick={this.handleClick}>

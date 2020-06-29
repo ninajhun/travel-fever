@@ -134,7 +134,8 @@ export default class App extends React.Component {
         body = <ListingsPage user={this.state.currentUser.userId}
           setView={this.setView}
           getListingId ={this.getListingId}
-          favoriteListings={this.state.currentUser.favoriteListings}/>;
+          favoriteListing={this.favoriteListing}
+          toggleFavorite={this.toggleFavorite}/>;
         break;
       case 'create-listing':
         body = <CreateListing user={this.state.currentUser.userId} setView={this.setView}/>;
