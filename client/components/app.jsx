@@ -110,7 +110,7 @@ export default class App extends React.Component {
         <div className='main-screen'>
           {body}
         </div>
-        <BottomNavBar setView={this.setView} user={this.state.currentUser.userId}/>
+        <BottomNavBar setView={this.setView} user={this.state.currentUser.userId} getLocationId={this.getLocationId}/>
       </div>
     );
   }

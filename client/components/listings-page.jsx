@@ -37,6 +37,11 @@ class ListingsPage extends React.Component {
   }
 
   render() {
+
+    if (this.props.locationId) {
+      this.filterListingLocation();
+    }
+
     return (
       <div>
         <div className="m-4">
