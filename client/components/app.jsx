@@ -66,7 +66,16 @@ export default class App extends React.Component {
         listingId: listingId
       })
     };
-    fetch('/api/favorites', req);
+    fetch('/api/favorites', req)
+      .then(() => {
+        const { favoriteListings } = this.state.currentUser;
+        const updateFavorites = favoriteListings.filter(fav => fav !== listingId);
+        this.setState({
+          currentUser: {
+            favoriteListings: updateFavorites
+          }
+        });
+      });
   }
 
   favoriteListing(listingId) {
