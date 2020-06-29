@@ -22,6 +22,10 @@ export default class App extends React.Component {
     this.userLogout = this.userLogout.bind(this);
     this.getUser = this.getUser.bind(this);
     this.getListingId = this.getListingId.bind(this);
+    this.favoriteListing = this.favoriteListing.bind(this);
+    this.toggleFavorite = this.toggleFavorite.bind(this);
+    this.addFavorite = this.addFavorite.bind(this);
+    this.removeFavorite = this.removeFavorite.bind(this);
   }
 
   componentDidMount() {
@@ -41,7 +45,7 @@ export default class App extends React.Component {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        userId: this.props.currentUser.userId,
+        userId: this.state.currentUser.userId,
         listingId: listingId
       })
     };
@@ -51,6 +55,7 @@ export default class App extends React.Component {
         const updateFavorites = favoriteListings.concat(listingId);
         this.setState({
           currentUser: {
+            ...this.state.currentUser,
             favoriteListings: updateFavorites
           }
         });
@@ -62,7 +67,7 @@ export default class App extends React.Component {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        userId: this.props.currentUser.userId,
+        userId: this.state.currentUser.userId,
         listingId: listingId
       })
     };
@@ -72,6 +77,7 @@ export default class App extends React.Component {
         const updateFavorites = favoriteListings.filter(fav => fav !== listingId);
         this.setState({
           currentUser: {
+            ...this.state.currentUser,
             favoriteListings: updateFavorites
           }
         });
@@ -85,7 +91,7 @@ export default class App extends React.Component {
   toggleFavorite(listingId) {
     this.favoriteListing(listingId)
       ? this.removeFavorite(listingId)
-      : this.favoriteListing(listingId);
+      : this.addFavorite(listingId);
   }
 
   setView(name) {

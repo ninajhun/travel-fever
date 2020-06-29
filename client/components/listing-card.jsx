@@ -8,8 +8,7 @@ class ListingCard extends React.Component {
       isFavorite: this.props.favoriteListing(this.props.listingId)
     };
     this.handleClick = this.handleClick.bind(this);
-    this.favoriteOnClick = this.favoriteOnClick.bind(this);
-    this.toBeOrNotToBe = this.toBeOrNotToBe.bind(this);
+    this.handleHeartClick = this.handleHeartClick.bind(this);
   }
 
   handleClick(event) {
@@ -21,7 +20,7 @@ class ListingCard extends React.Component {
 
   handleHeartClick() {
     this.props.toggleFavorite(this.props.listingId);
-    const { isFavorite } = this.state;
+    const isFavorite = this.state.isFavorite;
     this.setState({
       isFavorite: !isFavorite
     });
@@ -41,8 +40,8 @@ class ListingCard extends React.Component {
                 <h5 className='card-title'>{this.props.title}</h5>
                 <p className='listing-price'>${this.props.price}</p>
                 <div className='fav-heart'>
-                  {this.state.isFavorite ? <i className="fas fa-heart" onClick={this.favoriteOnClick} />
-                    : <i className="far fa-heart" onClick={this.favoriteOnClick} />}
+                  {this.state.isFavorite ? <i className="fas fa-heart" onClick={this.handleHeartClick} />
+                    : <i className="far fa-heart" onClick={this.handleHeartClick} />}
                 </div>
               </div>
             </div>
