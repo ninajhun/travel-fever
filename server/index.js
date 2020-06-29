@@ -71,12 +71,13 @@ app.get('/api/users/:userId', (req, res, next) => {
     array_remove(array_agg(distinct "f"."listingId"), null) as "favoriteListings"
   from "users" as "u"
   left join "favorites" as "f" using ("userId")
-  where "u"."userId" = $1;`;
+  where "u"."userId" = $1
+  group by "u"."userId"`;
   const values = [userId];
   db.query(sql, values)
     .then(result => {
       req.session.userId = result.rows[0].userId;
-      res.json({ user: result.rows[0] });
+      res.json({ user: result.rows });
     })
     .catch(err => next(err));
 });
@@ -86,7 +87,7 @@ app.get('/api/locations', (req, res, next) => {
   select *
   from "locations";`;
   db.query(sql)
-    .then(results => res.json(results.rows))
+    .then(results => res.json(results.rows[0]))
     .catch(err => next(err));
 });
 
