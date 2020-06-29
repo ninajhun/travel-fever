@@ -7,7 +7,8 @@ import CheckoutPage from './checkout-page';
 import HomePage from './home-page';
 import CreateListing from './create-listing';
 import ListingDescription from './listing-description';
-import SellerListingCard from './seller-listing-page';
+import SellerListingPage from './seller-listing-page';
+import SellerListingDescription from './seller-listing-description';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -91,7 +92,10 @@ export default class App extends React.Component {
         body = <ListingDescription user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId} />; // pass this.state.listingId
         break;
       case 'seller-listing-page':
-        body = <SellerListingCard user={this.state.currentUser.userId} setView={this.setView}/>;
+        body = <SellerListingPage user={this.state.currentUser.userId} setView={this.setView} getListingId={this.getListingId}/>;
+        break;
+      case 'seller-listing-description':
+        body = <SellerListingDescription user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId}/>;
         break;
       default: body = null;
     }
