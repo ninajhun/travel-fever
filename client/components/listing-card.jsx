@@ -54,12 +54,11 @@ class ListingCard extends React.Component {
   render() {
     return (
       <div className='card mb-3 listing' onClick={this.handleClick}>
-
         <div className='row no-gutters flex-nowrap card-row'>
           <div className='col-4'>
             <img src={this.props.imageUrl} alt={this.props.imageUrl} className='card-img image-listing' />
           </div>
-          <div className='col-md-8'>
+          <div className='col-8'>
             <div className='card-body'>
               <p className='card-title'>{this.props.title}</p>
               <p className='listing-price'>${this.props.price}</p>
