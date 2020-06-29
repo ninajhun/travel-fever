@@ -74,7 +74,7 @@ class CreateListing extends React.Component {
   render() {
     return (
       <div>
-        <form encType="multipart/form-data" className="col-12 pt-4 ml-auto mr-auto" onSubmit={this.handleSubmit} onReset={this.handleReset}>
+        <form encType="multipart/form-data" className="col-12 pt-4 " onSubmit={this.handleSubmit} onReset={this.handleReset}>
           <h4>Create Listing</h4>
           <input type="hidden" name="sellerId" defaultValue={this.props.user}/>
           <div className="form-group">
@@ -102,14 +102,14 @@ class CreateListing extends React.Component {
           </div>
           <div className="form-group mb-0 pb-0">
             <label><h4>Description</h4>
-              <textarea name="description" id="description" cols="41" rows="5" value={this.state.description} onChange={this.handleChange}></textarea>
+              <textarea name="description" id="description" cols="37" rows="5" value={this.state.description} onChange={this.handleChange}></textarea>
             </label>
           </div>
           <div className="d-flex justify-content-end mb-3">
             <button type="reset" className="btn btn-light">Clear Form</button>
           </div>
           <div className='d-flex justify-content-center' >
-            <button type="submit" className="uni-button ml-2 mt-1 py-2 px-1">Preview Listing</button>
+            <button type="submit" className="uni-button mb-4 mt-1 py-2 px-1">Preview Listing</button>
           </div>
         </form>
       </div>
