@@ -17,7 +17,7 @@ class ListingCard extends React.Component {
       this.props.setView('listing-description');
     }
     if (this.props.userId === this.props.sellerId) {
-      this.props.getListingId(this.props.listingId);
+      this.props.setListingId(this.props.listingId);
       this.props.setView('seller-listing-description');
     }
   }
@@ -39,7 +39,7 @@ class ListingCard extends React.Component {
           </div>
           <div className='col-md-8 d-flex align-items-center'>
             <div className='card-body'>
-              <h5 className='card-title mt-3'>{this.props.title}</h5>
+              <p className='card-title mt-3'>{this.props.title}</p>
               <p className='listing-price'>${this.props.price}</p>
               <div className='fav-heart'>
                 {this.state.isFavorite ? <i className="fas fa-heart" onClick={this.handleHeartClick} />

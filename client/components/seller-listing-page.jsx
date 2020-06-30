@@ -36,7 +36,7 @@ class SellerListingCard extends React.Component {
               title={seller.title}
               price={seller.price}
               setView={this.props.setView}
-              getListingId={this.props.getListingId}
+              setListingId={this.props.setListingId}
               userId={this.props.user}
             />;
           })
