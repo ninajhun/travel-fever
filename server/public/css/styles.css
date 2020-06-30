@@ -120,6 +120,8 @@ body {
 
 .main-screen{
   position: absolute;
+  min-height: 86%;
+  min-width: fit-content;
   margin-top: 14%;
   margin-bottom: 12%
 }
