@@ -13,7 +13,10 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'home', // change back
+      view: {
+        name: 'home',
+        params: {}
+      },
       currentUser: null,
       listingId: null,
       locationId: null,
@@ -38,9 +41,12 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
 
-  setView(name) {
+  setView(name, params) {
     this.setState({
-      view: name
+      view: {
+        name: name,
+        params: params
+      }
     });
   }
 
@@ -70,11 +76,17 @@ export default class App extends React.Component {
     });
   }
 
-  getLocationId(locationId) {
+  getLocationId(locationId, next = null) {
     this.setState({
       locationId: locationId
-    });
+    }, next);
   }
+
+  // getLocationId(locationId) {
+  //   this.setState({
+  //     locationId: locationId
+  //   });
+  // }
 
   render() {
     if (this.state.isAuthorizing) return null;
@@ -82,7 +94,7 @@ export default class App extends React.Component {
 
     let body;
 
-    switch (this.state.view) {
+    switch (this.state.view.name) {
       case 'home':
         body = <HomePage user={this.state.currentUser.userId} setView={this.setView} getLocationId={this.getLocationId} locationId={this.state.locationId} />;
         break;

@@ -6,18 +6,32 @@ class ListingsPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      listing: []
+      listing: [],
+      locationId: this.props.locationId
     };
     this.getListing = this.getListing.bind(this);
-    this.filterListingLocation = this.filterListingLocation.bind(this);
+    this.handleLocationChange = this.handleLocationChange.bind(this);
   }
 
   componentDidMount() {
-    if (this.props.locationId !== null) {
+    // this.setState({ locationId: this.props.locationId });
+    if (this.state.locationId !== null) {
       this.filterListingLocation();
     } else if (this.props.view === 'listings-page') {
       this.getListing();
     }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.state.locationId !== prevProps.locationId) {
+      this.setState({ locationId: this.props.locationId });
+    }
+  }
+
+  componentWillUnmount() {
+    this.setState({
+      listing: []
+    });
   }
 
   getListing() {
@@ -30,9 +44,10 @@ class ListingsPage extends React.Component {
       });
   }
 
-  filterListingLocation() {
-    if (this.props.locationId !== null) {
-      fetch(`/api/listingsLocations/${this.props.locationId}`)
+  handleLocationChange(locationId) {
+    console.log(locationId);
+    if (locationId !== '') {
+      fetch(`/api/listingsLocations/${locationId}`)
         .then(res => res.json())
         .then(list => {
           this.setState({
@@ -45,14 +60,14 @@ class ListingsPage extends React.Component {
 
   render() {
 
-    if (this.props.locationId !== null) {
-      this.filterListingLocation();
-    }
+    // if (this.props.locationId !== null) {
+    //   this.filterListingLocation();
+    // }
 
     return (
       <div>
         <div className="m-4">
-          <SearchCity getLocationId={this.props.getLocationId} filterListingLocation={this.filterListingLocation} />
+          <SearchCity onChange ={this.handleLocationChange} />
         </div>
         {
           this.state.listing.map(listing => {

@@ -4,11 +4,10 @@ class SearchCity extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      locations: [],
-      value: 'select-location'
+      locations: []
     };
-    this.getLocations = this.getLocations.bind(this);
     this.handleChange = this.handleChange.bind(this);
+
   }
 
   getLocations() {
@@ -24,9 +23,8 @@ class SearchCity extends React.Component {
   }
 
   handleChange(event) {
-    event.preventDefault();
-    this.setState({ value: event.target.value });
-    this.props.getLocationId(event.target.value);
+    this.props.onChange(event.target.value);
+
   }
 
   render() {
@@ -34,8 +32,8 @@ class SearchCity extends React.Component {
       <div className="container pr-0 pl-0">
         <div>
           <div className="col-12 mt-4 pr-0 pl-0">
-            <select className="custom-select custom-select-sm" onChange={this.handleChange} value={this.state.value} name={this.props.name}>
-              <option value="select-location">Select Location</option>
+            <select className="custom-select custom-select-sm" onChange={this.handleChange} value={this.props.value} name={this.props.name}>
+              <option value=''>Select Location</option>
               {
                 this.state.locations.map(data => {
                   return (
