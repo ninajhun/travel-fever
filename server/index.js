@@ -253,7 +253,8 @@ app.get('/api/favorites/:userId', (req, res, next) => {
   where "f"."userId" = $1
   `;
   const values = [userId];
-  db.query(sql, values);
+  db.query(sql, values)
+    .then(result => res.json(result.rows));
 });
 
 // User can favorite a listing
