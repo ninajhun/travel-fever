@@ -239,12 +239,15 @@ app.post('/api/purchases', (req, res, next) => {
 app.get('/api/inbox/:userId', (req, res, next) => {
   const userId = parseInt(req.params.userId);
   const sql = `
-  select "c"."chatId",
-          "c"."customerId",
-          "l"."sellerId"
-  from "chats" as "c"
-  join "listings" as "l" using ("listingId")
-  where "c"."customerId" = $1
+ select "u"."imageUrl",
+       "m"."content",
+       "c"."chatId"
+from "chats" as "c"
+join "listings" as "l" using ("listingId")
+inner join "users" as "u" on "l"."sellerId" = "u"."userId"
+inner join "messages" as "m" using ("chatId")
+where "c"."customerId" = $1
+order by "m"."sentAt" desc
   `;
   const values = [userId];
   db.query(sql, values)

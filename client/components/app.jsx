@@ -27,7 +27,6 @@ export default class App extends React.Component {
     this.setView = this.setView.bind(this);
     this.userLogout = this.userLogout.bind(this);
     this.getUser = this.getUser.bind(this);
-
     this.setListingId = this.setListingId.bind(this);
     this.getCustomerListings = this.getCustomerListings.bind(this);
     this.favoriteListing = this.favoriteListing.bind(this);
