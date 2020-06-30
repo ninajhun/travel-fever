@@ -1,6 +1,6 @@
 import React from 'react';
 
-class SellerListingCard extends React.Component {
+class MyListingsCard extends React.Component {
 
   render() {
     return (
@@ -21,4 +21,4 @@ class SellerListingCard extends React.Component {
   }
 }
 
-export default SellerListingCard;
+export default MyListingsCard;
