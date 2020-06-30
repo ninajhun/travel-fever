@@ -23,6 +23,7 @@ class SearchCity extends React.Component {
   }
 
   handleChange(event) {
+    this.props.setView('listings-page', { locationId: event.target.value });
     this.props.onChange(event.target.value);
 
   }

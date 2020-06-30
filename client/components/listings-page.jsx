@@ -6,19 +6,25 @@ class ListingsPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      listing: [],
-      locationId: this.props.locationId
+      listing: []
     };
     this.getListing = this.getListing.bind(this);
     this.handleLocationChange = this.handleLocationChange.bind(this);
   }
 
   componentDidMount() {
-    if (this.state.locationId !== null) {
-      this.filterListingLocation();
-    } else if (this.props.view === 'listings-page') {
+
+    if (this.props.view.params === {}) {
       this.getListing();
+    } else if (this.props.view.params.locationId) {
+      this.handleLocationChange(this.props.view.params.locationId);
     }
+
+    // if (this.state.locationId !== null) {
+    //   this.handleLocationChange();
+    // } else if (this.props.view === 'listings-page') {
+    // this.getListing();
+    // }
   }
 
   // componentDidUpdate(prevProps) {
@@ -44,7 +50,6 @@ class ListingsPage extends React.Component {
   }
 
   handleLocationChange(locationId) {
-    console.log(locationId);
     if (locationId !== '') {
       fetch(`/api/listingsLocations/${locationId}`)
         .then(res => res.json())
@@ -61,7 +66,7 @@ class ListingsPage extends React.Component {
     return (
       <div>
         <div className="m-4">
-          <SearchCity onChange ={this.handleLocationChange} />
+          <SearchCity onChange={this.handleLocationChange} setView={this.props.setView} />
         </div>
         {
           this.state.listing.map(listing => {

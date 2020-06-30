@@ -96,10 +96,10 @@ export default class App extends React.Component {
 
     switch (this.state.view.name) {
       case 'home':
-        body = <HomePage user={this.state.currentUser.userId} setView={this.setView} getLocationId={this.getLocationId} locationId={this.state.locationId} />;
+        body = <HomePage user={this.state.currentUser.userId} setView={this.setView} getLocationId={this.getLocationId} />;
         break;
       case 'listings-page':
-        body = <ListingsPage user={this.state.currentUser.userId} setView={this.setView} getListingId={this.getListingId} getLocationId={this.getLocationId} locationId={this.state.locationId} view={this.state.view}/>;
+        body = <ListingsPage user={this.state.currentUser.userId} setView={this.setView} getListingId={this.getListingId} getLocationId={this.getLocationId} view={this.state.view}/>;
         break;
       case 'create-listing':
         body = <CreateListing user={this.state.currentUser.userId} setView={this.setView}/>;
