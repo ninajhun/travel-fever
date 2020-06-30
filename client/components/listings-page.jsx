@@ -55,7 +55,7 @@ class ListingsPage extends React.Component {
               title={listing.title}
               price={listing.price}
               setView={this.props.setView}
-              getListingId={this.props.getListingId}
+              setListingId={this.props.setListingId}
               userId={this.props.user}
             />;
           })
