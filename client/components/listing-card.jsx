@@ -13,7 +13,7 @@ class ListingCard extends React.Component {
 
   handleClick(event) {
     if (!event.target.classList.contains('fa-heart')) {
-      this.props.getListingId(this.props.listingId);
+      this.props.setListingId(this.props.listingId);
       this.props.setView('listing-description');
     }
     if (this.props.userId === this.props.sellerId) {

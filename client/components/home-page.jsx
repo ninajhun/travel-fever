@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchCity from './search-city';
+// import SearchCity from './search-city';
 import PopularCityList from './popular-city-list';
 
 class HomePage extends React.Component {
@@ -8,17 +8,18 @@ class HomePage extends React.Component {
     return (
       <div>
         <div className="m-4">
-          <SearchCity />
+          {/* <SearchCity getLocationId = {this.props.getLocationId}/> */}
         </div>
         <div className="d-flex justify-content-around m-2">
           <div className="">
-            <button type="button" className="uni-button  mt-1 py-2 px-1" onClick={() => { this.props.setView('seller-listing-page'); }}>My Listings</button>
+            <button type="button" className="uni-button  mt-1 py-2 px-1" onClick={() => { this.props.setView('seller-listing-page', {}); }}>My Listings</button>
           </div>
           <div className="">
-            <button type="button" className="uni-button mt-1 py-2 px-1" onClick={() => { this.props.setView('create-listing'); }}>Create Listing</button>
+            <button type="button" className="uni-button mt-1 py-2 px-1" onClick={() => { this.props.setView('create-listing', {}); }}>Create Listing</button>
           </div>
         </div>
-        <PopularCityList/>
+        <PopularCityList setView={this.props.setView} getCustomerListings = {this.props.getCustomerListings}/>
+
       </div>
     );
 
