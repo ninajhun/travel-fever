@@ -30,7 +30,6 @@ export default class App extends React.Component {
 
     this.setListingId = this.setListingId.bind(this);
     this.getCustomerListings = this.getCustomerListings.bind(this);
-    this.getListingId = this.getListingId.bind(this);
     this.favoriteListing = this.favoriteListing.bind(this);
     this.toggleFavorite = this.toggleFavorite.bind(this);
     this.addFavorite = this.addFavorite.bind(this);
@@ -173,11 +172,10 @@ export default class App extends React.Component {
       case 'listings-page':
         body = <ListingsPage user={this.state.currentUser.userId}
           setView={this.setView}
-          getListingId ={this.getListingId}
           favoriteListing={this.favoriteListing}
           toggleFavorite={this.toggleFavorite}
           setListingId={this.setListingId}
-          getCustomerListings={this.getCustomerListings} 
+          getCustomerListings={this.getCustomerListings}
           listings={this.state.listings} />;
         break;
       case 'create-listing':
@@ -190,7 +188,7 @@ export default class App extends React.Component {
         body = <ListingDescription user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId} />; // pass this.state.listingId
         break;
       case 'seller-listing-page':
-        body = <SellerListingPage user={this.state.currentUser.userId} setView={this.setView} getListingId={this.getListingId}/>;
+        body = <SellerListingPage user={this.state.currentUser.userId} setView={this.setView} />;
         break;
       case 'seller-listing-description':
         body = <SellerListingDescription user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId}/>;
