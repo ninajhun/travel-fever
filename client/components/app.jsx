@@ -19,12 +19,14 @@ export default class App extends React.Component {
       },
       currentUser: null,
       listingId: null,
-      isAuthorizing: true
+      isAuthorizing: true,
+      listings: []
     };
     this.setView = this.setView.bind(this);
     this.userLogout = this.userLogout.bind(this);
     this.getUser = this.getUser.bind(this);
     this.setListingId = this.setListingId.bind(this);
+    this.getCustomerListings = this.getCustomerListings.bind(this);
 
   }
 
@@ -48,6 +50,32 @@ export default class App extends React.Component {
       }
     });
   }
+
+  /// ///
+
+  getCustomerListings(locationId) {
+    if (!locationId) {
+      fetch('api/listings')
+        .then(res => res.json())
+        .then(list => {
+          this.setState({
+            listings: list
+          });
+        });
+    } else {
+      fetch(`/api/listingsLocations/${locationId}`)
+        .then(res => res.json())
+        .then(list =>
+          this.setState({
+            listings: list
+          })
+        )
+        .catch(err => console.error(err));
+
+    }
+  }
+
+  /// ////
 
   userLogout() {
     fetch('api/auth', { method: 'DELETE' })
@@ -83,10 +111,10 @@ export default class App extends React.Component {
 
     switch (this.state.view.name) {
       case 'home':
-        body = <HomePage user={this.state.currentUser.userId} setView={this.setView} getLocationId={this.getLocationId} />;
+        body = <HomePage user={this.state.currentUser.userId} setView={this.setView} getLocationId={this.getLocationId} getCustomerListings={this.getCustomerListings} />;
         break;
       case 'listings-page':
-        body = <ListingsPage user={this.state.currentUser.userId} setView={this.setView} setListingId={this.setListingId} getLocationId={this.getLocationId} view={this.state.view}/>;
+        body = <ListingsPage user={this.state.currentUser.userId} setView={this.setView} setListingId={this.setListingId} getLocationId={this.getLocationId} view={this.state.view} getCustomerListings={this.getCustomerListings} listings={this.state.listings}/>;
         break;
       case 'create-listing':
         body = <CreateListing user={this.state.currentUser.userId} setView={this.setView}/>;
@@ -109,7 +137,7 @@ export default class App extends React.Component {
         <div className='main-screen'>
           {body}
         </div>
-        <BottomNavBar setView={this.setView} user={this.state.currentUser.userId} getLocationId={this.getLocationId}/>
+        <BottomNavBar setView={this.setView} user={this.state.currentUser.userId} getLocationId={this.getLocationId} getCustomerListings={this.getCustomerListings}/>
       </div>
     );
   }
