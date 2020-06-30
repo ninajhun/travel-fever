@@ -25,10 +25,10 @@ class SearchCity extends React.Component {
   handleChange(event) {
     this.props.setView('listings-page', { locationId: event.target.value });
     this.props.onChange(event.target.value);
-
   }
 
   render() {
+
     return (
       <div className="container pr-0 pl-0">
         <div>
@@ -38,7 +38,7 @@ class SearchCity extends React.Component {
               {
                 this.state.locations.map(data => {
                   return (
-                    <option key={ data.locationId } value={data.locationId}>{ data.name }</option>
+                    <option key={data.locationId} value={data.locationId}>{data.name}</option>
                   );
                 })
               }
@@ -48,6 +48,7 @@ class SearchCity extends React.Component {
       </div>
     );
   }
+
 }
 
 export default SearchCity;

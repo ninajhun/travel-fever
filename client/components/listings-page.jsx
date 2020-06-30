@@ -13,31 +13,8 @@ class ListingsPage extends React.Component {
   }
 
   componentDidMount() {
-
-    if (this.props.view.params === {}) {
-      this.getListing();
-    } else if (this.props.view.params.locationId) {
-      this.handleLocationChange(this.props.view.params.locationId);
-    }
-
-    // if (this.state.locationId !== null) {
-    //   this.handleLocationChange();
-    // } else if (this.props.view === 'listings-page') {
-    // this.getListing();
-    // }
+    this.getListing();
   }
-
-  // componentDidUpdate(prevProps) {
-  //   if (this.state.locationId !== prevProps.locationId) {
-  //     this.setState({ locationId: this.props.locationId });
-  //   }
-  // }
-
-  // componentWillUnmount() {
-  //   this.setState({
-  //     listing: []
-  //   });
-  // }
 
   getListing() {
     fetch('api/listings')
@@ -63,6 +40,7 @@ class ListingsPage extends React.Component {
   }
 
   render() {
+
     return (
       <div>
         <div className="m-4">
