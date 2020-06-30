@@ -111,6 +111,10 @@ export default class App extends React.Component {
     });
   }
 
+  getMyFavorites(userId) {
+
+  }
+
   getCustomerListings(locationId) {
     if (!locationId) {
       fetch('api/listings')
