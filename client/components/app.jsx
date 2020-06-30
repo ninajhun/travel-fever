@@ -147,7 +147,10 @@ export default class App extends React.Component {
       .then(data => {
         this.setState({
           currentUser: data.user,
-          view: 'home'
+          view: {
+            name: 'home',
+            params: this.state.view.params
+          }
         });
       })
       .catch(err => console.error(err));
