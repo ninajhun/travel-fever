@@ -1,6 +1,17 @@
 import React from 'react';
 
 class MyListingsCard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    if (this.props.userId === this.props.sellerId) {
+      this.props.getListingId(this.props.listingId);
+      this.props.setView('seller-listing-description');
+    }
+  }
 
   render() {
     return (
