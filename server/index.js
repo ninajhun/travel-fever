@@ -236,7 +236,23 @@ app.post('/api/purchases', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// User can view favroites
+app.get('/api/inbox/:userId', (req, res, next) => {
+  const userId = parseInt(req.params.userId);
+  const sql = `
+  select "c"."chatId",
+          "c"."customerId",
+          "l"."sellerId"
+  from "chats" as "c"
+  join "listings" as "l" using ("listingId")
+  where "c"."customerId" = $1
+  `;
+  const values = [userId];
+  db.query(sql, values)
+    .then(result => res.json(result.rows))
+    .catch(err => next(err));
+});
+
+// User can view favorites
 app.get('/api/favorites/:userId', (req, res, next) => {
   const userId = parseInt(req.params.userId, 10);
   const sql = `
