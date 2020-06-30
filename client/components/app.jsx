@@ -164,7 +164,7 @@ export default class App extends React.Component {
 
     return (
       <div>
-        <Header userImg={this.state.currentUser.imageUrl} user={this.state.currentUser.userId} userLogout={this.userLogout}/>
+        <Header userImg={this.state.currentUser.imageUrl} user={this.state.currentUser.userId} userLogout={this.userLogout} setView={this.setView}/>
         <div className='main-screen'>
           {body}
         </div>
