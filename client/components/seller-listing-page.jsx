@@ -1,5 +1,5 @@
 import React from 'react';
-import ListingCard from './listing-card';
+import MyListingsCard from './seller-listing-card';
 
 class SellerListingCard extends React.Component {
   constructor(props) {
@@ -28,7 +28,7 @@ class SellerListingCard extends React.Component {
       <div>
         {
           this.state.sellerListing.map(seller => {
-            return <ListingCard
+            return <MyListingsCard
               key={seller.sellerId}
               sellerId={seller.sellerId}
               listingId={seller.listingId}

@@ -4,8 +4,7 @@ class ListingCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      myFavorites: this.props.favoriteListings
-      // isFavorite: this.props.favoriteListing(this.props.listingId)
+      isFavorite: this.props.favoriteListing(this.props.listingId)
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleHeartClick = this.handleHeartClick.bind(this);
@@ -15,10 +14,6 @@ class ListingCard extends React.Component {
     if (!event.target.classList.contains('fa-heart')) {
       this.props.setListingId(this.props.listingId);
       this.props.setView('listing-description');
-    }
-    if (this.props.userId === this.props.sellerId) {
-      this.props.setListingId(this.props.listingId);
-      this.props.setView('seller-listing-description');
     }
   }
 
@@ -42,8 +37,10 @@ class ListingCard extends React.Component {
               <p className='card-title mt-3'>{this.props.title}</p>
               <p className='listing-price'>${this.props.price}</p>
               <div className='fav-heart'>
-                {this.state.isFavorite ? <i className="fas fa-heart" onClick={this.handleHeartClick} />
-                  : <i className="far fa-heart" onClick={this.handleHeartClick} />}
+                {
+                  this.state.isFavorite ? <i className="fas fa-heart" onClick={this.handleHeartClick} />
+                    : <i className="far fa-heart" onClick={this.handleHeartClick} />
+                }
               </div>
             </div>
           </div>
