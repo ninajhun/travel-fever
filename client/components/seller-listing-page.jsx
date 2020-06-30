@@ -38,6 +38,8 @@ class SellerListingCard extends React.Component {
               setView={this.props.setView}
               getListingId={this.props.getListingId}
               userId={this.props.user}
+              favoriteListing={this.props.favoriteListing}
+              toggleFavorite={this.props.toggleFavorite}
             />;
           })
         }
