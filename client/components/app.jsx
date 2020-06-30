@@ -19,14 +19,14 @@ export default class App extends React.Component {
       },
       currentUser: null,
       listingId: null,
-      locationId: null,
+      // locationId: null,
       isAuthorizing: true
     };
     this.setView = this.setView.bind(this);
     this.userLogout = this.userLogout.bind(this);
     this.getUser = this.getUser.bind(this);
     this.getListingId = this.getListingId.bind(this);
-    this.getLocationId = this.getLocationId.bind(this);
+    // this.getLocationId = this.getLocationId.bind(this);
   }
 
   componentDidMount() {
@@ -76,11 +76,11 @@ export default class App extends React.Component {
     });
   }
 
-  getLocationId(locationId, next = null) {
-    this.setState({
-      locationId: locationId
-    }, next);
-  }
+  // getLocationId(locationId, next = null) {
+  //   this.setState({
+  //     locationId: locationId
+  //   }, next);
+  // }
 
   // getLocationId(locationId) {
   //   this.setState({

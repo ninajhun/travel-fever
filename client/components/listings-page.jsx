@@ -14,7 +14,6 @@ class ListingsPage extends React.Component {
   }
 
   componentDidMount() {
-    // this.setState({ locationId: this.props.locationId });
     if (this.state.locationId !== null) {
       this.filterListingLocation();
     } else if (this.props.view === 'listings-page') {
@@ -22,17 +21,17 @@ class ListingsPage extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.state.locationId !== prevProps.locationId) {
-      this.setState({ locationId: this.props.locationId });
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (this.state.locationId !== prevProps.locationId) {
+  //     this.setState({ locationId: this.props.locationId });
+  //   }
+  // }
 
-  componentWillUnmount() {
-    this.setState({
-      listing: []
-    });
-  }
+  // componentWillUnmount() {
+  //   this.setState({
+  //     listing: []
+  //   });
+  // }
 
   getListing() {
     fetch('api/listings')
@@ -59,11 +58,6 @@ class ListingsPage extends React.Component {
   }
 
   render() {
-
-    // if (this.props.locationId !== null) {
-    //   this.filterListingLocation();
-    // }
-
     return (
       <div>
         <div className="m-4">
