@@ -238,7 +238,22 @@ app.post('/api/purchases', (req, res, next) => {
 
 // User can view favroites
 app.get('/api/favorites/:userId', (req, res, next) => {
-
+  const userId = parseInt(req.params.userId, 10);
+  const sql = `
+  select "f"."listingId",
+    "f"."userId",
+    "l"."sellerId",
+    "l"."locationId",
+    "l"."title",
+    "l"."description",
+    "l"."price",
+    "l"."imageUrl"
+  from "favorites" as "f"
+  join "listings" as "l" using ("listingId")
+  where "f"."userId" = $1
+  `;
+  const values = [userId];
+  db.query(sql, values);
 });
 
 // User can favorite a listing
