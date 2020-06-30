@@ -10,10 +10,26 @@ class ListingsPage extends React.Component {
     };
     this.getListing = this.getListing.bind(this);
     this.handleLocationChange = this.handleLocationChange.bind(this);
+    this.setCurrentFilter = this.setCurrentFilter.bind(this);
   }
 
   componentDidMount() {
-    this.getListing();
+    this.setCurrentFilter();
+
+  }
+
+  componentDidUpdate(prevProps) {
+    this.setCurrentFilter();
+
+  }
+
+  setCurrentFilter() {
+    if (this.props.view.params.locationId) {
+      this.handleLocationChange(this.props.view.params.locationId);
+      // this.props.setView('listing-page', {});
+    } else {
+      this.getListing();
+    }
   }
 
   getListing() {
@@ -30,13 +46,14 @@ class ListingsPage extends React.Component {
     if (locationId !== '') {
       fetch(`/api/listingsLocations/${locationId}`)
         .then(res => res.json())
-        .then(list => {
+        .then(list =>
           this.setState({
             listing: list
-          });
-        });
+          })
+        )
+      // , () => this.props.setView('listing-page', {}))
+        .catch(err => console.error(err));
     }
-
   }
 
   render() {
