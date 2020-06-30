@@ -7,7 +7,8 @@ import CheckoutPage from './checkout-page';
 import HomePage from './home-page';
 import CreateListing from './create-listing';
 import ListingDescription from './listing-description';
-import SellerListingCard from './seller-listing-page';
+import SellerListingPage from './seller-listing-page';
+import SellerListingDescription from './seller-listing-description';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -17,6 +18,7 @@ export default class App extends React.Component {
         name: 'home',
         params: {}
       },
+
       currentUser: null,
       listingId: null,
       isAuthorizing: true,
@@ -25,9 +27,14 @@ export default class App extends React.Component {
     this.setView = this.setView.bind(this);
     this.userLogout = this.userLogout.bind(this);
     this.getUser = this.getUser.bind(this);
+
     this.setListingId = this.setListingId.bind(this);
     this.getCustomerListings = this.getCustomerListings.bind(this);
-
+    this.getListingId = this.getListingId.bind(this);
+    this.favoriteListing = this.favoriteListing.bind(this);
+    this.toggleFavorite = this.toggleFavorite.bind(this);
+    this.addFavorite = this.addFavorite.bind(this);
+    this.removeFavorite = this.removeFavorite.bind(this);
   }
 
   componentDidMount() {
@@ -40,6 +47,60 @@ export default class App extends React.Component {
         });
       })
       .catch(err => console.error(err));
+  }
+
+  addFavorite(listingId) {
+    const req = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        userId: this.state.currentUser.userId,
+        listingId: listingId
+      })
+    };
+    fetch('/api/favorites', req)
+      .then(() => {
+        const { favoriteListings } = this.state.currentUser;
+        const updateFavorites = favoriteListings.concat(listingId);
+        this.setState({
+          currentUser: {
+            ...this.state.currentUser,
+            favoriteListings: updateFavorites
+          }
+        });
+      });
+  }
+
+  removeFavorite(listingId) {
+    const req = {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        userId: this.state.currentUser.userId,
+        listingId: listingId
+      })
+    };
+    fetch('/api/favorites', req)
+      .then(() => {
+        const { favoriteListings } = this.state.currentUser;
+        const updateFavorites = favoriteListings.filter(fav => fav !== listingId);
+        this.setState({
+          currentUser: {
+            ...this.state.currentUser,
+            favoriteListings: updateFavorites
+          }
+        });
+      });
+  }
+
+  favoriteListing(listingId) {
+    return this.state.currentUser.favoriteListings.includes(listingId);
+  }
+
+  toggleFavorite(listingId) {
+    this.favoriteListing(listingId)
+      ? this.removeFavorite(listingId)
+      : this.addFavorite(listingId);
   }
 
   setView(name, params) {
@@ -110,7 +171,14 @@ export default class App extends React.Component {
         body = <HomePage user={this.state.currentUser.userId} setView={this.setView} getCustomerListings={this.getCustomerListings} />;
         break;
       case 'listings-page':
-        body = <ListingsPage user={this.state.currentUser.userId} setView={this.setView} setListingId={this.setListingId} getCustomerListings={this.getCustomerListings} listings={this.state.listings}/>;
+        body = <ListingsPage user={this.state.currentUser.userId}
+          setView={this.setView}
+          getListingId ={this.getListingId}
+          favoriteListing={this.favoriteListing}
+          toggleFavorite={this.toggleFavorite}
+          setListingId={this.setListingId}
+          getCustomerListings={this.getCustomerListings} 
+          listings={this.state.listings} />;
         break;
       case 'create-listing':
         body = <CreateListing user={this.state.currentUser.userId} setView={this.setView}/>;
@@ -122,14 +190,17 @@ export default class App extends React.Component {
         body = <ListingDescription user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId} />; // pass this.state.listingId
         break;
       case 'seller-listing-page':
-        body = <SellerListingCard user={this.state.currentUser.userId} setView={this.setView}/>;
+        body = <SellerListingPage user={this.state.currentUser.userId} setView={this.setView} getListingId={this.getListingId}/>;
+        break;
+      case 'seller-listing-description':
+        body = <SellerListingDescription user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId}/>;
         break;
       default: body = null;
     }
 
     return (
       <div>
-        <Header userImg={this.state.currentUser.imageUrl} user={this.state.currentUser.userId} userLogout={this.userLogout}/>
+        <Header userImg={this.state.currentUser.imageUrl} user={this.state.currentUser.userId} userLogout={this.userLogout} setView={this.setView}/>
         <div className='main-screen'>
           {body}
         </div>

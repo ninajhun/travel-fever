@@ -4,10 +4,11 @@ class ListingCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      favorite: false
+      myFavorites: this.props.favoriteListings
+      // isFavorite: this.props.favoriteListing(this.props.listingId)
     };
     this.handleClick = this.handleClick.bind(this);
-    this.favoriteOnClick = this.favoriteOnClick.bind(this);
+    this.handleHeartClick = this.handleHeartClick.bind(this);
   }
 
   handleClick(event) {
@@ -15,40 +16,18 @@ class ListingCard extends React.Component {
       this.props.setListingId(this.props.listingId);
       this.props.setView('listing-description');
     }
+    if (this.props.userId === this.props.sellerId) {
+      this.props.getListingId(this.props.listingId);
+      this.props.setView('seller-listing-description');
+    }
   }
 
-  favoriteOnClick() {
-    if (!this.state.favorite) {
-      const req = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userId: this.props.userId,
-          listingId: this.props.listingId
-        })
-      };
-      fetch('/api/favorites', req)
-        .then(result => result.json())
-        .then(this.setState({
-          favorite: true
-        }))
-        .catch(err => console.error(err));
-    } else {
-      const req = {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userId: this.props.userId,
-          listingId: this.props.listingId
-        })
-      };
-      fetch('/api/favorites', req)
-        .then(result => result.json())
-        .then(this.setState({
-          favorite: false
-        }))
-        .catch(err => console.error(err));
-    }
+  handleHeartClick() {
+    this.props.toggleFavorite(this.props.listingId);
+    const isFavorite = this.state.isFavorite;
+    this.setState({
+      isFavorite: !isFavorite
+    });
   }
 
   render() {
@@ -58,19 +37,18 @@ class ListingCard extends React.Component {
           <div className='col-4'>
             <img src={this.props.imageUrl} alt={this.props.imageUrl} className='card-img image-listing' />
           </div>
-          <div className='col-8 d-flex align-items-center'>
+          <div className='col-md-8 d-flex align-items-center'>
             <div className='card-body'>
-              <p className='card-title mt-3'>{this.props.title}</p>
+              <h5 className='card-title mt-3'>{this.props.title}</h5>
               <p className='listing-price'>${this.props.price}</p>
               <div className='fav-heart'>
-                {this.state.favorite ? <i className="fas fa-heart" onClick={this.favoriteOnClick} />
-                  : <i className="far fa-heart" onClick={this.favoriteOnClick} />}
+                {this.state.isFavorite ? <i className="fas fa-heart" onClick={this.handleHeartClick} />
+                  : <i className="far fa-heart" onClick={this.handleHeartClick} />}
               </div>
             </div>
           </div>
         </div>
       </div>
-
     );
   }
 }

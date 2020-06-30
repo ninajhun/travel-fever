@@ -1,6 +1,7 @@
 require('dotenv/config');
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 const filePath = path.join(__dirname, '/public', 'images', 'uploads');
 
 const multer = require('multer');
@@ -159,7 +160,10 @@ app.delete('/api/listings/:listingId', (req, res, next) => {
   returning *`;
   const values = [listingId];
   db.query(sql, values)
-    .then(result => res.json(result.rows[0]))
+    .then(result => {
+      res.json(result.rows[0]);
+      fs.unlink(`./server/public/${result.rows[0].imageUrl}`, err => { if (err) console.error(err); });
+    })
     .catch(err => next(err));
 });
 
@@ -181,7 +185,7 @@ app.get('/api/sellerListing/:sellerId', (req, res, next) => {
 });
 
 app.post('/api/listings', upload.single('image'), (req, res, next) => {
-  const imageUrl = '/uploads/' + req.file.filename;
+  const imageUrl = 'images/uploads/' + req.file.filename;
   const sellerId = parseInt(req.body.sellerId);
   const locationId = parseInt(req.body.locationId);
   const price = parseInt(req.body.price);
@@ -229,6 +233,44 @@ app.post('/api/purchases', (req, res, next) => {
     .then(result => {
       res.status(201).json(result.rows[0]);
     })
+    .catch(err => next(err));
+});
+
+app.get('/api/inbox/:userId', (req, res, next) => {
+  const userId = parseInt(req.params.userId);
+  const sql = `
+  select "c"."chatId",
+          "c"."customerId",
+          "l"."sellerId"
+  from "chats" as "c"
+  join "listings" as "l" using ("listingId")
+  where "c"."customerId" = $1
+  `;
+  const values = [userId];
+  db.query(sql, values)
+    .then(result => res.json(result.rows))
+    .catch(err => next(err));
+});
+
+// User can view favorites
+app.get('/api/favorites/:userId', (req, res, next) => {
+  const userId = parseInt(req.params.userId, 10);
+  const sql = `
+  select "f"."listingId",
+    "f"."userId",
+    "l"."sellerId",
+    "l"."locationId",
+    "l"."title",
+    "l"."description",
+    "l"."price",
+    "l"."imageUrl"
+  from "favorites" as "f"
+  join "listings" as "l" using ("listingId")
+  where "f"."userId" = $1
+  `;
+  const values = [userId];
+  db.query(sql, values)
+    .then(result => res.json(result.rows))
     .catch(err => next(err));
 });
 

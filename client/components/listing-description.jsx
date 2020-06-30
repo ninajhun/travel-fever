@@ -20,7 +20,6 @@ class ListingDescription extends React.Component {
 
   handleClick() {
     this.props.setView('check-out');
-
   }
 
   render() {
