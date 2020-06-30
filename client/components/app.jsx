@@ -51,8 +51,6 @@ export default class App extends React.Component {
     });
   }
 
-  /// ///
-
   getCustomerListings(locationId) {
     if (!locationId) {
       fetch('api/listings')
@@ -74,8 +72,6 @@ export default class App extends React.Component {
 
     }
   }
-
-  /// ////
 
   userLogout() {
     fetch('api/auth', { method: 'DELETE' })
@@ -111,10 +107,10 @@ export default class App extends React.Component {
 
     switch (this.state.view.name) {
       case 'home':
-        body = <HomePage user={this.state.currentUser.userId} setView={this.setView} getLocationId={this.getLocationId} getCustomerListings={this.getCustomerListings} />;
+        body = <HomePage user={this.state.currentUser.userId} setView={this.setView} getCustomerListings={this.getCustomerListings} />;
         break;
       case 'listings-page':
-        body = <ListingsPage user={this.state.currentUser.userId} setView={this.setView} setListingId={this.setListingId} getLocationId={this.getLocationId} view={this.state.view} getCustomerListings={this.getCustomerListings} listings={this.state.listings}/>;
+        body = <ListingsPage user={this.state.currentUser.userId} setView={this.setView} setListingId={this.setListingId} getCustomerListings={this.getCustomerListings} listings={this.state.listings}/>;
         break;
       case 'create-listing':
         body = <CreateListing user={this.state.currentUser.userId} setView={this.setView}/>;
@@ -137,7 +133,7 @@ export default class App extends React.Component {
         <div className='main-screen'>
           {body}
         </div>
-        <BottomNavBar setView={this.setView} user={this.state.currentUser.userId} getLocationId={this.getLocationId} getCustomerListings={this.getCustomerListings}/>
+        <BottomNavBar setView={this.setView} user={this.state.currentUser.userId} getCustomerListings={this.getCustomerListings}/>
       </div>
     );
   }

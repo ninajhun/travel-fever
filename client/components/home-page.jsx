@@ -19,7 +19,7 @@ class HomePage extends React.Component {
           </div>
         </div>
         <PopularCityList setView={this.props.setView} getCustomerListings = {this.props.getCustomerListings}/>
-        {/* getLocationId={this.props.getLocationId} */}
+
       </div>
     );
 
