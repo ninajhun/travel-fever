@@ -6,7 +6,7 @@ class Messages extends React.Component {
 
   render() {
     return (
-      <div className="messages-height">
+      <div className="container-flex">
 
         <RecipientMessage />
         <SenderMessage />
@@ -16,11 +16,14 @@ class Messages extends React.Component {
         <SenderMessage />
         <RecipientMessage />
 
-        <div className="col-12 input-group message-input fixed-bottom">
-          <input type="text" name="" id="" className="form-control" ></input>
-          <div className="input-group-append" onClick={() => console.log('hi')}>
-            <div className="input-group-text"><i className="fas fa-arrow-up"></i></div>
+        <div className="row">
+          <div className="col-12 input-group message-input fixed-bottom">
+            <input type="text" name="" id="" className="form-control" ></input>
+            <div className="input-group-append" onClick={() => console.log('hi')}>
+              <div className="input-group-text"><i className="fas fa-arrow-up"></i></div>
+            </div>
           </div>
+
         </div>
 
       </div>
