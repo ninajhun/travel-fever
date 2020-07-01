@@ -1,20 +1,15 @@
 import React from 'react';
+import RecipientMessage from './recipient-message';
+import SenderMessage from './sender-message';
 
 class Messages extends React.Component {
 
   render() {
     return (
+      <div>
 
-      <div className="container-fluid">
-        <div className="row recipient">
-          <div className="col-1">
-            <img src="/images/timd.png" />
-          </div>
-          <div className="col-9">
-            <p>Hello this is a test!</p>
-          </div>
-        </div>
-        <div className="row sender"></div>
+        <RecipientMessage />
+        <SenderMessage />
 
         <form action="">
           <textarea name="" id="" cols="37" rows="1" ></textarea>
@@ -28,3 +23,5 @@ class Messages extends React.Component {
 }
 
 export default Messages;
+
+// if else userId = senderId render recipient message
