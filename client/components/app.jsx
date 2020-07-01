@@ -118,7 +118,8 @@ export default class App extends React.Component {
         this.state({
           listings: data
         });
-      });
+      })
+      .catch(err => console.error(err));
   }
 
   getCustomerListings(locationId) {
