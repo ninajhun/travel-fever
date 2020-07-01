@@ -254,17 +254,20 @@ where "c"."customerId" = $1
 });
 
 // User can view messages
-app.get('/api/messages/:userId', (req, res, next) => {
-  const userId = parseInt(req.params.userId, 10);
-  const chatId = parseInt(req.body.chatId, 10);
+app.get('/api/messages/:chatId', (req, res, next) => {
+  const chatId = parseInt(req.params.chatId, 10);
+  // const chatId = parseInt(req.body.chatId, 10);
   const sql = `
-  select "content"
-  from messages
-  where "chatId" = $1 and "userId" = $2
-  order by "sentAt" desc
+  select "content",
+    "senderId",
+    "recipientId"
+  from "messages"
+  where "chatId" = $1
+  order by "sentAt" asc
   `;
-  const values = [userId, chatId];
-  db.query(sql, values);
+  const values = [chatId];
+  db.query(sql, values)
+    .then(result => res.json(result.rows));
 });
 
 // User can view favorites
