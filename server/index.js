@@ -241,11 +241,15 @@ app.get('/api/inbox/:userId', (req, res, next) => {
   const sql = `
 select "u"."imageUrl",
        "c"."chatId",
-      "u"."username"
+       "u"."username",
+       "m"."recipientId",
+       "m"."senderId"
 from "chats" as "c"
 join "listings" as "l" using ("listingId")
-inner join "users" as "u" on "l"."sellerId" = "u"."userId"
+join "users" as "u" on "l"."sellerId" = "u"."userId"
+join "messages" as "m" on "c"."chatId"
 where "c"."customerId" = $1
+group by "c"."chatId"
   `;
   const values = [userId];
   db.query(sql, values)
