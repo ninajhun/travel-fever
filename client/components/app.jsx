@@ -9,6 +9,7 @@ import CreateListing from './create-listing';
 import ListingDescription from './listing-description';
 import SellerListingPage from './seller-listing-page';
 import SellerListingDescription from './seller-listing-description';
+import FavoriteListingsPage from './favorite-listings-page';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -188,6 +189,9 @@ export default class App extends React.Component {
           setListingId={this.setListingId}
           getCustomerListings={this.getCustomerListings}
           listings={this.state.listings} />;
+        break;
+      case 'favorites-page':
+        body = <FavoriteListingsPage />;
         break;
       case 'create-listing':
         body = <CreateListing user={this.state.currentUser.userId} setView={this.setView}/>;
