@@ -90,9 +90,14 @@ body {
 
 
 /* sender & recipient messages */
-.sender-icon-container{
+.recipient-icon-container{
   align-self: center;
   left: 5%;
+}
+
+.sender-icon-container{
+  align-self: center;
+  right: 5%;
 }
 
 

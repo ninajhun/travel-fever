@@ -36,6 +36,7 @@ export default class App extends React.Component {
     this.toggleFavorite = this.toggleFavorite.bind(this);
     this.addFavorite = this.addFavorite.bind(this);
     this.removeFavorite = this.removeFavorite.bind(this);
+    this.getMyFavorites = this.getMyFavorites.bind(this);
     this.getInbox = this.getInbox.bind(this);
   }
 
@@ -112,6 +113,17 @@ export default class App extends React.Component {
         params: params
       }
     });
+  }
+
+  getMyFavorites(userId) {
+    fetch(`/api/favorites/${userId}`)
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          listings: data
+        });
+      })
+      .catch(err => console.error(err));
   }
 
   getCustomerListings(locationId) {
@@ -197,6 +209,14 @@ export default class App extends React.Component {
       case 'create-listing':
         body = <CreateListing user={this.state.currentUser.userId} setView={this.setView}/>;
         break;
+      case 'favorites-page':
+        body = <FavoriteListingsPage user={this.state.currentUser.userId}
+          setView={this.setView}
+          favoriteListing={this.favoriteListing}
+          toggleFavorite={this.toggleFavorite}
+          setListingId={this.setListingId}
+          listings={this.state.listings} />;
+        break;
       case 'check-out':
         body = <CheckoutPage user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId}/>;
         break;
@@ -204,10 +224,15 @@ export default class App extends React.Component {
         body = <ListingDescription user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId} setListingId ={this.setListingId} />; // pass this.state.listingId
         break;
       case 'seller-listing-page':
-        body = <SellerListingPage user={this.state.currentUser.userId} setView={this.setView} setListingId={this.setListingId}/>;
+        body = <SellerListingPage user={this.state.currentUser.userId}
+          setView={this.setView}
+          setListingId={this.setListingId}/>;
         break;
       case 'seller-listing-description':
-        body = <SellerListingDescription user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId}/>;
+        body = <SellerListingDescription
+          user={this.state.currentUser.userId}
+          setView={this.setView}
+          listingId={this.state.listingId}/>;
         break;
       case 'inbox':
         body = <UserInbox
@@ -229,7 +254,12 @@ export default class App extends React.Component {
         <div className='main-screen'>
           {body}
         </div>
-        <BottomNavBar setView={this.setView} user={this.state.currentUser.userId} getCustomerListings={this.getCustomerListings}/>
+        <BottomNavBar setView={this.setView}
+          user={this.state.currentUser.userId}
+          getCustomerListings={this.getCustomerListings}
+          getMyFavorites={this.getMyFavorites}
+
+        />
       </div>
     );
   }
