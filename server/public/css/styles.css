@@ -56,6 +56,32 @@ body {
   border: 2px solid lightgray ;
 }
 
+.inbox-icon-container{
+  align-self: center;
+  position: absolute;
+  left: 10%;
+}
+
+.inbox-icon {
+  background-color: gray;
+  height: 50px;
+  width: 50px;
+  border: 2px solid lightgray;
+  border-radius: 50%;
+}
+
+.inbox {
+  background-color: transparent;
+  text-align: center;
+  border: hidden;
+}
+
+.inbox-border{
+  border-bottom: 2px solid lightgray;
+  width: 85%;
+  border-radius: 45%;
+}
+
 .listing-icon {
   width: 10%;
   border-radius: 50%;
@@ -121,7 +147,7 @@ body {
 .main-screen{
   position: absolute;
   min-height: 86%;
-  min-width: fit-content;
+  min-width: 100%;
   margin-top: 14%;
   margin-bottom: 12%
 }

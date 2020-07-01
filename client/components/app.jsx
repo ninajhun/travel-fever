@@ -9,7 +9,7 @@ import CreateListing from './create-listing';
 import ListingDescription from './listing-description';
 import SellerListingPage from './seller-listing-page';
 import SellerListingDescription from './seller-listing-description';
-import FavoriteListingsPage from './favorite-listings-page';
+import UserInbox from './inbox';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -19,7 +19,7 @@ export default class App extends React.Component {
         name: 'home',
         params: {}
       },
-
+      inbox: [],
       currentUser: null,
       listingId: null,
       isAuthorizing: true,
@@ -34,7 +34,7 @@ export default class App extends React.Component {
     this.toggleFavorite = this.toggleFavorite.bind(this);
     this.addFavorite = this.addFavorite.bind(this);
     this.removeFavorite = this.removeFavorite.bind(this);
-    this.getMyFavorites = this.getMyFavorites.bind(this);
+    this.getInbox = this.getInbox.bind(this);
   }
 
   componentDidMount() {
@@ -47,15 +47,6 @@ export default class App extends React.Component {
         });
       })
       .catch(err => console.error(err));
-  }
-
-  setView(name, params) {
-    this.setState({
-      view: {
-        name: name,
-        params: params
-      }
-    });
   }
 
   addFavorite(listingId) {
@@ -112,15 +103,13 @@ export default class App extends React.Component {
       : this.addFavorite(listingId);
   }
 
-  getMyFavorites(userId) {
-    fetch(`/api/favorites/${userId}`)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          listings: data
-        });
-      })
-      .catch(err => console.error(err));
+  setView(name, params) {
+    this.setState({
+      view: {
+        name: name,
+        params: params
+      }
+    });
   }
 
   getCustomerListings(locationId) {
@@ -174,9 +163,19 @@ export default class App extends React.Component {
     });
   }
 
+  getInbox(userId) {
+    fetch(`/api/inbox/${userId}`)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          inbox: data
+        });
+      });
+  }
+
   render() {
     if (this.state.isAuthorizing) return null;
-    if (!this.state.currentUser) return <LoginPage setView={this.setView} getUser={this.getUser}/>;
+    if (!this.state.currentUser) return <LoginPage setView={this.setView} getUser={this.getUser} getInbox={this.getInbox}/>;
 
     let body;
 
@@ -193,14 +192,6 @@ export default class App extends React.Component {
           getCustomerListings={this.getCustomerListings}
           listings={this.state.listings} />;
         break;
-      case 'favorites-page':
-        body = <FavoriteListingsPage user={this.state.currentUser.userId}
-          setView={this.setView}
-          favoriteListing={this.favoriteListing}
-          toggleFavorite={this.toggleFavorite}
-          setListingId={this.setListingId}
-          listings={this.state.listings} />;
-        break;
       case 'create-listing':
         body = <CreateListing user={this.state.currentUser.userId} setView={this.setView}/>;
         break;
@@ -211,12 +202,18 @@ export default class App extends React.Component {
         body = <ListingDescription user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId} setListingId ={this.setListingId} />; // pass this.state.listingId
         break;
       case 'seller-listing-page':
-        body = <SellerListingPage user={this.state.currentUser.userId}
-          setView={this.setView}
-          setListingId={this.setListingId}/>;
+        body = <SellerListingPage user={this.state.currentUser.userId} setView={this.setView} setListingId={this.setListingId}/>;
         break;
       case 'seller-listing-description':
         body = <SellerListingDescription user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId}/>;
+        break;
+      case 'inbox':
+        body = <UserInbox
+          user={this.state.currentUser.userId}
+          setView={this.setView}
+          listingId={this.state.listingId}
+          getInbox={this.getInbox}
+          inbox={this.state.inbox} />;
         break;
       default: body = null;
     }
@@ -227,11 +224,7 @@ export default class App extends React.Component {
         <div className='main-screen'>
           {body}
         </div>
-        <BottomNavBar setView={this.setView}
-          user={this.state.currentUser.userId}
-          getCustomerListings={this.getCustomerListings}
-          getMyFavorites={this.getMyFavorites}
-        />
+        <BottomNavBar setView={this.setView} user={this.state.currentUser.userId} getCustomerListings={this.getCustomerListings}/>
       </div>
     );
   }

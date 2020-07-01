@@ -19,6 +19,7 @@ class LoginPage extends React.Component {
     if (this.state.value !== 'select-user') {
       this.props.getUser(this.state.value);
       this.props.setView('home', {});
+      this.props.getInbox(this.state.value);
     }
     event.preventDefault();
   }
