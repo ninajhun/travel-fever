@@ -117,7 +117,7 @@ export default class App extends React.Component {
     fetch(`/api/favorites/${userId}`)
       .then(response => response.json())
       .then(data => {
-        this.state({
+        this.setState({
           listings: data
         });
       })
@@ -196,6 +196,7 @@ export default class App extends React.Component {
           setView={this.setView}
           favoriteListing={this.favoriteListing}
           toggleFavorite={this.toggleFavorite}
+          setListingId={this.setListingId}
           listings={this.state.listings} />;
         break;
       case 'create-listing':
