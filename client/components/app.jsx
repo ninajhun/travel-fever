@@ -162,6 +162,10 @@ export default class App extends React.Component {
     });
   }
 
+  getInbox(userId) {
+    fetch(`/api/inbox/${userId}`);
+  }
+
   render() {
     if (this.state.isAuthorizing) return null;
     if (!this.state.currentUser) return <LoginPage setView={this.setView} getUser={this.getUser}/>;
