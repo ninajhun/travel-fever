@@ -19,7 +19,7 @@ export default class App extends React.Component {
         name: 'home',
         params: {}
       },
-
+      inbox: [],
       currentUser: null,
       listingId: null,
       isAuthorizing: true,
@@ -34,6 +34,7 @@ export default class App extends React.Component {
     this.toggleFavorite = this.toggleFavorite.bind(this);
     this.addFavorite = this.addFavorite.bind(this);
     this.removeFavorite = this.removeFavorite.bind(this);
+    this.getInbox = this.getInbox.bind(this);
   }
 
   componentDidMount() {
@@ -163,12 +164,18 @@ export default class App extends React.Component {
   }
 
   getInbox(userId) {
-    fetch(`/api/inbox/${userId}`);
+    fetch(`/api/inbox/${userId}`)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          inbox: data
+        });
+      });
   }
 
   render() {
     if (this.state.isAuthorizing) return null;
-    if (!this.state.currentUser) return <LoginPage setView={this.setView} getUser={this.getUser}/>;
+    if (!this.state.currentUser) return <LoginPage setView={this.setView} getUser={this.getUser} getInbox={this.getInbox}/>;
 
     let body;
 
@@ -201,7 +208,12 @@ export default class App extends React.Component {
         body = <SellerListingDescription user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId}/>;
         break;
       case 'inbox':
-        body = <UserInbox user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId} />;
+        body = <UserInbox
+          user={this.state.currentUser.userId}
+          setView={this.setView}
+          listingId={this.state.listingId}
+          getInbox={this.getInbox}
+          inbox={this.state.inbox} />;
         break;
       default: body = null;
     }

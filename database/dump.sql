@@ -365,6 +365,7 @@ COPY public.chats ("chatId", "customerId", "listingId") FROM stdin;
 --
 
 COPY public.favorites ("favoriteId", "listingId", "userId") FROM stdin;
+2	1	1
 \.
 
 
@@ -375,8 +376,8 @@ COPY public.favorites ("favoriteId", "listingId", "userId") FROM stdin;
 COPY public.listings ("listingId", "sellerId", "locationId", title, description, price, "imageUrl") FROM stdin;
 1	2	3	Tour of the LFZ Coding Facility	I will take you on a tour of the fabulous LFZ coding facility where web development dreams are made! You will even get to meet famous developers such as Cody Miller and Tim Davis! You might even get to take a photo with our mascot -- the Green Power Ranger!	9000	/images/lfz.jpg
 2	1	1	Akihabara Anime and Gaming Adventure Tour!	In case one anime store is not enough, why not book a tour instead? Akihabara anime and gaming adventure tour will take you to various highly recommended anime and game centers around Tokyo. Travel back into the past anime world with old school video game stores before heading over to a popular maid café where you can order a drink or two. After that, you are then free to wander around huge anime stores, with expert guidance and recommendations from your local Green Power Ranger!	90	/images/akihabara.jpg
-11	1	4	Relaxing Hawaiian Coding Retreat	Tired of working in a cubicle or from home? Do you need inspiration? Look no further! At this coding retreat, you'll be able to relax with fellow developers and engineers on the great Hawaiian island of Maui. We will even throw in a Mai Tai or two (or three, we don't judge!) to help you squash those pesky bugs and focus on the code with your feet in the sand. Why code away at home, when you can code away in HAWAII! 	50	images/uploads/1593557876449codingbeach.jpg
 5	2	3	Cody's Wonderful Zoo!	Come one, come all! Cody’s Zoo is finally open for business! Come see the wild Googley Bear Cat and hear his famous ~rawr~! You’ll even get to see Oogie Boogie the Sand Boa or Naveen the Leopard Gecko! We also have a real life DRAGON… Jack the Bearded Dragon! And don’t forget to give Annie the Doggo all the pets in the world! It’s a bonafide! magical! extravaganza! for all ages to experience!	50	/images/codyzoo.jpg
+11	3	4	Relaxing Hawaiian Coding Retreat	Tired of working in a cubicle or from home? Do you need inspiration? Look no further! At this coding retreat, you'll be able to relax with fellow developers and engineers on the great Hawaiian island of Maui. We will even throw in a Mai Tai or two (or three, we don't judge!) to help you squash those pesky bugs and focus on the code with your feet in the sand. Why code away at home, when you can code away in HAWAII! 	50	images/uploads/1593557876449codingbeach.jpg
 \.
 
 
@@ -421,6 +422,7 @@ COPY public.users ("userId", username, "imageUrl") FROM stdin;
 1	Green Power Ranger	/images/greenpowerranger.png
 2	Cody	/images/coffeecody.png
 3	Brett	/images/albright.png
+4	Tim D.	/images/timd.png
 \.
 
 
@@ -435,7 +437,7 @@ SELECT pg_catalog.setval('public."chats_chatId_seq"', 2, true);
 -- Name: favorites_favoriteId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."favorites_favoriteId_seq"', 1, false);
+SELECT pg_catalog.setval('public."favorites_favoriteId_seq"', 2, true);
 
 
 --
@@ -470,7 +472,7 @@ SELECT pg_catalog.setval('public."purchases_purchaseId_seq"', 2, true);
 -- Name: users_userId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."users_userId_seq"', 3, true);
+SELECT pg_catalog.setval('public."users_userId_seq"', 4, true);
 
 
 --
