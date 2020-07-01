@@ -266,7 +266,8 @@ app.get('/api/messages/:chatId', (req, res, next) => {
   `;
   const values = [chatId];
   db.query(sql, values)
-    .then(result => res.json(result.rows));
+    .then(result => res.json(result.rows))
+    .catch(err => next(err));
 });
 
 // User can view favorites
