@@ -4,6 +4,11 @@ import ListingCard from './listing-card';
 class FavoriteListingsPage extends React.Component {
 
   render() {
+    if (!this.props.listings.length) {
+      return (
+        <p className='m-5'>You haven&apos;t favorited anything yet!</p>
+      );
+    }
     return (
       <div>
         {
