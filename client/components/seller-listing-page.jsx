@@ -24,10 +24,11 @@ class SellerListingCard extends React.Component {
   }
 
   render() {
+    if (!this.state.sellerListing.length) {
+      return <p className='m-3'>You have no listings yet!</p>;
+    }
     return (
-
       <div>
-
         <div className="row">
           <h4 className="mt-3 mx-2 pl-4">My Listings</h4>
         </div>
