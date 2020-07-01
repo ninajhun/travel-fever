@@ -196,7 +196,6 @@ export default class App extends React.Component {
           setView={this.setView}
           favoriteListing={this.favoriteListing}
           toggleFavorite={this.toggleFavorite}
-          getMyFavorites={this.getMyFavorites}
           listings={this.state.listings} />;
         break;
       case 'create-listing':
@@ -223,7 +222,11 @@ export default class App extends React.Component {
         <div className='main-screen'>
           {body}
         </div>
-        <BottomNavBar setView={this.setView} user={this.state.currentUser.userId} getCustomerListings={this.getCustomerListings}/>
+        <BottomNavBar setView={this.setView}
+          user={this.state.currentUser.userId}
+          getCustomerListings={this.getCustomerListings}
+          getMyFavorites={this.getMyFavorites}
+        />
       </div>
     );
   }

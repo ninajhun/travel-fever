@@ -5,7 +5,9 @@ class FavoriteListingsPage extends React.Component {
 
   render() {
     return (
-      <ListingCard />
+      <div>
+        <ListingCard />
+      </div>
     );
   }
 }

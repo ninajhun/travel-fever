@@ -8,7 +8,10 @@ class BottomNavBar extends React.Component {
         <nav className="navbar fixed-bottom border-top justify-content-around">
           <i className="fas fa-home fa-lg" onClick={() => this.props.setView('home', {})}></i>
           <i className="far fa-heart fa-lg"
-            onClick={() => this.props.setView('favorites-page')}></i>
+            onClick={() => {
+              this.props.setView('favorites-page', {});
+              this.props.getMyFavorites(this.props.user);
+            } }></i>
           <i className="fas fa-search fa-lg"
             onClick={() => {
               this.props.setView('listings-page', {});
