@@ -25,7 +25,12 @@ class SellerListingCard extends React.Component {
 
   render() {
     return (
+
       <div>
+
+        <div className="row">
+          <h4 className="mt-3 mx-2 pl-4">My Listings</h4>
+        </div>
         {
           this.state.sellerListing.map(seller => {
             return <MyListingsCard

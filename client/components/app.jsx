@@ -49,6 +49,15 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
 
+  setView(name, params) {
+    this.setState({
+      view: {
+        name: name,
+        params: params
+      }
+    });
+  }
+
   addFavorite(listingId) {
     const req = {
       method: 'POST',
@@ -101,15 +110,6 @@ export default class App extends React.Component {
     this.favoriteListing(listingId)
       ? this.removeFavorite(listingId)
       : this.addFavorite(listingId);
-  }
-
-  setView(name, params) {
-    this.setState({
-      view: {
-        name: name,
-        params: params
-      }
-    });
   }
 
   getMyFavorites(userId) {
