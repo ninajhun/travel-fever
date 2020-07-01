@@ -272,7 +272,20 @@ app.get('/api/messages/:chatId', (req, res, next) => {
 
 // User can send messages
 app.post('/api/messages', (req, res, next) => {
-
+  const chatId = parseInt(req.body.chatId, 10);
+  const senderId = parseInt(req.body.senderId, 10);
+  const recipientId = parseInt(req.body.recipientId, 10);
+  const content = req.body.content;
+  const sentAt = 'now';
+  const sql = `
+  insert into "messages" ("chatId", "senderId", "recipientId", "content", "sentAt")
+  values ($1, $2, $3, $4, $5)
+  returning *;
+  `;
+  const values = [chatId, senderId, recipientId, content, sentAt];
+  db.query(sql, values)
+    .then(result => res.json(result.rows[0]))
+    .catch(err => next(err));
 });
 
 // User can view favorites
