@@ -196,6 +196,7 @@ export default class App extends React.Component {
           setView={this.setView}
           favoriteListing={this.favoriteListing}
           toggleFavorite={this.toggleFavorite}
+          getMyFavorites={this.getMyFavorites}
           listings={this.state.listings} />;
         break;
       case 'create-listing':
