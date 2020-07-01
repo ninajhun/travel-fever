@@ -209,7 +209,9 @@ export default class App extends React.Component {
         body = <ListingDescription user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId} setListingId ={this.setListingId} />; // pass this.state.listingId
         break;
       case 'seller-listing-page':
-        body = <SellerListingPage user={this.state.currentUser.userId} setView={this.setView} setListingId={this.setListingId}/>;
+        body = <SellerListingPage user={this.state.currentUser.userId}
+          setView={this.setView}
+          setListingId={this.setListingId}/>;
         break;
       case 'seller-listing-description':
         body = <SellerListingDescription user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId}/>;
