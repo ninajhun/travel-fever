@@ -12,6 +12,7 @@ class UserInbox extends React.Component {
                 key={inboxChat.chatId}
                 username={inboxChat.username}
                 imageUrl={inboxChat.imageUrl}
+                setView ={this.props.setView}
               />
             );
           })

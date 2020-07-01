@@ -18,7 +18,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: 'messages', // remember to change back!!!
+        name: 'home', // remember to change back!!!
         params: {}
       },
       inbox: [],
@@ -217,6 +217,9 @@ export default class App extends React.Component {
           getInbox={this.getInbox}
           inbox={this.state.inbox} />;
         break;
+      case 'messages':
+        body = <Messages />;
+        break;
       default: body = null;
     }
 
@@ -224,8 +227,7 @@ export default class App extends React.Component {
       <div>
         <Header userImg={this.state.currentUser.imageUrl} user={this.state.currentUser.userId} userLogout={this.userLogout} setView={this.setView}/>
         <div className='main-screen'>
-          {/* {body} */}
-          <Messages />
+          {body}
         </div>
         <BottomNavBar setView={this.setView} user={this.state.currentUser.userId} getCustomerListings={this.getCustomerListings}/>
       </div>
