@@ -17,7 +17,7 @@ class BottomNavBar extends React.Component {
               this.props.setView('listings-page', {});
               this.props.getCustomerListings();
             } }></i>
-          {/* <i className="far fa-envelope fa-lg"></i> */}
+          <i className="far fa-envelope fa-lg" onClick={() => this.props.setView('inbox', {})}></i>
         </nav>
 
       </div>

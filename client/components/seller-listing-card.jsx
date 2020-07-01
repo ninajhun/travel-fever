@@ -7,10 +7,8 @@ class MyListingsCard extends React.Component {
   }
 
   handleClick() {
-    if (this.props.userId === this.props.sellerId) {
-      this.props.setListingId(this.props.listingId);
-      this.props.setView('seller-listing-description');
-    }
+    this.props.setListingId(this.props.listingId);
+    this.props.setView('seller-listing-description');
   }
 
   render() {

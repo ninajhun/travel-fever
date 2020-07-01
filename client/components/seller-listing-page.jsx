@@ -24,17 +24,18 @@ class SellerListingCard extends React.Component {
   }
 
   render() {
+    if (!this.state.sellerListing.length) {
+      return <p className='m-3'>You have no listings yet!</p>;
+    }
     return (
-
       <div>
-
         <div className="row">
           <h4 className="mt-3 mx-2 pl-4">My Listings</h4>
         </div>
         {
           this.state.sellerListing.map(seller => {
             return <MyListingsCard
-              key={seller.sellerId}
+              key={seller.listingId}
               sellerId={seller.sellerId}
               listingId={seller.listingId}
               imageUrl={seller.imageUrl}
@@ -42,7 +43,6 @@ class SellerListingCard extends React.Component {
               price={seller.price}
               setView={this.props.setView}
               setListingId={this.props.setListingId}
-              userId={this.props.user}
             />;
           })
         }
