@@ -253,6 +253,11 @@ where "c"."customerId" = $1
     .catch(err => next(err));
 });
 
+// User can view messages
+app.get('/api/messages/:userId', (req, res, next) => {
+
+});
+
 // User can view favorites
 app.get('/api/favorites/:userId', (req, res, next) => {
   const userId = parseInt(req.params.userId, 10);
