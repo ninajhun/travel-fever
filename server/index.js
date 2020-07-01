@@ -270,6 +270,11 @@ app.get('/api/messages/:chatId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+// User can send messages
+app.post('/api/messages', (req, res, next) => {
+
+});
+
 // User can view favorites
 app.get('/api/favorites/:userId', (req, res, next) => {
   const userId = parseInt(req.params.userId, 10);
