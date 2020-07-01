@@ -256,7 +256,6 @@ where "c"."customerId" = $1
 // User can view messages
 app.get('/api/messages/:chatId', (req, res, next) => {
   const chatId = parseInt(req.params.chatId, 10);
-  // const chatId = parseInt(req.body.chatId, 10);
   const sql = `
   select "content",
     "senderId",
