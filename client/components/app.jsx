@@ -9,6 +9,7 @@ import CreateListing from './create-listing';
 import ListingDescription from './listing-description';
 import SellerListingPage from './seller-listing-page';
 import SellerListingDescription from './seller-listing-description';
+import UserInbox from './inbox';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -194,6 +195,9 @@ export default class App extends React.Component {
         break;
       case 'seller-listing-description':
         body = <SellerListingDescription user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId}/>;
+        break;
+      case 'inbox':
+        body = <UserInbox user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId} />;
         break;
       default: body = null;
     }
