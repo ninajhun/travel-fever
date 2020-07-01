@@ -191,7 +191,11 @@ export default class App extends React.Component {
           listings={this.state.listings} />;
         break;
       case 'favorites-page':
-        body = <FavoriteListingsPage />;
+        body = <FavoriteListingsPage user={this.state.currentUser.userId}
+          setView={this.setView}
+          favoriteListing={this.favoriteListing}
+          toggleFavorite={this.toggleFavorite}
+          listings={this.state.listings} />;
         break;
       case 'create-listing':
         body = <CreateListing user={this.state.currentUser.userId} setView={this.setView}/>;
