@@ -255,7 +255,16 @@ where "c"."customerId" = $1
 
 // User can view messages
 app.get('/api/messages/:userId', (req, res, next) => {
-
+  const userId = parseInt(req.params.userId, 10);
+  const chatId = parseInt(req.body.chatId, 10);
+  const sql = `
+  select "content"
+  from messages
+  where "chatId" = $1 and "userId" = $2
+  order by "sentAt" desc
+  `;
+  const values = [userId, chatId];
+  db.query(sql, values);
 });
 
 // User can view favorites
