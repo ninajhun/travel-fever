@@ -112,7 +112,8 @@ export default class App extends React.Component {
   }
 
   getMyFavorites(userId) {
-    fetch(`/api/favorites/${userId}`);
+    fetch(`/api/favorites/${userId}`)
+      .then(response => response.json());
   }
 
   getCustomerListings(locationId) {
