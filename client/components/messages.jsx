@@ -11,9 +11,14 @@ class Messages extends React.Component {
         <RecipientMessage />
         <SenderMessage />
 
-        <form action="">
-          <textarea name="" id="" cols="37" rows="1" ></textarea>
-          <button>submit</button>
+        <form>
+          <div className="input-group col-12">
+            <input type="text" name="" id="" className="form-control" ></input>
+            <div className="input-group-append" onClick={() => console.log('hi')}>
+              <div className="input-group-text"><i className="fas fa-arrow-up"></i></div>
+            </div>
+          </div>
+
         </form>
 
       </div>
