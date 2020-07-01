@@ -35,6 +35,7 @@ export default class App extends React.Component {
     this.toggleFavorite = this.toggleFavorite.bind(this);
     this.addFavorite = this.addFavorite.bind(this);
     this.removeFavorite = this.removeFavorite.bind(this);
+    this.getMyFavorites = this.getMyFavorites.bind(this);
   }
 
   componentDidMount() {
