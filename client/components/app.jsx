@@ -10,13 +10,14 @@ import ListingDescription from './listing-description';
 import SellerListingPage from './seller-listing-page';
 import SellerListingDescription from './seller-listing-description';
 import FavoriteListingsPage from './favorite-listings-page';
+import Messages from './messages';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       view: {
-        name: 'home',
+        name: 'messages', // remember to change back!!!
         params: {}
       },
 
@@ -178,54 +179,55 @@ export default class App extends React.Component {
     if (this.state.isAuthorizing) return null;
     if (!this.state.currentUser) return <LoginPage setView={this.setView} getUser={this.getUser}/>;
 
-    let body;
+    // let body;
 
-    switch (this.state.view.name) {
-      case 'home':
-        body = <HomePage user={this.state.currentUser.userId} setView={this.setView} getCustomerListings={this.getCustomerListings} />;
-        break;
-      case 'listings-page':
-        body = <ListingsPage user={this.state.currentUser.userId}
-          setView={this.setView}
-          favoriteListing={this.favoriteListing}
-          toggleFavorite={this.toggleFavorite}
-          setListingId={this.setListingId}
-          getCustomerListings={this.getCustomerListings}
-          listings={this.state.listings} />;
-        break;
-      case 'favorites-page':
-        body = <FavoriteListingsPage user={this.state.currentUser.userId}
-          setView={this.setView}
-          favoriteListing={this.favoriteListing}
-          toggleFavorite={this.toggleFavorite}
-          setListingId={this.setListingId}
-          listings={this.state.listings} />;
-        break;
-      case 'create-listing':
-        body = <CreateListing user={this.state.currentUser.userId} setView={this.setView}/>;
-        break;
-      case 'check-out':
-        body = <CheckoutPage user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId}/>;
-        break;
-      case 'listing-description':
-        body = <ListingDescription user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId} setListingId ={this.setListingId} />; // pass this.state.listingId
-        break;
-      case 'seller-listing-page':
-        body = <SellerListingPage user={this.state.currentUser.userId}
-          setView={this.setView}
-          setListingId={this.setListingId}/>;
-        break;
-      case 'seller-listing-description':
-        body = <SellerListingDescription user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId}/>;
-        break;
-      default: body = null;
-    }
+    // switch (this.state.view.name) {
+    //   case 'home':
+    //     body = <HomePage user={this.state.currentUser.userId} setView={this.setView} getCustomerListings={this.getCustomerListings} />;
+    //     break;
+    //   case 'listings-page':
+    //     body = <ListingsPage user={this.state.currentUser.userId}
+    //       setView={this.setView}
+    //       favoriteListing={this.favoriteListing}
+    //       toggleFavorite={this.toggleFavorite}
+    //       setListingId={this.setListingId}
+    //       getCustomerListings={this.getCustomerListings}
+    //       listings={this.state.listings} />;
+    //     break;
+    //   case 'favorites-page':
+    //     body = <FavoriteListingsPage user={this.state.currentUser.userId}
+    //       setView={this.setView}
+    //       favoriteListing={this.favoriteListing}
+    //       toggleFavorite={this.toggleFavorite}
+    //       setListingId={this.setListingId}
+    //       listings={this.state.listings} />;
+    //     break;
+    //   case 'create-listing':
+    //     body = <CreateListing user={this.state.currentUser.userId} setView={this.setView}/>;
+    //     break;
+    //   case 'check-out':
+    //     body = <CheckoutPage user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId}/>;
+    //     break;
+    //   case 'listing-description':
+    //     body = <ListingDescription user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId} setListingId ={this.setListingId} />; // pass this.state.listingId
+    //     break;
+    //   case 'seller-listing-page':
+    //     body = <SellerListingPage user={this.state.currentUser.userId}
+    //       setView={this.setView}
+    //       setListingId={this.setListingId}/>;
+    //     break;
+    //   case 'seller-listing-description':
+    //     body = <SellerListingDescription user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId}/>;
+    //     break;
+    //   default: body = null;
+    // }
 
     return (
       <div>
         <Header userImg={this.state.currentUser.imageUrl} user={this.state.currentUser.userId} userLogout={this.userLogout} setView={this.setView}/>
         <div className='main-screen'>
-          {body}
+          {/* {body} */}
+          <Messages />
         </div>
         <BottomNavBar setView={this.setView}
           user={this.state.currentUser.userId}
