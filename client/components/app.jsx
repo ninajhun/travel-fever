@@ -18,7 +18,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: 'messages', // remember to change back!!!
+        name: 'home', // remember to change back!!!
         params: {}
       },
       inbox: [],
@@ -258,7 +258,9 @@ export default class App extends React.Component {
           setView={this.setView}
           listingId={this.state.listingId}
           getInbox={this.getInbox}
-          inbox={this.state.inbox} />;
+          inbox={this.state.inbox}
+          getMessages={this.getMessages}/>;
+
         break;
       case 'messages':
         body = <Messages/>;
