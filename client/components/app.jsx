@@ -83,7 +83,7 @@ export default class App extends React.Component {
       .then(response => response.json())
       .then(data => {
         const messages = this.state.messages;
-        const newMessages = messages.concat(data[0]);
+        const newMessages = messages.concat(data);
         this.setState({
           messages: newMessages
         });
@@ -286,8 +286,11 @@ export default class App extends React.Component {
       case 'messages':
         body = <Messages messages={this.state.messages}
           user={this.state.currentUser}
-          recipientImg={this.state.view.params}
-          sendDm={this.sendDm}/>;
+          recipientImg={this.state.view.params.recipientImg}
+          recipientId={this.state.view.params.recipientId}
+          chatId={this.state.view.params.chatId}
+          sendDm={this.sendDm}
+        />;
         break;
 
       default: body = null;
