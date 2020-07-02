@@ -274,7 +274,12 @@ export default class App extends React.Component {
         body = <CheckoutPage user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId} getInbox={this.getInbox}/>;
         break;
       case 'listing-description':
-        body = <ListingDescription user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId} setListingId ={this.setListingId} />; // pass this.state.listingId
+        body = <ListingDescription user={this.state.currentUser.userId}
+          setView={this.setView}
+          listingId={this.state.listingId}
+          setListingId ={this.setListingId}
+          currentView={this.state.view.name}
+        />;
         break;
       case 'seller-listing-page':
         body = <SellerListingPage user={this.state.currentUser.userId}
@@ -285,7 +290,9 @@ export default class App extends React.Component {
         body = <SellerListingDescription
           user={this.state.currentUser.userId}
           setView={this.setView}
-          listingId={this.state.listingId}/>;
+          listingId={this.state.listingId}
+          currentView={this.state.view.name}
+        />;
         break;
       case 'inbox':
         body = <UserInbox
