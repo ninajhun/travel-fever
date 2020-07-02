@@ -27,7 +27,9 @@ export default class App extends React.Component {
       isAuthorizing: true,
       listings: [],
       messages: [],
-      locations: []
+      locations: [],
+      myFavorites: [],
+
     };
     this.setView = this.setView.bind(this);
     this.userLogout = this.userLogout.bind(this);
@@ -137,7 +139,7 @@ export default class App extends React.Component {
     fetch('/api/favorites', req)
       .then(() => {
         const { favoriteListings } = this.state.currentUser;
-        const updateFavorites = favoriteListings.filter(fav => fav !== listingId);
+        const updateFavorites = favoriteListings.filter(fav => fav.list !== listingId);
         this.setState({
           currentUser: {
             ...this.state.currentUser,
@@ -171,7 +173,7 @@ export default class App extends React.Component {
       .then(response => response.json())
       .then(data => {
         this.setState({
-          listings: data
+          myFavorites: data
         });
       })
       .catch(err => console.error(err));
@@ -241,7 +243,7 @@ export default class App extends React.Component {
   render() {
 
     if (this.state.isAuthorizing) return null;
-    if (!this.state.currentUser) return <LoginPage setView={this.setView} getUser={this.getUser}/>;
+    if (!this.state.currentUser) return <LoginPage setView={this.setView} getUser={this.getUser} getInbox={this.getInbox}/>;
 
     let body;
 
@@ -252,6 +254,7 @@ export default class App extends React.Component {
           getCustomerListings={this.getCustomerListings}
           getInbox={this.getInbox}
           locations={this.state.locations} />;
+
         break;
       case 'listings-page':
         body = <ListingsPage user={this.state.currentUser.userId}
@@ -272,10 +275,10 @@ export default class App extends React.Component {
           favoriteListing={this.favoriteListing}
           toggleFavorite={this.toggleFavorite}
           setListingId={this.setListingId}
-          listings={this.state.listings} />;
+          listings={this.state.myFavorites} />;
         break;
       case 'check-out':
-        body = <CheckoutPage user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId} />;
+        body = <CheckoutPage user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId} getInbox={this.getInbox}/>;
         break;
       case 'listing-description':
         body = <ListingDescription user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId} setListingId ={this.setListingId} />; // pass this.state.listingId

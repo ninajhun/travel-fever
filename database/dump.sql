@@ -21,6 +21,7 @@ ALTER TABLE ONLY public.purchases DROP CONSTRAINT purchases_pkey;
 ALTER TABLE ONLY public.messages DROP CONSTRAINT messages_pkey;
 ALTER TABLE ONLY public.locations DROP CONSTRAINT locations_pkey;
 ALTER TABLE ONLY public.favorites DROP CONSTRAINT favorites_pkey;
+ALTER TABLE ONLY public.favorites DROP CONSTRAINT "favorites_listingId_userId_key";
 ALTER TABLE ONLY public.chats DROP CONSTRAINT chats_pkey;
 ALTER TABLE public.users ALTER COLUMN "userId" DROP DEFAULT;
 ALTER TABLE public.purchases ALTER COLUMN "purchaseId" DROP DEFAULT;
@@ -365,7 +366,7 @@ COPY public.chats ("chatId", "customerId", "listingId") FROM stdin;
 --
 
 COPY public.favorites ("favoriteId", "listingId", "userId") FROM stdin;
-2	1	1
+9	1	1
 \.
 
 
@@ -437,7 +438,7 @@ SELECT pg_catalog.setval('public."chats_chatId_seq"', 2, true);
 -- Name: favorites_favoriteId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."favorites_favoriteId_seq"', 2, true);
+SELECT pg_catalog.setval('public."favorites_favoriteId_seq"', 12, true);
 
 
 --
@@ -481,6 +482,14 @@ SELECT pg_catalog.setval('public."users_userId_seq"', 4, true);
 
 ALTER TABLE ONLY public.chats
     ADD CONSTRAINT chats_pkey PRIMARY KEY ("chatId");
+
+
+--
+-- Name: favorites favorites_listingId_userId_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.favorites
+    ADD CONSTRAINT "favorites_listingId_userId_key" UNIQUE ("listingId", "userId");
 
 
 --
