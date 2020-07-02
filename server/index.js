@@ -239,17 +239,25 @@ app.post('/api/purchases', (req, res, next) => {
 app.get('/api/inbox/:userId', (req, res, next) => {
   const userId = parseInt(req.params.userId);
   const sql = `
-select "u"."imageUrl",
-       "c"."chatId",
-       "u"."username",
-       "m"."recipientId",
-       "m"."senderId"
-from "chats" as "c"
-join "listings" as "l" using ("listingId")
-join "users" as "u" on "l"."sellerId" = "u"."userId"
-join "messages" as "m" on "c"."chatId"
-where "c"."customerId" = $1
-group by "c"."chatId"
+select "imageUrl", "chatId", "username", "otherUserId"
+from
+((
+  select "u"."imageUrl", "c"."chatId", "u"."username", "l"."sellerId" as "otherUserId"
+  from "chats" as "c"
+  join "listings" as "l" using ("listingId")
+  join "users" as "u" on "l"."sellerId" = "u"."userId"
+  where "c"."customerId" = $1
+  group by "c"."chatId", "u"."imageUrl", "u"."username", "l"."sellerId"
+)
+union
+(
+  select "u"."imageUrl", "c"."chatId", "u"."username", "c"."customerId" as "otherUserId"
+  from "listings" as "l"
+  join  "chats" as "c" using ("listingId")
+  join "users" as "u" on "c"."customerId" = "u"."userId"
+  where "l"."sellerId" = $1
+  group by "c"."chatId", "u"."imageUrl", "u"."username", "c"."customerId"
+)) as "image"
   `;
   const values = [userId];
   db.query(sql, values)
