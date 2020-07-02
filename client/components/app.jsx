@@ -270,11 +270,12 @@ export default class App extends React.Component {
           listingId={this.state.listingId}
           getInbox={this.getInbox}
           inbox={this.state.inbox}
-          sendDm={this.sendDm}
         />;
         break;
       case 'messages':
-        body = <Messages/>;
+        body = <Messages
+          sendDm={this.sendDm}
+        />;
         break;
       default: body = null;
     }

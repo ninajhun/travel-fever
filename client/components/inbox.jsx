@@ -13,7 +13,6 @@ class UserInbox extends React.Component {
                 username={inboxChat.username}
                 imageUrl={inboxChat.imageUrl}
                 setView ={this.props.setView}
-                sendDm={this.props.sendDm}
               />
             );
           })
