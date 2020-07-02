@@ -29,23 +29,32 @@ class SellerListingCard extends React.Component {
     }
     return (
       <div>
-        <div className="row">
-          <h4 className="mt-3 mx-2 pl-4">My Listings</h4>
+        <div>
+          <div>
+            <div className="d-flex justify-content-center">
+              <h4 className="mt-3 mx-2 pl-4">My Listings</h4>
+            </div>
+          </div>
+          {
+            this.state.sellerListing.map(seller => {
+              return <MyListingsCard
+                key={seller.listingId}
+                sellerId={seller.sellerId}
+                listingId={seller.listingId}
+                imageUrl={seller.imageUrl}
+                title={seller.title}
+                price={seller.price}
+                setView={this.props.setView}
+                setListingId={this.props.setListingId}
+              />;
+            })
+          }
         </div>
-        {
-          this.state.sellerListing.map(seller => {
-            return <MyListingsCard
-              key={seller.listingId}
-              sellerId={seller.sellerId}
-              listingId={seller.listingId}
-              imageUrl={seller.imageUrl}
-              title={seller.title}
-              price={seller.price}
-              setView={this.props.setView}
-              setListingId={this.props.setListingId}
-            />;
-          })
-        }
+        <div>
+          <div className="d-flex justify-content-center mt-5">
+            <button type="button" className="uni-button mt-1 py-2 px-1" onClick={() => { this.props.setView('create-listing'); }}>Create Listing</button>
+          </div>
+        </div>
       </div>
     );
   }
