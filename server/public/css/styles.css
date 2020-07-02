@@ -88,6 +88,7 @@ body {
 .message-input{
   display: fixed;
   bottom: 50px;
+  z-index: -1;
 }
 
 
@@ -100,6 +101,10 @@ body {
 .sender-icon-container{
   align-self: center;
   right: 3%;
+}
+
+.messages {
+  margin-bottom: 0;
 }
 
 
