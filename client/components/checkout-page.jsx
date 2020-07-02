@@ -48,6 +48,7 @@ class CheckoutPage extends React.Component {
       purchaseComplete: true
     });
 
+    this.props.getInbox(this.props.user);
   }
 
   render() {

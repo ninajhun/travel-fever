@@ -46,11 +46,11 @@ class Messages extends React.Component {
 
         <div className="row">
           <form onSubmit={this.handleSubmit}>
-            <div className="col-12 input-group message-input fixed-bottom">
+            <div className="col-12 input-group message-input fixed-bottom send-messages">
               <input type="text" value={this.state.value}
                 onChange={this.handleChange}
                 className="form-control" />
-              <div className="input-group-append" type="submit">
+              <div className="input-group-append send-button" type="submit">
                 <div className="input-group-text">
                   <button type="submit">
                     <i className="fas fa-arrow-up"></i>

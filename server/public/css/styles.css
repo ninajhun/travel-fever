@@ -106,6 +106,14 @@ body {
   margin-bottom: 0;
 }
 
+.send-messages {
+  z-index: 0;
+}
+
+.send-button {
+  height: 38px;
+}
+
 
 /*  */
 
