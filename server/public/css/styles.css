@@ -88,7 +88,6 @@ body {
 .message-input{
   display: fixed;
   bottom: 50px;
-  z-index: -1;
 }
 
 
@@ -105,6 +104,14 @@ body {
 
 .messages {
   margin-bottom: 0;
+}
+
+.send-messages {
+  z-index: 0;
+}
+
+.send-button {
+  height: 38px;
 }
 
 

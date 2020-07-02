@@ -231,13 +231,13 @@ export default class App extends React.Component {
   render() {
 
     if (this.state.isAuthorizing) return null;
-    if (!this.state.currentUser) return <LoginPage setView={this.setView} getUser={this.getUser}/>;
+    if (!this.state.currentUser) return <LoginPage setView={this.setView} getUser={this.getUser} getInbox={this.getInbox}/>;
 
     let body;
 
     switch (this.state.view.name) {
       case 'home':
-        body = <HomePage user={this.state.currentUser.userId} setView={this.setView} getCustomerListings={this.getCustomerListings} getInbox={this.getInbox} />;
+        body = <HomePage user={this.state.currentUser.userId} setView={this.setView} getCustomerListings={this.getCustomerListings}/>;
         break;
       case 'listings-page':
         body = <ListingsPage user={this.state.currentUser.userId}
@@ -260,7 +260,7 @@ export default class App extends React.Component {
           listings={this.state.myFavorites} />;
         break;
       case 'check-out':
-        body = <CheckoutPage user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId}/>;
+        body = <CheckoutPage user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId} getInbox={this.getInbox}/>;
         break;
       case 'listing-description':
         body = <ListingDescription user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId} setListingId ={this.setListingId} />; // pass this.state.listingId
