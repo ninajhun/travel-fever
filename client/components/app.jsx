@@ -26,8 +26,10 @@ export default class App extends React.Component {
       listingId: null,
       isAuthorizing: true,
       listings: [],
+      messages: [],
+      locations: [],
       myFavorites: [],
-      messages: []
+
     };
     this.setView = this.setView.bind(this);
     this.userLogout = this.userLogout.bind(this);
@@ -56,6 +58,16 @@ export default class App extends React.Component {
       })
       .catch(err => console.error(err));
 
+    this.getLocations();
+
+  }
+
+  getLocations() {
+    fetch('/api/locations')
+      .then(response => response.json())
+      .then(data => this.setState({
+        locations: data
+      }));
   }
 
   getMessages(chatId) {
@@ -237,7 +249,12 @@ export default class App extends React.Component {
 
     switch (this.state.view.name) {
       case 'home':
-        body = <HomePage user={this.state.currentUser.userId} setView={this.setView} getCustomerListings={this.getCustomerListings}/>;
+        body = <HomePage user={this.state.currentUser.userId}
+          setView={this.setView}
+          getCustomerListings={this.getCustomerListings}
+          getInbox={this.getInbox}
+          locations={this.state.locations} />;
+
         break;
       case 'listings-page':
         body = <ListingsPage user={this.state.currentUser.userId}
@@ -246,10 +263,11 @@ export default class App extends React.Component {
           toggleFavorite={this.toggleFavorite}
           setListingId={this.setListingId}
           getCustomerListings={this.getCustomerListings}
-          listings={this.state.listings} />;
+          listings={this.state.listings}
+          locations={this.state.locations}/>;
         break;
       case 'create-listing':
-        body = <CreateListing user={this.state.currentUser.userId} setView={this.setView}/>;
+        body = <CreateListing user={this.state.currentUser.userId} setView={this.setView} locations={this.state.locations}/>;
         break;
       case 'favorites-page':
         body = <FavoriteListingsPage user={this.state.currentUser.userId}
@@ -283,7 +301,8 @@ export default class App extends React.Component {
           listingId={this.state.listingId}
           getInbox={this.getInbox}
           inbox={this.state.inbox}
-          getMessages={this.getMessages}/>;
+          getMessages={this.getMessages}
+        />;
         break;
       case 'messages':
         body = <Messages messages={this.state.messages}
