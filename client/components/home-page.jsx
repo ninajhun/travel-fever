@@ -5,7 +5,6 @@ import PopularCityList from './popular-city-list';
 class HomePage extends React.Component {
 
   render() {
-    this.props.getInbox(this.props.user);
     return (
       <div>
         <div className="m-4">

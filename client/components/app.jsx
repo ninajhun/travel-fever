@@ -230,13 +230,13 @@ export default class App extends React.Component {
   render() {
 
     if (this.state.isAuthorizing) return null;
-    if (!this.state.currentUser) return <LoginPage setView={this.setView} getUser={this.getUser}/>;
+    if (!this.state.currentUser) return <LoginPage setView={this.setView} getUser={this.getUser} getInbox={this.getInbox}/>;
 
     let body;
 
     switch (this.state.view.name) {
       case 'home':
-        body = <HomePage user={this.state.currentUser.userId} setView={this.setView} getCustomerListings={this.getCustomerListings} getInbox={this.getInbox} />;
+        body = <HomePage user={this.state.currentUser.userId} setView={this.setView} getCustomerListings={this.getCustomerListings}/>;
         break;
       case 'listings-page':
         body = <ListingsPage user={this.state.currentUser.userId}
@@ -276,6 +276,7 @@ export default class App extends React.Component {
           listingId={this.state.listingId}/>;
         break;
       case 'inbox':
+        this.getInbox(this.state.currentUser.userId);
         body = <UserInbox
           user={this.state.currentUser.userId}
           setView={this.setView}
