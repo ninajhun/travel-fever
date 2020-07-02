@@ -12,7 +12,7 @@ class Messages extends React.Component {
       <div className="container-flex">
         {
           this.props.messages.map(message => {
-            if (this.props.user.userId === message.recipientId || this.props.user === message.senderId) {
+            if (this.props.user.userId === message.recipientId) {
               return <SenderMessage key={message.messageId} content={message.content} imageUrl={this.props.user.imageUrl}/>;
             } else {
               return <RecipientMessage key={message.messageId} content={message.content} imageUrl={this.props.recipientImg.recipientImg} />;
