@@ -125,7 +125,7 @@ class CreateListing extends React.Component {
             <button type="reset" className="btn btn-light">Clear Form</button>
           </div>
           <div className='d-flex justify-content-center' >
-            <button type="submit" className="uni-button mb-4 mt-1 py-2 px-1">Preview Listing</button>
+            <button type="submit" className="uni-button mb-4 mt-1 py-2 px-1">Create Listing</button>
           </div>
         </form>
       </div>

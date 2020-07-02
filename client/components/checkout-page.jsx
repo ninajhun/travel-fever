@@ -34,7 +34,6 @@ class CheckoutPage extends React.Component {
       userId: this.state.user.userId,
       listingId: this.state.listing.listingId
     };
-
     fetch('/api/purchases', {
       method: 'POST',
       headers: {
@@ -43,22 +42,17 @@ class CheckoutPage extends React.Component {
       body: JSON.stringify(purchaseInfo)
     })
       .catch(err => console.error(err));
-
     this.setState({
       purchaseComplete: true
     });
-
     this.props.getInbox(this.props.user);
   }
 
   render() {
-
     if (!this.state.purchaseComplete) {
       return (
         <div className="container">
-
           <div className="row justify-content-center">
-
             <div className='card mb-3 listing' onClick={this.handleClick}>
               <div className='row no-gutters flex-nowrap card-row'>
                 <div className='col-4'>
@@ -75,40 +69,31 @@ class CheckoutPage extends React.Component {
                 </div>
               </div>
             </div>
-
           </div>
-
           <div className="row justify-content-center">
             <h5 className="text-center">Payment Information</h5>
-
             <form className="col-12">
               <div className="form-group">
                 <h6>Name</h6>
                 <input type="text" className="col-12 form-control" placeholder={this.state.user.username}></input>
               </div>
-
               <div className="form-group">
                 <h6>Card Numbers</h6>
                 <input type="text" className="col-12 form-control" placeholder="123 456 7890"></input>
               </div>
-
               <div className="form-group">
                 <h6>Name</h6>
                 <input type="text" className="col-12 form-control" placeholder="04/20"></input>
               </div>
-
               <div className="form-group">
                 <h6>Name</h6>
                 <input type="text" className="col-12 form-control" placeholder="12345"></input>
               </div>
             </form>
-
             <div className="justify-content-center">
               <button type="button" className="uni-button mb-4 mt-1 py-2 px-1" onClick={this.handleSubmit} >Confirm</button>
             </div>
-
           </div>
-
         </div>
       );
 
@@ -118,15 +103,18 @@ class CheckoutPage extends React.Component {
           <div className="row justify-content-center mt-5">
             <h4 className="text-center mt-5">Thank you for choosing to connect with {this.state.listing.sellerName}! </h4>
             <p className="text-center my-2">Please continue your purchase by discussing with {this.state.listing.sellerName} in the messages inbox.</p>
-            <button type="submit" className="uni-button mt-2 mt-1 py-2 px-1" onClick = {() => this.props.setView('inbox')}>Go to Inbox</button>
+            <button type="submit"
+              className="uni-button mt-2 mt-1 py-2 px-1"
+              onClick = {() => {
+                this.props.setView('inbox', {});
+                this.props.getInbox(this.props.user);
+              }
+              }>Go to Inbox</button>
           </div>
-
         </div>
       );
     }
-
   }
-
 }
 
 export default CheckoutPage;

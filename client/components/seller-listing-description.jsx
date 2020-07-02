@@ -22,7 +22,9 @@ class SellerListingDescription extends React.Component {
     return (
       <div>
         <div>
-          <ListingDescription listingId={this.props.listingId}/>
+          <ListingDescription listingId={this.props.listingId}
+            setView={this.props.setView}
+          />
         </div>
         <div className="d-flex justify-content-around my-2">
           <div>

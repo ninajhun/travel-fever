@@ -19,7 +19,10 @@ class ListingDescription extends React.Component {
   }
 
   handleClick() {
-    this.props.setView('check-out');
+    if (this.props.currentView === 'listing-description') {
+      this.props.setView('check-out');
+    }
+    this.props.setView('seller-listing-description');
   }
 
   render() {
