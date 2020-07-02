@@ -18,6 +18,7 @@ class UserInbox extends React.Component {
                   imageUrl={inboxChat.imageUrl}
                   setView={this.props.setView}
                   getMessages={this.props.getMessages}
+                  recipientId={inboxChat.otherUserId}
                 />
               );
             })
@@ -26,7 +27,6 @@ class UserInbox extends React.Component {
       );
 
     }
-
 
   }
 }

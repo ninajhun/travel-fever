@@ -31,6 +31,7 @@ export default class App extends React.Component {
       myFavorites: [],
 
     };
+    this.interval = null;
     this.setView = this.setView.bind(this);
     this.userLogout = this.userLogout.bind(this);
     this.getUser = this.getUser.bind(this);
@@ -44,7 +45,6 @@ export default class App extends React.Component {
     this.getInbox = this.getInbox.bind(this);
     this.getMessages = this.getMessages.bind(this);
     this.sendDm = this.sendDm.bind(this);
-
   }
 
   componentDidMount() {
@@ -57,9 +57,7 @@ export default class App extends React.Component {
         });
       })
       .catch(err => console.error(err));
-
     this.getLocations();
-
   }
 
   getLocations() {
@@ -79,7 +77,6 @@ export default class App extends React.Component {
         });
       })
       .catch(err => console.error(err));
-
   }
 
   sendDm(chatId, senderId, recipientId, content) {
@@ -197,7 +194,6 @@ export default class App extends React.Component {
           })
         )
         .catch(err => console.error(err));
-
     }
   }
 
@@ -244,9 +240,7 @@ export default class App extends React.Component {
 
     if (this.state.isAuthorizing) return null;
     if (!this.state.currentUser) return <LoginPage setView={this.setView} getUser={this.getUser} getInbox={this.getInbox}/>;
-
     let body;
-
     switch (this.state.view.name) {
       case 'home':
         body = <HomePage user={this.state.currentUser.userId}
@@ -306,6 +300,7 @@ export default class App extends React.Component {
         break;
       case 'messages':
         body = <Messages messages={this.state.messages}
+          getMessages={this.getMessages}
           user={this.state.currentUser}
           recipientImg={this.state.view.params.recipientImg}
           recipientId={this.state.view.params.recipientId}
@@ -313,7 +308,6 @@ export default class App extends React.Component {
           sendDm={this.sendDm}
         />;
         break;
-
       default: body = null;
     }
 
@@ -327,6 +321,7 @@ export default class App extends React.Component {
           user={this.state.currentUser.userId}
           getCustomerListings={this.getCustomerListings}
           getMyFavorites={this.getMyFavorites}
+          getInbox={this.getInbox}
         />
       </div>
     );

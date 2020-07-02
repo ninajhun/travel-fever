@@ -9,10 +9,26 @@ class Messages extends React.Component {
       chatId: this.props.chatId,
       senderId: this.props.user.userId,
       recipientId: this.props.recipientId,
-      value: ''
+      value: '',
+      interval: null
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    this.pollForMessages();
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.state.interval);
+  }
+
+  pollForMessages() {
+    const intervalId = setInterval(() => {
+      this.props.getMessages(this.state.chatId);
+    }, 1000);
+    this.setState({ interval: intervalId });
   }
 
   handleChange(event) {
@@ -39,9 +55,7 @@ class Messages extends React.Component {
             } else {
               return <RecipientMessage key={message.messageId} content={message.content} imageUrl={this.props.recipientImg} />;
             }
-
           })
-
         }
 
         <div className="row">

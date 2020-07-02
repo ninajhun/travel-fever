@@ -21,7 +21,6 @@ function inboxCard(props) {
       </div>
     </div>
   );
-
 }
 
 export default inboxCard;
