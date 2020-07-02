@@ -56,11 +56,17 @@ body {
   border: 2px solid lightgray ;
 }
 
+
+/* inbox */
+
 .inbox-icon-container{
   align-self: center;
   position: absolute;
   left: 10%;
 }
+
+
+
 
 .inbox-icon {
   background-color: gray;
@@ -82,11 +88,34 @@ body {
   border-radius: 45%;
 }
 
+.message-input{
+  display: fixed;
+  bottom: 50px;
+}
+
+
+/* sender & recipient messages */
+.recipient-icon-container{
+  align-self: center;
+  left: 5%;
+}
+
+.sender-icon-container{
+  align-self: center;
+  right: 3%;
+}
+
+
+/*  */
+
+
 .listing-icon {
   width: 10%;
   border-radius: 50%;
   border: 2px solid lightgray ;
 }
+
+
 
 .card-row {
   height: 100%

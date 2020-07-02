@@ -10,6 +10,7 @@ import ListingDescription from './listing-description';
 import SellerListingPage from './seller-listing-page';
 import SellerListingDescription from './seller-listing-description';
 import FavoriteListingsPage from './favorite-listings-page';
+import Messages from './messages';
 import UserInbox from './inbox';
 
 export default class App extends React.Component {
@@ -17,7 +18,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: 'home',
+        name: 'messages', // remember to change back!!!
         params: {}
       },
       inbox: [],
@@ -49,6 +50,10 @@ export default class App extends React.Component {
         });
       })
       .catch(err => console.error(err));
+  }
+
+  getMessages() {
+
   }
 
   addFavorite(listingId) {
@@ -240,6 +245,9 @@ export default class App extends React.Component {
           listingId={this.state.listingId}
           getInbox={this.getInbox}
           inbox={this.state.inbox} />;
+        break;
+      case 'messages':
+        body = <Messages/>;
         break;
       default: body = null;
     }
