@@ -3,7 +3,6 @@ import InboxCard from './inbox-card';
 
 class UserInbox extends React.Component {
   render() {
-
     if (!this.props.inbox.length) {
       return <p className='m-5 text-center'> Buy a seller&apos;s listing to get connected with them!</p>;
     } else {
@@ -27,6 +26,7 @@ class UserInbox extends React.Component {
       );
 
     }
+
 
   }
 }

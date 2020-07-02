@@ -4,7 +4,7 @@ function inboxCard(props) {
 
   return (
     <div>
-      <div className='card inbox' onClick={() => { props.setView('messages', { recipientImg: props.imageUrl }); props.getMessages(props.chatId); }}>
+      <div className='card inbox' onClick={() => { props.setView('messages', { recipientImg: props.imageUrl, recipientId: props.recipientId, chatId: props.chatId }); props.getMessages(props.chatId); }}>
         <div className='d-flex'>
           <div className='inbox-icon-container'>
             <img src={props.imageUrl} alt={props.imageUrl} className='card-img inbox-icon' />
