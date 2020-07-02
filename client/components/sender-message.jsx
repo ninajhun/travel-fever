@@ -7,12 +7,12 @@ function SenderMessage(props) {
 
       <div className='col-10 '>
         <div className='px-2'>
-          <p className='text-right pr-3'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor   </p>
+          <p className='text-right pr-3'>{props.content}  </p>
         </div>
       </div>
 
       <div className='sender-icon-container col-2'>
-        <img src="/images/timd.png" alt={props.imageUrl} className='card-img inbox-icon ' />
+        <img src={props.imageUrl}alt={props.imageUrl} className='card-img inbox-icon ' />
       </div>
 
     </div>

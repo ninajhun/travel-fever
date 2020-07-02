@@ -19,14 +19,15 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: 'messages', // remember to change back!!!
+        name: 'home', // remember to change back!!!
         params: {}
       },
       inbox: [],
       currentUser: null,
       listingId: null,
       isAuthorizing: true,
-      listings: []
+      listings: [],
+      messages: []
     };
     this.setView = this.setView.bind(this);
     this.userLogout = this.userLogout.bind(this);
@@ -39,7 +40,9 @@ export default class App extends React.Component {
     this.removeFavorite = this.removeFavorite.bind(this);
     this.getMyFavorites = this.getMyFavorites.bind(this);
     this.getInbox = this.getInbox.bind(this);
+    this.getMessages = this.getMessages.bind(this);
     this.sendDm = this.sendDm.bind(this);
+
   }
 
   componentDidMount() {
@@ -54,7 +57,15 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
 
-  getMessages() {
+  getMessages(chatId) {
+    fetch(`/api/messages/${chatId}`)
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          messages: data
+        });
+      })
+      .catch(err => console.error(err));
 
   }
 
@@ -217,6 +228,7 @@ export default class App extends React.Component {
   }
 
   render() {
+
     if (this.state.isAuthorizing) return null;
     if (!this.state.currentUser) return <LoginPage setView={this.setView} getUser={this.getUser} getInbox={this.getInbox}/>;
 
@@ -270,13 +282,12 @@ export default class App extends React.Component {
           listingId={this.state.listingId}
           getInbox={this.getInbox}
           inbox={this.state.inbox}
-        />;
+          getMessages={this.getMessages}/>;
         break;
       case 'messages':
-        body = <Messages
-          sendDm={this.sendDm}
-        />;
+        body = <Messages messages={this.state.messages} user={this.state.currentUser} recipientImg={this.state.view.params}  sendDm={this.sendDm}/>;
         break;
+      
       default: body = null;
     }
 

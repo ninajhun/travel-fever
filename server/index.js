@@ -271,7 +271,8 @@ app.get('/api/messages/:chatId', (req, res, next) => {
   const sql = `
   select "content",
     "senderId",
-    "recipientId"
+    "recipientId",
+    "messageId"
   from "messages"
   where "chatId" = $1
   order by "sentAt" asc
