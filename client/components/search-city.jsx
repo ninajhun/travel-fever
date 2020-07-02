@@ -29,6 +29,11 @@ class SearchCity extends React.Component {
 
   render() {
 
+    if (this.props.listings && !this.props.listings.length) {
+      return <p className='m-5 text-center'> No listings for this city yet!</p>;
+
+    }
+
     return (
       <div className="container pr-0 pl-0">
         <div>
