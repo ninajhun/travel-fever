@@ -1,6 +1,7 @@
 import React from 'react';
 
 function inboxCard(props) {
+
   return (
     <div>
       <div className='card inbox' onClick={() => { props.setView('messages', { recipientImg: props.imageUrl }); props.getMessages(props.chatId); }}>
@@ -20,6 +21,7 @@ function inboxCard(props) {
       </div>
     </div>
   );
+
 }
 
 export default inboxCard;
