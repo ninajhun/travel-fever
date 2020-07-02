@@ -26,6 +26,7 @@ export default class App extends React.Component {
       listingId: null,
       isAuthorizing: true,
       listings: [],
+      myFavorites: [],
       messages: []
     };
     this.setView = this.setView.bind(this);
@@ -126,7 +127,7 @@ export default class App extends React.Component {
     fetch('/api/favorites', req)
       .then(() => {
         const { favoriteListings } = this.state.currentUser;
-        const updateFavorites = favoriteListings.filter(fav => fav !== listingId);
+        const updateFavorites = favoriteListings.filter(fav => fav.list !== listingId);
         this.setState({
           currentUser: {
             ...this.state.currentUser,
@@ -160,7 +161,7 @@ export default class App extends React.Component {
       .then(response => response.json())
       .then(data => {
         this.setState({
-          listings: data
+          myFavorites: data
         });
       })
       .catch(err => console.error(err));
@@ -256,7 +257,7 @@ export default class App extends React.Component {
           favoriteListing={this.favoriteListing}
           toggleFavorite={this.toggleFavorite}
           setListingId={this.setListingId}
-          listings={this.state.listings} />;
+          listings={this.state.myFavorites} />;
         break;
       case 'check-out':
         body = <CheckoutPage user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId}/>;
