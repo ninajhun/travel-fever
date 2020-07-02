@@ -54,7 +54,6 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
 
-  /// ///////////
   getMessages(chatId) {
     fetch(`/api/messages/${chatId}`)
       .then(response => response.json())
@@ -66,8 +65,6 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
 
   }
-
-  /// ///////////
 
   addFavorite(listingId) {
     const req = {
@@ -262,7 +259,7 @@ export default class App extends React.Component {
           getMessages={this.getMessages}/>;
         break;
       case 'messages':
-        body = <Messages messages={this.state.messages} user={this.state.currentUser}/>;
+        body = <Messages messages={this.state.messages} user={this.state.currentUser} recipientImg={this.state.view.params} />;
         break;
       default: body = null;
     }

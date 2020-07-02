@@ -12,15 +12,12 @@ class Messages extends React.Component {
             if (this.props.user.userId === message.recipientId || this.props.user === message.senderId) {
               return <SenderMessage key={message.messageId} content={message.content} imageUrl={this.props.user.imageUrl}/>;
             } else {
-              return <RecipientMessage key={message.messageId} content={message.content} imageUrl='/images/timd.png' />;
+              return <RecipientMessage key={message.messageId} content={message.content} imageUrl={this.props.recipientImg.recipientImg} />;
             }
 
           })
 
         }
-
-        {/* <RecipientMessage />
-        <SenderMessage /> */}
 
         <div className="row">
           <div className="col-12 input-group message-input fixed-bottom">
