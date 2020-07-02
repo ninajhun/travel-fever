@@ -28,8 +28,7 @@ export default class App extends React.Component {
       listings: [],
       messages: [],
       locations: [],
-      myFavorites: [],
-
+      myFavorites: []
     };
     this.interval = null;
     this.setView = this.setView.bind(this);
