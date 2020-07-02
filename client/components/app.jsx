@@ -25,7 +25,8 @@ export default class App extends React.Component {
       currentUser: null,
       listingId: null,
       isAuthorizing: true,
-      listings: []
+      listings: [],
+      messages: []
     };
     this.setView = this.setView.bind(this);
     this.userLogout = this.userLogout.bind(this);
@@ -38,6 +39,7 @@ export default class App extends React.Component {
     this.removeFavorite = this.removeFavorite.bind(this);
     this.getMyFavorites = this.getMyFavorites.bind(this);
     this.getInbox = this.getInbox.bind(this);
+    this.getMessages = this.getMessages.bind(this);
   }
 
   componentDidMount() {
@@ -52,9 +54,20 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
 
-  getMessages() {
+  /// ///////////
+  getMessages(chatId) {
+    fetch(`/api/messages/${chatId}`)
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          messages: data
+        });
+      })
+      .catch(err => console.error(err));
 
   }
+
+  /// ///////////
 
   addFavorite(listingId) {
     const req = {
@@ -192,6 +205,7 @@ export default class App extends React.Component {
   }
 
   render() {
+
     if (this.state.isAuthorizing) return null;
     if (!this.state.currentUser) return <LoginPage setView={this.setView} getUser={this.getUser} getInbox={this.getInbox}/>;
 
