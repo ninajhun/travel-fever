@@ -12,6 +12,7 @@ import SellerListingDescription from './seller-listing-description';
 import FavoriteListingsPage from './favorite-listings-page';
 import Messages from './messages';
 import UserInbox from './inbox';
+import { response } from 'express';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -38,6 +39,7 @@ export default class App extends React.Component {
     this.removeFavorite = this.removeFavorite.bind(this);
     this.getMyFavorites = this.getMyFavorites.bind(this);
     this.getInbox = this.getInbox.bind(this);
+    this.sendDm = this.sendDm.bind(this);
   }
 
   componentDidMount() {
@@ -56,8 +58,27 @@ export default class App extends React.Component {
 
   }
 
-  sendDm() {
-
+  sendDm(chatId, senderId, recipientId, content) {
+    const req = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chatId: chatId,
+        senderId: senderId,
+        recipientId: recipientId,
+        content: content
+      })
+    };
+    fetch('/api/messages', req)
+      .then(reponse => response.json())
+      .then(data => {
+        const messages = this.state.messages;
+        const newMessages = messages.concat(data[0]);
+        this.setState({
+          messages: newMessages
+        });
+      })
+      .catch(err => console.error(err));
   }
 
   addFavorite(listingId) {
@@ -248,7 +269,9 @@ export default class App extends React.Component {
           setView={this.setView}
           listingId={this.state.listingId}
           getInbox={this.getInbox}
-          inbox={this.state.inbox} />;
+          inbox={this.state.inbox}
+          sendDm={this.sendDm}
+        />;
         break;
       case 'messages':
         body = <Messages/>;
