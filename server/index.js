@@ -44,9 +44,15 @@ app.get('/api/auth', (req, res, next) => {
     res.json({ user: null });
   } else {
     const sql = `
-    select *
-    from "users"
-    where "userId" = $1;`;
+    select "u"."userId",
+    "u"."username",
+    "u"."imageUrl",
+    array_remove(array_agg(distinct "f"."listingId"), null) as "favoriteListings"
+    from "users" as "u"
+    left join "favorites" as "f" using ("userId")
+    where "u"."userId" = $1
+    group by "u"."userId"
+    `;
     const values = [req.session.userId];
     db.query(sql, values)
       .then(result => {

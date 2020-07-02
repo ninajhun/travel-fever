@@ -25,7 +25,7 @@ class ListingsPage extends React.Component {
               setView={this.props.setView}
               setListingId={this.props.setListingId}
               userId={this.props.user}
-              favoriteListing={this.props.favoriteListing}
+              checkFavorite={this.props.checkFavorite}
               toggleFavorite={this.props.toggleFavorite}
             />;
           })

@@ -34,7 +34,7 @@ export default class App extends React.Component {
     this.getUser = this.getUser.bind(this);
     this.setListingId = this.setListingId.bind(this);
     this.getCustomerListings = this.getCustomerListings.bind(this);
-    this.favoriteListing = this.favoriteListing.bind(this);
+    this.checkFavorite = this.checkFavorite.bind(this);
     this.toggleFavorite = this.toggleFavorite.bind(this);
     this.addFavorite = this.addFavorite.bind(this);
     this.removeFavorite = this.removeFavorite.bind(this);
@@ -127,7 +127,7 @@ export default class App extends React.Component {
     fetch('/api/favorites', req)
       .then(() => {
         const { favoriteListings } = this.state.currentUser;
-        const updateFavorites = favoriteListings.filter(fav => fav.list !== listingId);
+        const updateFavorites = favoriteListings.filter(fav => fav !== listingId);
         this.setState({
           currentUser: {
             ...this.state.currentUser,
@@ -137,12 +137,12 @@ export default class App extends React.Component {
       });
   }
 
-  favoriteListing(listingId) {
-    // this.state.currentUser.favoriteListings.includes(listingId);
+  checkFavorite(listingId) {
+    return this.state.currentUser.favoriteListings.includes(listingId);
   }
 
   toggleFavorite(listingId) {
-    this.favoriteListing(listingId)
+    this.checkFavorite(listingId)
       ? this.removeFavorite(listingId)
       : this.addFavorite(listingId);
   }
@@ -242,7 +242,7 @@ export default class App extends React.Component {
       case 'listings-page':
         body = <ListingsPage user={this.state.currentUser.userId}
           setView={this.setView}
-          favoriteListing={this.favoriteListing}
+          checkFavorite={this.checkFavorite}
           toggleFavorite={this.toggleFavorite}
           setListingId={this.setListingId}
           getCustomerListings={this.getCustomerListings}
@@ -254,7 +254,7 @@ export default class App extends React.Component {
       case 'favorites-page':
         body = <FavoriteListingsPage user={this.state.currentUser.userId}
           setView={this.setView}
-          favoriteListing={this.favoriteListing}
+          checkFavorite={this.checkFavorite}
           toggleFavorite={this.toggleFavorite}
           setListingId={this.setListingId}
           listings={this.state.myFavorites} />;
