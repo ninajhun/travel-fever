@@ -4,7 +4,7 @@ class ListingCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isFavorite: this.props.favoriteListing(this.props.listingId)
+      isFavorite: this.props.checkFavorite(this.props.listingId)
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleHeartClick = this.handleHeartClick.bind(this);
