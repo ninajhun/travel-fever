@@ -2,7 +2,7 @@ import React from 'react';
 
 function RecipientMessage(props) {
   return (
-    <div className="row no-gutters">
+    <div className="row no-gutters ">
       <div className='recipient-icon-container col-2'>
         <img src="/images/greenpowerranger.png" alt={props.imageUrl} className='card-img inbox-icon ' />
       </div>

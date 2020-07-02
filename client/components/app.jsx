@@ -52,6 +52,10 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
 
+  getMessages() {
+
+  }
+
   addFavorite(listingId) {
     const req = {
       method: 'POST',
