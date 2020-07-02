@@ -12,7 +12,6 @@ import SellerListingDescription from './seller-listing-description';
 import FavoriteListingsPage from './favorite-listings-page';
 import Messages from './messages';
 import UserInbox from './inbox';
-import { response } from 'express';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -81,7 +80,7 @@ export default class App extends React.Component {
       })
     };
     fetch('/api/messages', req)
-      .then(reponse => response.json())
+      .then(response => response.json())
       .then(data => {
         const messages = this.state.messages;
         const newMessages = messages.concat(data[0]);
@@ -230,13 +229,13 @@ export default class App extends React.Component {
   render() {
 
     if (this.state.isAuthorizing) return null;
-    if (!this.state.currentUser) return <LoginPage setView={this.setView} getUser={this.getUser} getInbox={this.getInbox}/>;
+    if (!this.state.currentUser) return <LoginPage setView={this.setView} getUser={this.getUser}/>;
 
     let body;
 
     switch (this.state.view.name) {
       case 'home':
-        body = <HomePage user={this.state.currentUser.userId} setView={this.setView} getCustomerListings={this.getCustomerListings} />;
+        body = <HomePage user={this.state.currentUser.userId} setView={this.setView} getCustomerListings={this.getCustomerListings} getInbox={this.getInbox} />;
         break;
       case 'listings-page':
         body = <ListingsPage user={this.state.currentUser.userId}
@@ -285,9 +284,8 @@ export default class App extends React.Component {
           getMessages={this.getMessages}/>;
         break;
       case 'messages':
-        body = <Messages messages={this.state.messages} user={this.state.currentUser} recipientImg={this.state.view.params}  sendDm={this.sendDm}/>;
+        body = <Messages messages={this.state.messages} user={this.state.currentUser} recipientImg={this.state.view.params} sendDm={this.sendDm}/>;
         break;
-      
       default: body = null;
     }
 
@@ -301,7 +299,6 @@ export default class App extends React.Component {
           user={this.state.currentUser.userId}
           getCustomerListings={this.getCustomerListings}
           getMyFavorites={this.getMyFavorites}
-
         />
       </div>
     );

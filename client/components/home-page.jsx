@@ -1,14 +1,15 @@
 import React from 'react';
-// import SearchCity from './search-city';
+import SearchCity from './search-city';
 import PopularCityList from './popular-city-list';
 
 class HomePage extends React.Component {
 
   render() {
+    this.props.getInbox(this.props.user);
     return (
       <div>
         <div className="m-4">
-          {/* <SearchCity getLocationId = {this.props.getLocationId}/> */}
+          <SearchCity getLocationId = {this.props.getLocationId}/>
         </div>
         <div className="d-flex justify-content-around m-2">
           <div className="">
@@ -19,7 +20,6 @@ class HomePage extends React.Component {
           </div>
         </div>
         <PopularCityList setView={this.props.setView} getCustomerListings = {this.props.getCustomerListings}/>
-
       </div>
     );
 

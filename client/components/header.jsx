@@ -7,6 +7,12 @@ class Logout extends React.Component {
       menuOpen: false
     };
     this.handleClickOpen = this.handleClickOpen.bind(this);
+    this.multFunct = this.multFunct.bind(this);
+  }
+
+  multFunct() {
+    this.handleClickOpen();
+    this.props.setView('seller-listing-page');
   }
 
   handleClickOpen() {
@@ -32,7 +38,7 @@ class Logout extends React.Component {
       <div>
         <div className='navbar fixed-top travel-header'>
           <div className='container d-flex justify-content-end'>
-            <h2 className="header-text">Travel Fever</h2>
+            <h2 className="header-text" onClick={() => { this.props.setView('home'); }}>Travel Fever</h2>
             <div className='icon-container' >
               <img src={this.props.userImg} alt="user" className='icon' onClick={this.handleClickOpen} />
             </div>
@@ -43,7 +49,7 @@ class Logout extends React.Component {
           <div className={ menuClass }>
             <div className="mt-4">
               <div className="my-3">
-                <h5 onClick={() => this.props.setView('seller-listing-page')}>My Listings</h5>
+                <h5 onClick={this.multFunct}>My Listings</h5>
               </div>
               <div className="my-3">
                 <h5 onClick={() => this.props.userLogout()}>Log Out</h5>
