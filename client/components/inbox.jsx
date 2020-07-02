@@ -12,6 +12,7 @@ class UserInbox extends React.Component {
                 key={inboxChat.chatId}
                 chatId = {inboxChat.chatId}
                 username={inboxChat.username}
+                recipientId={inboxChat.otherUserId}
                 imageUrl={inboxChat.imageUrl}
                 setView ={this.props.setView}
                 getMessages={this.props.getMessages}

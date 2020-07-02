@@ -12,7 +12,6 @@ import SellerListingDescription from './seller-listing-description';
 import FavoriteListingsPage from './favorite-listings-page';
 import Messages from './messages';
 import UserInbox from './inbox';
-import { response } from 'express';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -81,10 +80,10 @@ export default class App extends React.Component {
       })
     };
     fetch('/api/messages', req)
-      .then(reponse => response.json())
+      .then(response => response.json())
       .then(data => {
         const messages = this.state.messages;
-        const newMessages = messages.concat(data[0]);
+        const newMessages = messages.concat(data);
         this.setState({
           messages: newMessages
         });
@@ -285,9 +284,15 @@ export default class App extends React.Component {
           getMessages={this.getMessages}/>;
         break;
       case 'messages':
-        body = <Messages messages={this.state.messages} user={this.state.currentUser} recipientImg={this.state.view.params}  sendDm={this.sendDm}/>;
+        body = <Messages messages={this.state.messages}
+          user={this.state.currentUser}
+          recipientImg={this.state.view.params.recipientImg}
+          recipientId={this.state.view.params.recipientId}
+          chatId={this.state.view.params.chatId}
+          sendDm={this.sendDm}
+        />;
         break;
-      
+
       default: body = null;
     }
 
