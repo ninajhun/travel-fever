@@ -260,10 +260,9 @@ export default class App extends React.Component {
           getInbox={this.getInbox}
           inbox={this.state.inbox}
           getMessages={this.getMessages}/>;
-
         break;
       case 'messages':
-        body = <Messages/>;
+        body = <Messages messages={this.state.messages} user={this.state.currentUser}/>;
         break;
       default: body = null;
     }
