@@ -19,7 +19,7 @@ class FavoriteListingsPage extends React.Component {
             {
               this.props.listings.map(listing => {
                 return <ListingCard
-                  key={listing.listingId}
+                  key={`${listing.listingId}a`}
                   listingId={listing.listingId}
                   imageUrl={listing.imageUrl}
                   title={listing.title}
