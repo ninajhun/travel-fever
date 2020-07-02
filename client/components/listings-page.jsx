@@ -11,7 +11,7 @@ class ListingsPage extends React.Component {
           <div className="m-4">
             <SearchCity setView={this.props.setView} getCustomerListings={this.props.getCustomerListings} locations={this.props.locations} />
           </div>
-          <p className='m-5 text-center'> No listings for this city yet!</p>;
+          <p className='m-5 text-center'> No listings for this city yet!</p>
         </div>
 
       );

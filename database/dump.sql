@@ -367,6 +367,7 @@ COPY public.chats ("chatId", "customerId", "listingId") FROM stdin;
 
 COPY public.favorites ("favoriteId", "listingId", "userId") FROM stdin;
 9	1	1
+13	1	3
 \.
 
 
@@ -379,6 +380,11 @@ COPY public.listings ("listingId", "sellerId", "locationId", title, description,
 2	1	1	Akihabara Anime and Gaming Adventure Tour!	In case one anime store is not enough, why not book a tour instead? Akihabara anime and gaming adventure tour will take you to various highly recommended anime and game centers around Tokyo. Travel back into the past anime world with old school video game stores before heading over to a popular maid café where you can order a drink or two. After that, you are then free to wander around huge anime stores, with expert guidance and recommendations from your local Green Power Ranger!	90	/images/akihabara.jpg
 5	2	3	Cody's Wonderful Zoo!	Come one, come all! Cody’s Zoo is finally open for business! Come see the wild Googley Bear Cat and hear his famous ~rawr~! You’ll even get to see Oogie Boogie the Sand Boa or Naveen the Leopard Gecko! We also have a real life DRAGON… Jack the Bearded Dragon! And don’t forget to give Annie the Doggo all the pets in the world! It’s a bonafide! magical! extravaganza! for all ages to experience!	50	/images/codyzoo.jpg
 11	3	4	Relaxing Hawaiian Coding Retreat	Tired of working in a cubicle or from home? Do you need inspiration? Look no further! At this coding retreat, you'll be able to relax with fellow developers and engineers on the great Hawaiian island of Maui. We will even throw in a Mai Tai or two (or three, we don't judge!) to help you squash those pesky bugs and focus on the code with your feet in the sand. Why code away at home, when you can code away in HAWAII! 	50	images/uploads/1593557876449codingbeach.jpg
+12	5	5	Korean Palace and Market Tour in Seoul 	Discover the history and cultural traditions of Korea on this full-day tour of Seoul’s palaces and markets. Visit Gyeongbokgung Palace including its National Folklore Museum, and see Jogyesa Buddhist Temple and Changdeokgung Palace, a UNESCO World Heritage site. Your informative guide accompanies you to Insadong and Namdaemun to explore these bustling local markets on foot. Enjoy a Korean lunch and convenient round-trip coach transport from your hotel.	99	images/uploads/1593717797702image2.jpg
+13	7	6	A Night Out at Avalon Nightclub	Want to go clubbing and dance the night away but not sure who to go with?  Well, don't worry cuz I'm always down to be your dancing buddy at my favorite club in Hollywood: Avalon!  It's hallowed ground for the world's leading DJs so you'll always hear the best in trance, house, and EDM every weekend here.  And remember, it's not about how well you dance, it's all about how much fun you have dancing, so if you're ready to dance the stress away until the sunrise and have the time of your life while getting your fist pumping groove on, then it'll be my absolute pleasure to spend it with you.  Make sure to have your dancing shoes ready, cuz once we're inside the club, it's GO TIME!	99	images/uploads/1593719664755markusschulzotc4-1024x683.jpg
+14	6	6	Relax with the Best Chairs in LA! 	If you're working too much or even if you just need a rest from all of your rest--come to the best place to take breaks! We provide lots of chairs and tables and lights.  Our chairs are the best.  The. Best. Regularly scheduled breaks are required here. Come check out our chairs.	50	images/uploads/1593719803976Hero-Image.png
+15	8	7	Tour Disneyland with a Disneyland Master	Spend more time enjoying the park and riding rides by doing Disneyland with a true master. This package is great for first timers as well as people who want a knowledgeable guide when they visit the Happiest Place on Earth without shelling out $2000 for an official guide. Whether you want to get through as many rides as possible or find the strongest drinks at the resort, I've got you covered!	100	images/uploads/1593720443343img_7032.jpg
+16	9	8	Tour of the original IKEA store	Always getting lost in IKEA? Well now you can go on a tour in the ORIGINAL IKEA store in Almhult, Sweden with a well-seasoned tour guide, and by well-seasoned we mean that she too frequently gets lost in IKEA. Make no mistake, she has no idea what's she's doing. You will get lost. She doesn't even speak Swedish. She might not even make it to the actual store. But one thing is for certain, when you lay your eyes on that highly coveted GRUNKA set or finally find that KOKOSNOT you've been searching for, those $5 (and possibly never seeing your loved ones again) will be worth every penny.	5	images/uploads/15937206112521200px-IKEA_Store_Elmhult.jpg
 \.
 
 
@@ -391,6 +397,10 @@ COPY public.locations ("locationId", name, "imageUrl") FROM stdin;
 2	Madrid, Spain	/images/madrid.jpg
 3	Irvine, US	/images/lfz.jpg
 4	Maui, US	/images/maui.jpg
+5	Seoul, South Korea	/images/korea.jpg
+6	Los Angeles, CA	/images/losangeles.jpg
+7	Anaheim, CA	/images/anaheim.jpg
+8	Älmhult, Sweden	/images/sweden.jpg
 \.
 
 
@@ -424,6 +434,11 @@ COPY public.users ("userId", username, "imageUrl") FROM stdin;
 2	Cody	/images/coffeecody.png
 3	Brett	/images/albright.png
 4	Tim D.	/images/timd.png
+5	omegathrone	/images/omegathrone.jpg
+7	johnny-fiive	/images/johnny-fiive.jpg
+8	Disney-Master	/images/disney-master.jpeg
+9	IfFoundPleaseReturn	/images/sarah.jpg
+6	ToddTakesBreaks	/images/todd.png
 \.
 
 
@@ -438,21 +453,21 @@ SELECT pg_catalog.setval('public."chats_chatId_seq"', 2, true);
 -- Name: favorites_favoriteId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."favorites_favoriteId_seq"', 12, true);
+SELECT pg_catalog.setval('public."favorites_favoriteId_seq"', 13, true);
 
 
 --
 -- Name: lisitings_lisitingId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."lisitings_lisitingId_seq"', 11, true);
+SELECT pg_catalog.setval('public."lisitings_lisitingId_seq"', 16, true);
 
 
 --
 -- Name: locations_locationId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."locations_locationId_seq"', 4, true);
+SELECT pg_catalog.setval('public."locations_locationId_seq"', 8, true);
 
 
 --
@@ -473,7 +488,7 @@ SELECT pg_catalog.setval('public."purchases_purchaseId_seq"', 2, true);
 -- Name: users_userId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."users_userId_seq"', 4, true);
+SELECT pg_catalog.setval('public."users_userId_seq"', 9, true);
 
 
 --
