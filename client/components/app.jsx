@@ -26,7 +26,8 @@ export default class App extends React.Component {
       listingId: null,
       isAuthorizing: true,
       listings: [],
-      messages: []
+      messages: [],
+      locations: []
     };
     this.setView = this.setView.bind(this);
     this.userLogout = this.userLogout.bind(this);
@@ -55,6 +56,16 @@ export default class App extends React.Component {
       })
       .catch(err => console.error(err));
 
+    this.getLocations();
+
+  }
+
+  getLocations() {
+    fetch('/api/locations')
+      .then(response => response.json())
+      .then(data => this.setState({
+        locations: data
+      }));
   }
 
   getMessages(chatId) {
@@ -248,7 +259,7 @@ export default class App extends React.Component {
           listings={this.state.listings} />;
         break;
       case 'create-listing':
-        body = <CreateListing user={this.state.currentUser.userId} setView={this.setView}/>;
+        body = <CreateListing user={this.state.currentUser.userId} setView={this.setView} locations={this.state.locations}/>;
         break;
       case 'favorites-page':
         body = <FavoriteListingsPage user={this.state.currentUser.userId}
@@ -259,7 +270,7 @@ export default class App extends React.Component {
           listings={this.state.listings} />;
         break;
       case 'check-out':
-        body = <CheckoutPage user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId}/>;
+        body = <CheckoutPage user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId} />;
         break;
       case 'listing-description':
         body = <ListingDescription user={this.state.currentUser.userId} setView={this.setView} listingId={this.state.listingId} setListingId ={this.setListingId} />; // pass this.state.listingId
@@ -282,7 +293,8 @@ export default class App extends React.Component {
           listingId={this.state.listingId}
           getInbox={this.getInbox}
           inbox={this.state.inbox}
-          getMessages={this.getMessages}/>;
+          getMessages={this.getMessages}
+        />;
         break;
       case 'messages':
         body = <Messages messages={this.state.messages}

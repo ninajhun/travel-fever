@@ -1,5 +1,4 @@
 import React from 'react';
-import SearchCity from './search-city';
 
 class CreateListing extends React.Component {
   constructor(props) {
@@ -32,6 +31,10 @@ class CreateListing extends React.Component {
       case 'image':
         this.setState({ imageUrl: event.target.value });
         break;
+      case 'locationId':
+        this.setState({ locationId: event.target.value });
+        break;
+
       default:
         break;
     }
@@ -79,7 +82,19 @@ class CreateListing extends React.Component {
           <h4>Create Listing</h4>
           <input type="hidden" name="sellerId" defaultValue={this.props.user}/>
           <div className="form-group">
-            <SearchCity getLocationId={this.getLocationId} name="locationId"/>
+
+            <div className="col-12 mt-4 pr-0 pl-0">
+              <select className="custom-select custom-select-sm" onChange={this.handleChange} name="locationId">
+                <option value=''>Select Location</option>
+                {
+                  this.props.locations.map(location => {
+                    return (
+                      <option key={location.locationId} value={location.locationId}>{location.name}</option>
+                    );
+                  })
+                }
+              </select>
+            </div>
           </div>
           <div className="form-group">
             <input required className="form-control" type="text" name="title" id="title" maxLength="50" placeholder="Listing Title" value={this.state.title} onChange={this.handleChange}/>
