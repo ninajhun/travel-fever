@@ -272,7 +272,8 @@ app.get('/api/messages/:chatId', (req, res, next) => {
   select "content",
     "senderId",
     "recipientId",
-    "messageId"
+    "messageId",
+    "chatId"
   from "messages"
   where "chatId" = $1
   order by "sentAt" asc
