@@ -2,9 +2,7 @@ import React from 'react';
 
 function SenderMessage(props) {
   return (
-
     <div className="row no-gutters my-3">
-
       <div className='col-10 '>
         <div className='px-2 d-flex'>
           <p className='text-right pr-3 mb-0 flex-wrap'>{props.content}  </p>
@@ -16,7 +14,6 @@ function SenderMessage(props) {
       </div>
 
     </div>
-
   );
 }
 

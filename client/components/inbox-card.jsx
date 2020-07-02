@@ -1,6 +1,7 @@
 import React from 'react';
 
 function inboxCard(props) {
+
   return (
     <div>
       <div className='card inbox' onClick={() => { props.setView('messages', { recipientImg: props.imageUrl, recipientId: props.recipientId, chatId: props.chatId }); props.getMessages(props.chatId); }}>
@@ -10,7 +11,7 @@ function inboxCard(props) {
           </div>
           <div className='col-md-8 d-flex align-items-center'>
             <div className='card-body p-3'>
-              <p className='card-title mt-3'>Connect with {props.username}!</p>
+              <p className='card-title mt-3' style={{ marginLeft: 30 }}>Connect with {props.username}!</p>
             </div>
           </div>
         </div>
@@ -20,6 +21,7 @@ function inboxCard(props) {
       </div>
     </div>
   );
+
 }
 
 export default inboxCard;

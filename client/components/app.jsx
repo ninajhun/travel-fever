@@ -18,7 +18,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: 'home', // remember to change back!!!
+        name: 'home',
         params: {}
       },
       inbox: [],
@@ -54,6 +54,7 @@ export default class App extends React.Component {
         });
       })
       .catch(err => console.error(err));
+
   }
 
   getMessages(chatId) {
@@ -136,7 +137,7 @@ export default class App extends React.Component {
   }
 
   favoriteListing(listingId) {
-    return this.state.currentUser.favoriteListings.includes(listingId);
+    // this.state.currentUser.favoriteListings.includes(listingId);
   }
 
   toggleFavorite(listingId) {
