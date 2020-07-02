@@ -12,7 +12,7 @@ class ListingsPage extends React.Component {
     return (
       <div>
         <div className="m-4">
-          <SearchCity setView={this.props.setView} getCustomerListings={this.props.getCustomerListings} />
+          <SearchCity setView={this.props.setView} getCustomerListings={this.props.getCustomerListings} locations={this.props.locations} />
         </div>
         {
           this.props.listings.map(listing => {

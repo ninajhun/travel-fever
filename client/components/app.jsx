@@ -247,7 +247,11 @@ export default class App extends React.Component {
 
     switch (this.state.view.name) {
       case 'home':
-        body = <HomePage user={this.state.currentUser.userId} setView={this.setView} getCustomerListings={this.getCustomerListings} getInbox={this.getInbox} />;
+        body = <HomePage user={this.state.currentUser.userId}
+          setView={this.setView}
+          getCustomerListings={this.getCustomerListings}
+          getInbox={this.getInbox}
+          locations={this.state.locations} />;
         break;
       case 'listings-page':
         body = <ListingsPage user={this.state.currentUser.userId}
@@ -256,7 +260,8 @@ export default class App extends React.Component {
           toggleFavorite={this.toggleFavorite}
           setListingId={this.setListingId}
           getCustomerListings={this.getCustomerListings}
-          listings={this.state.listings} />;
+          listings={this.state.listings}
+          locations={this.state.locations}/>;
         break;
       case 'create-listing':
         body = <CreateListing user={this.state.currentUser.userId} setView={this.setView} locations={this.state.locations}/>;
