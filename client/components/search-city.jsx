@@ -3,23 +3,7 @@ import React from 'react';
 class SearchCity extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      locations: []
-    };
     this.handleChange = this.handleChange.bind(this);
-
-  }
-
-  getLocations() {
-    fetch('/api/locations')
-      .then(response => response.json())
-      .then(data => this.setState({
-        locations: data
-      }));
-  }
-
-  componentDidMount() {
-    this.getLocations();
   }
 
   handleChange(event) {
@@ -31,7 +15,6 @@ class SearchCity extends React.Component {
 
     if (this.props.listings && !this.props.listings.length) {
       return <p className='m-5 text-center'> No listings for this city yet!</p>;
-
     }
 
     return (
@@ -41,7 +24,7 @@ class SearchCity extends React.Component {
             <select className="custom-select custom-select-sm" onChange={this.handleChange} value={this.props.value} name={this.props.name}>
               <option value=''>Select Location</option>
               {
-                this.state.locations.map(data => {
+                this.props.locations.map(data => {
                   return (
                     <option key={data.locationId} value={data.locationId}>{data.name}</option>
                   );

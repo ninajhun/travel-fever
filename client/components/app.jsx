@@ -26,8 +26,10 @@ export default class App extends React.Component {
       listingId: null,
       isAuthorizing: true,
       listings: [],
+      messages: [],
+      locations: [],
       myFavorites: [],
-      messages: []
+
     };
     this.interval = null;
     this.setView = this.setView.bind(this);
@@ -35,7 +37,7 @@ export default class App extends React.Component {
     this.getUser = this.getUser.bind(this);
     this.setListingId = this.setListingId.bind(this);
     this.getCustomerListings = this.getCustomerListings.bind(this);
-    this.favoriteListing = this.favoriteListing.bind(this);
+    this.checkFavorite = this.checkFavorite.bind(this);
     this.toggleFavorite = this.toggleFavorite.bind(this);
     this.addFavorite = this.addFavorite.bind(this);
     this.removeFavorite = this.removeFavorite.bind(this);
@@ -55,6 +57,15 @@ export default class App extends React.Component {
         });
       })
       .catch(err => console.error(err));
+    this.getLocations();
+  }
+
+  getLocations() {
+    fetch('/api/locations')
+      .then(response => response.json())
+      .then(data => this.setState({
+        locations: data
+      }));
   }
 
   getMessages(chatId) {
@@ -125,7 +136,7 @@ export default class App extends React.Component {
     fetch('/api/favorites', req)
       .then(() => {
         const { favoriteListings } = this.state.currentUser;
-        const updateFavorites = favoriteListings.filter(fav => fav.list !== listingId);
+        const updateFavorites = favoriteListings.filter(fav => fav !== listingId);
         this.setState({
           currentUser: {
             ...this.state.currentUser,
@@ -135,12 +146,12 @@ export default class App extends React.Component {
       });
   }
 
-  favoriteListing(listingId) {
-    // this.state.currentUser.favoriteListings.includes(listingId);
+  checkFavorite(listingId) {
+    return this.state.currentUser.favoriteListings.includes(listingId);
   }
 
   toggleFavorite(listingId) {
-    this.favoriteListing(listingId)
+    this.checkFavorite(listingId)
       ? this.removeFavorite(listingId)
       : this.addFavorite(listingId);
   }
@@ -232,24 +243,30 @@ export default class App extends React.Component {
     let body;
     switch (this.state.view.name) {
       case 'home':
-        body = <HomePage user={this.state.currentUser.userId} setView={this.setView} getCustomerListings={this.getCustomerListings}/>;
+        body = <HomePage user={this.state.currentUser.userId}
+          setView={this.setView}
+          getCustomerListings={this.getCustomerListings}
+          getInbox={this.getInbox}
+          locations={this.state.locations} />;
+
         break;
       case 'listings-page':
         body = <ListingsPage user={this.state.currentUser.userId}
           setView={this.setView}
-          favoriteListing={this.favoriteListing}
+          checkFavorite={this.checkFavorite}
           toggleFavorite={this.toggleFavorite}
           setListingId={this.setListingId}
           getCustomerListings={this.getCustomerListings}
-          listings={this.state.listings} />;
+          listings={this.state.listings}
+          locations={this.state.locations}/>;
         break;
       case 'create-listing':
-        body = <CreateListing user={this.state.currentUser.userId} setView={this.setView}/>;
+        body = <CreateListing user={this.state.currentUser.userId} setView={this.setView} locations={this.state.locations}/>;
         break;
       case 'favorites-page':
         body = <FavoriteListingsPage user={this.state.currentUser.userId}
           setView={this.setView}
-          favoriteListing={this.favoriteListing}
+          checkFavorite={this.checkFavorite}
           toggleFavorite={this.toggleFavorite}
           setListingId={this.setListingId}
           listings={this.state.myFavorites} />;
@@ -278,7 +295,8 @@ export default class App extends React.Component {
           listingId={this.state.listingId}
           getInbox={this.getInbox}
           inbox={this.state.inbox}
-          getMessages={this.getMessages}/>;
+          getMessages={this.getMessages}
+        />;
         break;
       case 'messages':
         body = <Messages messages={this.state.messages}

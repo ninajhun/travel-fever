@@ -27,7 +27,7 @@ class SellerListingCard extends React.Component {
     if (!this.state.sellerListing.length) {
       return (
         <div>
-          <p className='m-5 text-center'>You have no listings yet!</p>;
+          <p className='m-5 text-center'>You have no listings yet!</p>
           <div className="d-flex justify-content-center">
             <button type="button" className="uni-button mt-1 py-2 px-1" onClick={() => { this.props.setView('create-listing'); }}>Create Listing</button>
           </div>
