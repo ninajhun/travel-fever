@@ -291,7 +291,7 @@ export default class App extends React.Component {
           user={this.state.currentUser.userId}
           setView={this.setView}
           listingId={this.state.listingId}
-          currentView={this.state.view.name}
+          // currentView={this.state.view.name}
         />;
         break;
       case 'inbox':
