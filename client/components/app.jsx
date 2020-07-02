@@ -18,7 +18,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: 'messages', // remember to change back!!!
+        name: 'home', // remember to change back!!!
         params: {}
       },
       inbox: [],
