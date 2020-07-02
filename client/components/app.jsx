@@ -12,6 +12,7 @@ import SellerListingDescription from './seller-listing-description';
 import FavoriteListingsPage from './favorite-listings-page';
 import Messages from './messages';
 import UserInbox from './inbox';
+import { response } from 'express';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -40,6 +41,8 @@ export default class App extends React.Component {
     this.getMyFavorites = this.getMyFavorites.bind(this);
     this.getInbox = this.getInbox.bind(this);
     this.getMessages = this.getMessages.bind(this);
+    this.sendDm = this.sendDm.bind(this);
+
   }
 
   componentDidMount() {
@@ -64,6 +67,29 @@ export default class App extends React.Component {
       })
       .catch(err => console.error(err));
 
+  }
+
+  sendDm(chatId, senderId, recipientId, content) {
+    const req = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chatId: chatId,
+        senderId: senderId,
+        recipientId: recipientId,
+        content: content
+      })
+    };
+    fetch('/api/messages', req)
+      .then(reponse => response.json())
+      .then(data => {
+        const messages = this.state.messages;
+        const newMessages = messages.concat(data[0]);
+        this.setState({
+          messages: newMessages
+        });
+      })
+      .catch(err => console.error(err));
   }
 
   addFavorite(listingId) {
@@ -259,8 +285,9 @@ export default class App extends React.Component {
           getMessages={this.getMessages}/>;
         break;
       case 'messages':
-        body = <Messages messages={this.state.messages} user={this.state.currentUser} recipientImg={this.state.view.params} />;
+        body = <Messages messages={this.state.messages} user={this.state.currentUser} recipientImg={this.state.view.params}  sendDm={this.sendDm}/>;
         break;
+      
       default: body = null;
     }
 
