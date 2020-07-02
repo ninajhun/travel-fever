@@ -12,14 +12,13 @@ import SellerListingDescription from './seller-listing-description';
 import FavoriteListingsPage from './favorite-listings-page';
 import Messages from './messages';
 import UserInbox from './inbox';
-import { response } from 'express';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       view: {
-        name: 'home', // remember to change back!!!
+        name: 'home',
         params: {}
       },
       inbox: [],
@@ -55,6 +54,7 @@ export default class App extends React.Component {
         });
       })
       .catch(err => console.error(err));
+
   }
 
   getMessages(chatId) {
@@ -81,7 +81,7 @@ export default class App extends React.Component {
       })
     };
     fetch('/api/messages', req)
-      .then(reponse => response.json())
+      .then(response => response.json())
       .then(data => {
         const messages = this.state.messages;
         const newMessages = messages.concat(data[0]);
@@ -137,7 +137,7 @@ export default class App extends React.Component {
   }
 
   favoriteListing(listingId) {
-    return this.state.currentUser.favoriteListings.includes(listingId);
+    // this.state.currentUser.favoriteListings.includes(listingId);
   }
 
   toggleFavorite(listingId) {
@@ -285,9 +285,9 @@ export default class App extends React.Component {
           getMessages={this.getMessages}/>;
         break;
       case 'messages':
-        body = <Messages messages={this.state.messages} user={this.state.currentUser} recipientImg={this.state.view.params}  sendDm={this.sendDm}/>;
+        body = <Messages messages={this.state.messages} user={this.state.currentUser} recipientImg={this.state.view.params} sendDm={this.sendDm}/>;
         break;
-      
+
       default: body = null;
     }
 

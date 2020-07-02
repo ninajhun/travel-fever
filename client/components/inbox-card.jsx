@@ -10,7 +10,7 @@ function inboxCard(props) {
           </div>
           <div className='col-md-8 d-flex align-items-center'>
             <div className='card-body p-3'>
-              <p className='card-title mt-3'>Connect with {props.username}!</p>
+              <p className='card-title mt-3' style={{ marginLeft: 30 }}>Connect with {props.username}!</p>
             </div>
           </div>
         </div>

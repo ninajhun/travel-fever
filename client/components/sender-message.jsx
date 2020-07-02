@@ -6,7 +6,7 @@ function SenderMessage(props) {
     <div className="row no-gutters">
 
       <div className='col-10 '>
-        <div className='px-2'>
+        <div className='p-3'>
           <p className='text-right pr-3'>{props.content}  </p>
         </div>
       </div>
