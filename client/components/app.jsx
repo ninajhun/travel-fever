@@ -56,6 +56,10 @@ export default class App extends React.Component {
 
   }
 
+  sendDm() {
+
+  }
+
   addFavorite(listingId) {
     const req = {
       method: 'POST',
