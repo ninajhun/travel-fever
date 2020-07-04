@@ -1,14 +1,12 @@
 import React from 'react';
 import ListingDescription from './listing-description';
-import f from 'session-file-store';
 
 class SellerListingDescription extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isModalOpen: true
+      isModalOpen: false
     };
-    // this.returnMyListings = this.returnMyListings.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleDeleteModal = this.handleDeleteModal.bind(this);
   }
@@ -31,14 +29,12 @@ class SellerListingDescription extends React.Component {
     this.props.setView('seller-listing-page');
   }
 
-  // returnMyListings() {
-  //   this.props.setView('seller-listing-page');
-  // }
-
   render() {
-
-    if (this.state.isModalOpen) {
-      return (
+    let modal;
+    if (!this.state.isModalOpen) {
+      modal = null;
+    } else {
+      modal = (
         <div>
           <div className="card delete-card">
             <div className="card-body">
@@ -47,19 +43,20 @@ class SellerListingDescription extends React.Component {
               <button type="button" className="uni-button mt-1 py-2 px-1" onClick={this.handleDelete}>Delete</button>
             </div>
           </div>
-
         </div>
       );
     }
 
-    // if (!this.state.isModalOpen) {
     return (
       <div>
+        {modal}
+
         <div>
           <ListingDescription listingId={this.props.listingId}
             setView={this.props.setView}
           />
         </div>
+
         <div className="d-flex justify-content-around my-2">
           <div>
             <button type="button" className="uni-button mt-1 py-2 px-1" onClick={() => this.props.setView('seller-listing-page')}>Confirm</button>
@@ -68,10 +65,10 @@ class SellerListingDescription extends React.Component {
             <button type="button" className="uni-button mt-1 py-2 px-1" onClick={this.handleDeleteModal}>Delete</button>
           </div>
         </div>
-      </div>
-    );
 
-    // }
+      </div>
+
+    );
 
   }
 }
