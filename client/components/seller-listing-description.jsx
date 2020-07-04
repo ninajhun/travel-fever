@@ -4,8 +4,23 @@ import ListingDescription from './listing-description';
 class SellerListingDescription extends React.Component {
   constructor(props) {
     super(props);
-    this.returnMyListings = this.returnMyListings.bind(this);
+    this.state = {
+      isModalOpen: false
+    };
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleDeleteModal = this.handleDeleteModal.bind(this);
+  }
+
+  handleDeleteModal() {
+    if (!this.state.isModalOpen) {
+      this.setState({
+        isModalOpen: true
+      });
+    } else {
+      this.setState({
+        isModalOpen: false
+      });
+    }
   }
 
   handleDelete() {
@@ -14,13 +29,32 @@ class SellerListingDescription extends React.Component {
     this.props.setView('seller-listing-page');
   }
 
-  returnMyListings() {
-    this.props.setView('seller-listing-page');
-  }
-
   render() {
+    let modal;
+    if (!this.state.isModalOpen) {
+      modal = null;
+    } else {
+      modal = (
+        <div>
+          <div className="card delete-card">
+            <div className="card-body">
+              <h5 className="card-title text-center">Are you sure you want to delete?</h5>
+              <div className="d-flex align-items-center">
+                <button type="button" className="uni-button mt-1 py-2 px-1 mr-1" onClick={this.handleDeleteModal}>Cancel</button>
+                <button type="button" className="uni-button mt-1 py-2 px-1" onClick={this.handleDelete}>Delete</button>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div>
+        {modal}
+
         <div>
           <ListingDescription listingId={this.props.listingId}
             setView={this.props.setView}
@@ -28,15 +62,17 @@ class SellerListingDescription extends React.Component {
         </div>
         <div className="d-flex justify-content-around my-2">
           <div>
-            <button type="button" className="uni-button mt-1 py-2 px-1" onClick={this.returnMyListings}>Confirm</button>
+            <button type="button" className="uni-button mt-1 py-2 px-1" onClick={() => this.props.setView('seller-listing-page')}>Confirm</button>
           </div>
           <div>
-            <button type="button" className="uni-button mt-1 py-2 px-1" onClick={this.handleDelete}>Delete</button>
+            <button type="button" className="uni-button mt-1 py-2 px-1" onClick={this.handleDeleteModal}>Delete</button>
           </div>
         </div>
+
       </div>
     );
   }
+
 }
 
 export default SellerListingDescription;

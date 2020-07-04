@@ -224,6 +224,19 @@ body {
   transition: 0.3s;
 }
 
+
+/* delete modal */
+
+.delete-card{
+  position: fixed;
+  z-index: 1000;
+  top: 40%;
+  padding: 50px;
+    width: 100%;
+  background-color: whitesmoke;
+}
+
+
 .hidden {
   display: none;
 }
