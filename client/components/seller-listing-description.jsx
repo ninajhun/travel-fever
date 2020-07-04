@@ -38,9 +38,13 @@ class SellerListingDescription extends React.Component {
         <div>
           <div className="card delete-card">
             <div className="card-body">
-              <h5 className="card-title">Are you sure you want to delete?</h5>
-              <button type="button" className="uni-button mt-1 py-2 px-1" onClick={this.handleDeleteModal}>Cancel</button>
-              <button type="button" className="uni-button mt-1 py-2 px-1" onClick={this.handleDelete}>Delete</button>
+              <h5 className="card-title text-center">Are you sure you want to delete?</h5>
+              <div className="d-flex align-items-center">
+                <button type="button" className="uni-button mt-1 py-2 px-1 mr-1" onClick={this.handleDeleteModal}>Cancel</button>
+                <button type="button" className="uni-button mt-1 py-2 px-1" onClick={this.handleDelete}>Delete</button>
+
+              </div>
+
             </div>
           </div>
         </div>
@@ -56,7 +60,6 @@ class SellerListingDescription extends React.Component {
             setView={this.props.setView}
           />
         </div>
-
         <div className="d-flex justify-content-around my-2">
           <div>
             <button type="button" className="uni-button mt-1 py-2 px-1" onClick={() => this.props.setView('seller-listing-page')}>Confirm</button>
@@ -67,10 +70,9 @@ class SellerListingDescription extends React.Component {
         </div>
 
       </div>
-
     );
-
   }
+
 }
 
 export default SellerListingDescription;
