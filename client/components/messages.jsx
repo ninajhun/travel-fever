@@ -66,7 +66,7 @@ class Messages extends React.Component {
                 className="form-control" />
               <div className="input-group-append send-button" type="submit">
                 <div className="input-group-text">
-                  <button type="submit">
+                  <button type="submit" className="message-button">
                     <i className="fas fa-arrow-up"></i>
                   </button>
                 </div>

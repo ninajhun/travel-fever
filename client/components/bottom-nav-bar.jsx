@@ -1,28 +1,26 @@
 import React from 'react';
 
-class BottomNavBar extends React.Component {
+function BottomNavBar(props) {
+  return (
+    <div className="container h-45">
 
-  render() {
-    return (
-      <div className="container h-45">
-        <nav className="navbar fixed-bottom border-top justify-content-around">
-          <i className="fas fa-home fa-lg" onClick={() => this.props.setView('home', {})}></i>
-          <i className="far fa-heart fa-lg"
-            onClick={() => {
-              this.props.setView('favorites-page', {});
-              this.props.getMyFavorites(this.props.user);
-            } }></i>
-          <i className="fas fa-search fa-lg"
-            onClick={() => {
-              this.props.setView('listings-page', {});
-              this.props.getCustomerListings();
-            } }></i>
-          <i className="far fa-envelope fa-lg" onClick={() => { this.props.setView('inbox', {}); this.props.getInbox(this.props.user); }}></i>
-        </nav>
+      <nav className="navbar fixed-bottom border-top justify-content-around">
+        <i className="fas fa-home fa-lg" onClick={() => props.setView('home', {})}></i>
+        <i className="far fa-heart fa-lg"
+          onClick={() => {
+            props.setView('favorites-page', {});
+            props.getMyFavorites(props.user);
+          } }></i>
+        <i className="fas fa-search fa-lg"
+          onClick={() => {
+            props.setView('listings-page', {});
+            props.getCustomerListings();
+          } }></i>
+        <i className="far fa-envelope fa-lg" onClick={() => { props.setView('inbox', {}); props.getInbox(props.user); }}></i>
+      </nav>
 
-      </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default BottomNavBar;

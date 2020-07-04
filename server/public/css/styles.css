@@ -115,15 +115,11 @@ body {
 }
 
 
-/*  */
-
-
 .listing-icon {
   width: 10%;
   border-radius: 50%;
   border: 2px solid lightgray ;
 }
-
 
 
 .card-row {
@@ -194,6 +190,11 @@ body {
 .card-img-top.contain{
   height: 125px;
   object-fit: cover;
+}
+
+/*message button */
+.message-button{
+  border: none
 }
 
 /* spacing */
