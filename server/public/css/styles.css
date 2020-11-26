@@ -225,6 +225,18 @@ body {
 }
 
 
+/* login modal */
+
+.login-card {
+  position: fixed;
+  z-index: 1000;
+  top: 40%;
+  left: 25%;
+  padding: 50px;
+  width: 50%;
+  background-color: whitesmoke;
+}
+
 /* delete modal */
 
 .delete-card{
@@ -232,7 +244,7 @@ body {
   z-index: 1000;
   top: 40%;
   padding: 50px;
-    width: 100%;
+  width: 100%;
   background-color: whitesmoke;
 }
 
