@@ -6,7 +6,7 @@ class LoginPage extends React.Component {
     this.state = {
       users: [],
       value: 'select-user',
-      isModalOpen: false
+      isModalOpen: true
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,13 +38,19 @@ class LoginPage extends React.Component {
 
   render() {
 
-    const modal = (
-      <div className="card login-card">
-        <div className="card-body text-center">
-          <p>Travel Fever is best viewed on a mobile device for the best experience.</p>
-        </div>
-      </div>
-    );
+    let modal;
+    if (this.state.isModalOpen) {
+      modal =
+        <div className="card login-card">
+          <div className="card-body text-center">
+            <p>Travel Fever is best viewed on a mobile device for the best experience while our desktop site is under construction.</p>
+            <div onClick={() => this.setState({ isModalOpen: false })}> <p>Close X</p></div>
+          </div>
+        </div>;
+
+    } else {
+      modal = null;
+    }
 
     return (
 
