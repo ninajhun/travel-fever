@@ -37,11 +37,10 @@ class LoginPage extends React.Component {
   }
 
   render() {
-
     let modal;
     if (this.state.isModalOpen) {
       modal =
-        <div className="card login-card">
+        <div className="card desktop-login-card">
           <div className="card-body text-center">
             <p>Travel Fever is best viewed on a mobile device for the best experience while our desktop site is under construction.</p>
             <div onClick={() => this.setState({ isModalOpen: false })}> <p>Close X</p></div>
