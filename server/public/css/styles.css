@@ -225,6 +225,30 @@ body {
 }
 
 
+/* login modal */
+
+.desktop-login-card {
+  position: fixed;
+  z-index: 1000;
+  top: 40%;
+  left: 20%;
+  padding: 50px;
+  width: 60%;
+  background-color: whitesmoke;
+}
+
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 812px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+    .desktop-login-card {
+      display: none;
+    }
+
+}
+
+
 /* delete modal */
 
 .delete-card{
@@ -232,7 +256,7 @@ body {
   z-index: 1000;
   top: 40%;
   padding: 50px;
-    width: 100%;
+  width: 100%;
   background-color: whitesmoke;
 }
 
