@@ -231,9 +231,9 @@ body {
   position: fixed;
   z-index: 1000;
   top: 40%;
-  left: 5%;
+  left: 20%;
   padding: 50px;
-  width: 90%;
+  width: 60%;
   background-color: whitesmoke;
 }
 
@@ -247,23 +247,6 @@ body {
     }
 
 }
-
-@media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (-webkit-min-device-pixel-ratio: 2) {
-    .desktop-login-card {
-  position: fixed;
-  z-index: 1000;
-  top: 40%;
-  left: 5%;
-  padding: 50px;
-  width: 90%;
-  background-color: whitesmoke;
-}
-
-}
-
 
 
 /* delete modal */

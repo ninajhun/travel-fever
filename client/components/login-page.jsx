@@ -43,7 +43,7 @@ class LoginPage extends React.Component {
         <div className="card desktop-login-card">
           <div className="card-body text-center">
             <p>Travel Fever is best viewed on a mobile device for the best experience while our desktop site is under construction.</p>
-            <div onClick={() => this.setState({ isModalOpen: false })}> <p>Close X</p></div>
+            <button className ="btn btn-secondary" onClick={() => this.setState({ isModalOpen: false })}> Close</button>
           </div>
         </div>;
 
