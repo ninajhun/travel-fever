@@ -37,7 +37,7 @@ class Logout extends React.Component {
     return (
       <div>
         <div className='navbar fixed-top travel-header'>
-          <div className='container d-flex justify-content-end'>
+          <div className='container d-flex justify-content-between'>
             <h2 className="header-text" onClick={() => { this.props.setView('home'); }}>Travel Fever</h2>
             <div className='icon-container' >
               <img src={this.props.userImg} alt="user" className='icon' onClick={this.handleClickOpen} />

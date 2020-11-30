@@ -2,6 +2,12 @@ body {
   background-color: whitesmoke
 }
 
+.header-text,
+.icon-container {
+  cursor: pointer
+}
+
+
 .login {
   width: 100%;
   height: 100vh;
@@ -25,6 +31,14 @@ body {
   height: 45px;
   width: 45px;
   margin-left: 16%;
+}
+
+
+/* header */
+
+.travel-header {
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 3rem;
 }
 
 
@@ -127,10 +141,6 @@ body {
 }
 
 
-.travel-header {
-  border-bottom: 1px solid lightgray;
-  padding-bottom: 3rem;
-}
 
 
 /* User Navigation App Drawer */
@@ -182,7 +192,7 @@ body {
   position: absolute;
   min-height: 86%;
   min-width: 100%;
-  margin-top: 14%;
+  margin-top: 3.5rem;
   margin-bottom: 12%
 }
 
