@@ -197,9 +197,19 @@ body {
 }
 
 /* popular city card */
-.card-img-top.contain{
+.card-img-top{
   height: 125px;
   object-fit: cover;
+}
+
+@media screen
+  and (min-device-width: 1200px)
+  and (max-device-width: 1600px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+    .card-img-top {
+      height: 18rem;
+    }
 }
 
 /*message button */
