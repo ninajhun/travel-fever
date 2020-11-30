@@ -5,7 +5,8 @@ body {
 .header-text,
 .icon-container,
 .popular-city,
-.bottom-nav-bar i  {
+.bottom-nav-bar i,
+.listing  {
   cursor: pointer
 }
 
