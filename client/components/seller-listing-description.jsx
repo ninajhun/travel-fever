@@ -39,7 +39,7 @@ class SellerListingDescription extends React.Component {
           <div className="card delete-card">
             <div className="card-body">
               <h5 className="card-title text-center">Are you sure you want to delete?</h5>
-              <div className="d-flex align-items-center">
+              <div className="d-flex align-items-center justify-content-center">
                 <button type="button" className="uni-button mt-1 py-2 px-1 mr-1" onClick={this.handleDeleteModal}>Cancel</button>
                 <button type="button" className="uni-button mt-1 py-2 px-1" onClick={this.handleDelete}>Delete</button>
 
