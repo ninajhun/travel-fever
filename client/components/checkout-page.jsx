@@ -53,7 +53,7 @@ class CheckoutPage extends React.Component {
       return (
         <div className="container">
           <div className="row justify-content-center">
-            <div className='card mb-3 listing' onClick={this.handleClick}>
+            <div className='card mb-3 listing checkout-listing' onClick={this.handleClick}>
               <div className='row no-gutters flex-nowrap card-row'>
                 <div className='col-4'>
                   <img src={this.state.listing.imageUrl} alt={this.state.listing.imageUrl} className='card-img image-listing' />

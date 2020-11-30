@@ -10,6 +10,10 @@ body {
   cursor: pointer
 }
 
+.listing.checkout-listing {
+  cursor: default;
+}
+
 
 .login {
   width: 100%;
