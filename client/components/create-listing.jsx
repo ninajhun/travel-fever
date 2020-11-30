@@ -78,56 +78,71 @@ class CreateListing extends React.Component {
   render() {
     return (
       <div>
-        <form encType="multipart/form-data" className="col-12 pt-4 " onSubmit={this.handleSubmit} onReset={this.handleReset}>
-          <h4>Create Listing</h4>
-          <input type="hidden" name="sellerId" defaultValue={this.props.user}/>
-          <div className="form-group">
+        <div className="container-fluid">
 
-            <div className="col-12 mt-4 pr-0 pl-0">
-              <select className="custom-select custom-select-sm" onChange={this.handleChange} name="locationId">
-                <option value=''>Select Location</option>
-                {
-                  this.props.locations.map(location => {
-                    return (
-                      <option key={location.locationId} value={location.locationId}>{location.name}</option>
-                    );
-                  })
-                }
-              </select>
-            </div>
-          </div>
-          <div className="form-group">
-            <input required className="form-control" type="text" name="title" id="title" maxLength="50" placeholder="Listing Title" value={this.state.title} onChange={this.handleChange}/>
-          </div>
-          <div className="form-group">
-            <div className="form-row">
-              <div className="col-12">
-                <input required className="form-control" type="number" name="price" id="price" placeholder="Price" value={this.state.price} onChange={this.handleChange}/>
+          <form encType="multipart/form-data" className="col-12 pt-4 " onSubmit={this.handleSubmit} onReset={this.handleReset}>
+
+            <h4>Create Listing</h4>
+
+            <input type="hidden" name="sellerId" defaultValue={this.props.user} />
+
+            <div className="form-group">
+              <div className="form-row">
+                <div className="col-12 mt-4" >
+                  <select className="custom-select custom-select-sm" onChange={this.handleChange} name="locationId">
+                    <option value=''>Select Location</option>
+                    {
+                      this.props.locations.map(location => {
+                        return (
+                          <option key={location.locationId} value={location.locationId}>{location.name}</option>
+                        );
+                      })
+                    }
+                  </select>
+                </div>
               </div>
             </div>
-          </div>
-          <div>
-            <div className='d-flex align-items-baseline'>
-              <h4>Upload Image</h4><i className="fas fa-cloud-upload-alt ml-1"></i>
-            </div>
-            <label>
-              <div className="form-group">
-                <input type="file" name="image" id="imageUrl" accept="image/png, image/jpeg" className="form-control-file" value={this.state.imageUrl} onChange={this.handleChange}/>
+
+            <div className="form-group">
+              <div className="form-row">
+                <div className="col-12">
+                  <input required className="form-control" type="text" name="title" id="title" maxLength="50" placeholder="Listing Title" value={this.state.title} onChange={this.handleChange} />
+                </div>
               </div>
-            </label>
-          </div>
-          <div className="form-group mb-0 pb-0">
-            <label><h4>Description</h4>
-              <textarea name="description" id="description" cols="37" rows="5" value={this.state.description} onChange={this.handleChange}></textarea>
-            </label>
-          </div>
-          <div className="d-flex justify-content-end mb-3">
-            <button type="reset" className="btn btn-light">Clear Form</button>
-          </div>
-          <div className='d-flex justify-content-center' >
-            <button type="submit" className="uni-button mb-4 mt-1 py-2 px-1">Create Listing</button>
-          </div>
-        </form>
+            </div>
+
+            <div className="form-group">
+              <div className="form-row">
+                <div className="col-12">
+                  <input required className="form-control" type="number" name="price" id="price" placeholder="Price" value={this.state.price} onChange={this.handleChange} />
+                </div>
+              </div>
+            </div>
+
+            <div className="form-group">
+              <div className='d-flex align-items-baseline'>
+                <h4>Upload Image</h4><i className="fas fa-cloud-upload-alt ml-1"></i>
+              </div>
+              <label>
+                <input type="file" name="image" id="imageUrl" accept="image/png, image/jpeg" className="form-control-file" value={this.state.imageUrl} onChange={this.handleChange} />
+              </label>
+            </div>
+
+            <div className="form-group mb-0 pb-0">
+              <label><h4>Description</h4>
+                <textarea name="description" id="description" cols="33" rows="6" value={this.state.description} onChange={this.handleChange}></textarea>
+              </label>
+            </div>
+
+            <div className="d-flex justify-content-end mb-3">
+              <button type="reset" className="btn btn-secondary">Clear Form</button>
+            </div>
+            <div className='d-flex justify-content-center' >
+              <button type="submit" className="uni-button mb-4 mt-1 py-2 px-1">Create Listing</button>
+            </div>
+          </form>
+
+        </div>
       </div>
     );
   }
