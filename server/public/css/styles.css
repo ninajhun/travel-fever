@@ -51,6 +51,18 @@ body {
   box-shadow: -3px 4px 7px grey;
 }
 
+@media screen
+  and (min-device-width: 1200px)
+  and (max-device-width: 1600px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+    .listing{
+      height: 12rem ;
+      margin: 2rem 15rem;
+    }
+}
+
+
 .listing-price {
   color: #FB4D3D;
   position: absolute;
