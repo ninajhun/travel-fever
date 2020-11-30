@@ -100,7 +100,7 @@ class CheckoutPage extends React.Component {
     } else {
       return (
         <div className="container">
-          <div className="row justify-content-center mt-5">
+          <div className="row justify-content-center align-items-center mt-5 flex-column">
             <h4 className="text-center mt-5">Thank you for choosing to connect with {this.state.listing.sellerName}! </h4>
             <p className="text-center my-2">Please continue your purchase by discussing with {this.state.listing.sellerName} in the messages inbox.</p>
             <button type="submit"
