@@ -3,7 +3,9 @@ body {
 }
 
 .header-text,
-.icon-container {
+.icon-container,
+.popular-city,
+.bottom-nav-bar i  {
   cursor: pointer
 }
 
