@@ -92,25 +92,15 @@ body {
 
 /* inbox */
 
-.inbox-icon-container{
-  align-self: center;
-  position: absolute;
-  left: 7%;
-}
-
 .inbox-icon {
   background-color: gray;
   height: 50px;
   width: 50px;
   border: 2px solid lightgray;
   border-radius: 50%;
+  margin-left: 1.5rem;
 }
 
-.inbox {
-  background-color: transparent;
-  text-align: center;
-  border: hidden;
-}
 
 .inbox-border{
   border-bottom: 2px solid lightgray;
