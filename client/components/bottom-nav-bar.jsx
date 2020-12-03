@@ -4,7 +4,7 @@ function BottomNavBar(props) {
   return (
     <div className="container h-45">
 
-      <nav className="navbar fixed-bottom border-top justify-content-around">
+      <nav className="navbar bottom-nav-bar fixed-bottom border-top justify-content-around">
         <i className="fas fa-home fa-lg" onClick={() => props.setView('home', {})}></i>
         <i className="far fa-heart fa-lg"
           onClick={() => {

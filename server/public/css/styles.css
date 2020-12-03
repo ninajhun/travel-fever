@@ -2,6 +2,19 @@ body {
   background-color: whitesmoke
 }
 
+.header-text,
+.icon-container,
+.popular-city,
+.bottom-nav-bar i,
+.listing  {
+  cursor: pointer
+}
+
+.listing.checkout-listing {
+  cursor: default;
+}
+
+
 .login {
   width: 100%;
   height: 100vh;
@@ -28,12 +41,32 @@ body {
 }
 
 
+/* header */
+
+.travel-header {
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 3rem;
+}
+
+
 /* listing card */
 .listing {
   margin: 5%;
   height: 115px;
   box-shadow: -3px 4px 7px grey;
 }
+
+@media screen
+  and (min-device-width: 1200px)
+  and (max-device-width: 1600px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+    .listing{
+      height: 12rem ;
+      margin: 2rem 15rem;
+    }
+}
+
 
 .listing-price {
   color: #FB4D3D;
@@ -59,25 +92,15 @@ body {
 
 /* inbox */
 
-.inbox-icon-container{
-  align-self: center;
-  position: absolute;
-  left: 7%;
-}
-
 .inbox-icon {
   background-color: gray;
   height: 50px;
   width: 50px;
   border: 2px solid lightgray;
   border-radius: 50%;
+  margin-left: 1.5rem;
 }
 
-.inbox {
-  background-color: transparent;
-  text-align: center;
-  border: hidden;
-}
 
 .inbox-border{
   border-bottom: 2px solid lightgray;
@@ -127,10 +150,6 @@ body {
 }
 
 
-.travel-header {
-  border-bottom: 1px solid lightgray;
-  padding-bottom: 12%;
-}
 
 
 /* User Navigation App Drawer */
@@ -182,14 +201,24 @@ body {
   position: absolute;
   min-height: 86%;
   min-width: 100%;
-  margin-top: 14%;
-  margin-bottom: 12%
+  margin-top: 3.5rem;
+  margin-bottom: 3.5rem;
 }
 
 /* popular city card */
-.card-img-top.contain{
+.card-img-top{
   height: 125px;
   object-fit: cover;
+}
+
+@media screen
+  and (min-device-width: 1200px)
+  and (max-device-width: 1600px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+    .card-img-top {
+      height: 18rem;
+    }
 }
 
 /*message button */
