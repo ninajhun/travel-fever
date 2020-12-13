@@ -117,7 +117,7 @@ body {
 /* sender & recipient messages */
 .recipient-icon-container{
   align-self: center;
-  left: 5%;
+  /* left: 3%; */
 }
 
 .sender-icon-container{
