@@ -89,7 +89,7 @@ class CreateListing extends React.Component {
             <div className="form-group">
               <div className="form-row">
                 <div className="col-12 mt-4" >
-                  <select className="custom-select custom-select-sm" onChange={this.handleChange} name="locationId">
+                  <select className="custom-select custom-select-sm search-city-bar" onChange={this.handleChange} name="locationId">
                     <option value=''>Select Location</option>
                     {
                       this.props.locations.map(location => {
@@ -124,7 +124,7 @@ class CreateListing extends React.Component {
                 <h4>Upload Image</h4><i className="fas fa-cloud-upload-alt ml-1"></i>
               </div>
               <label>
-                <input type="file" name="image" id="imageUrl" accept="image/png, image/jpeg" className="form-control-file" value={this.state.imageUrl} onChange={this.handleChange} />
+                <input type="file" name="image" id="imageUrl" accept="image/png, image/jpeg" className="form-control-file choose-file" value={this.state.imageUrl} onChange={this.handleChange} />
               </label>
             </div>
 

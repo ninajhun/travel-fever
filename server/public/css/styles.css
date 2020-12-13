@@ -6,7 +6,12 @@ body {
 .icon-container,
 .popular-city,
 .bottom-nav-bar i,
-.listing  {
+.listing ,
+.search-city-bar,
+.choose-file,
+.inbox-card,
+.side-nav,
+.select-user {
   cursor: pointer
 }
 

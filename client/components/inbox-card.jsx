@@ -4,7 +4,7 @@ function inboxCard(props) {
 
   return (
     <div>
-      <div className='row p-2' onClick={() => { props.setView('messages', { recipientImg: props.imageUrl, recipientId: props.recipientId, chatId: props.chatId }); props.getMessages(props.chatId); }}>
+      <div className='row p-2 inbox-card' onClick={() => { props.setView('messages', { recipientImg: props.imageUrl, recipientId: props.recipientId, chatId: props.chatId }); props.getMessages(props.chatId); }}>
 
         <div className='col-2 d-flex align-content-center justify-content-center'>
           <img src={props.imageUrl} alt={props.imageUrl} className='inbox-icon' />

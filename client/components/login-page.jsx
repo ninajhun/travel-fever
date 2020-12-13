@@ -69,7 +69,7 @@ class LoginPage extends React.Component {
 
             <div className="row justify-content-center">
               <form className="col-9 mt-2" onSubmit={this.handleSubmit}>
-                <select className="custom-select custom-select-sm" value={this.state.value} onChange={this.handleChange}>
+                <select className="custom-select custom-select-sm select-user" value={this.state.value} onChange={this.handleChange}>
                   <option value="select-user">Select User</option>
                   {
                     this.state.users.map(user => {

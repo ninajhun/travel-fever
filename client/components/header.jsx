@@ -49,10 +49,10 @@ class Logout extends React.Component {
           <div className={ menuClass }>
             <div className="mt-4">
               <div className="my-3">
-                <h5 onClick={this.multFunct}>My Listings</h5>
+                <h5 className="side-nav" onClick={this.multFunct}>My Listings</h5>
               </div>
               <div className="my-3">
-                <h5 onClick={() => this.props.userLogout()}>Log Out</h5>
+                <h5 className="side-nav" onClick={() => this.props.userLogout()}>Log Out</h5>
               </div>
             </div>
           </div>
