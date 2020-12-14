@@ -42,7 +42,7 @@ class LoginPage extends React.Component {
       modal =
         <div className="card desktop-login-card">
           <div className="card-body text-center">
-            <p>Travel Fever is best viewed on a mobile device for the best experience while our desktop site is under construction.</p>
+            <p>Hey there! Travel Fever is best viewed on a mobile device for the best user experience. However, you can still enjoy this app on desktop!</p>
             <button className ="btn btn-secondary" onClick={() => this.setState({ isModalOpen: false })}> Close</button>
           </div>
         </div>;
