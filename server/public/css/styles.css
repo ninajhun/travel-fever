@@ -6,7 +6,12 @@ body {
 .icon-container,
 .popular-city,
 .bottom-nav-bar i,
-.listing  {
+.listing ,
+.search-city-bar,
+.choose-file,
+.inbox-card,
+.side-nav,
+.select-user {
   cursor: pointer
 }
 
@@ -56,13 +61,15 @@ body {
   box-shadow: -3px 4px 7px grey;
 }
 
+
+
 @media screen
   and (min-device-width: 1200px)
-  and (max-device-width: 1600px)
+  /* and (max-device-width: 1600px) */
   and (-webkit-min-device-pixel-ratio: 1) {
 
     .listing{
-      height: 12rem ;
+      height: 15rem;
       margin: 2rem 15rem;
     }
 }
@@ -93,12 +100,10 @@ body {
 /* inbox */
 
 .inbox-icon {
-  background-color: gray;
   height: 50px;
   width: 50px;
   border: 2px solid lightgray;
   border-radius: 50%;
-  margin-left: 1.5rem;
 }
 
 
@@ -117,7 +122,7 @@ body {
 /* sender & recipient messages */
 .recipient-icon-container{
   align-self: center;
-  left: 5%;
+  /* left: 3%; */
 }
 
 .sender-icon-container{
@@ -198,11 +203,10 @@ body {
 }
 
 .main-screen{
-  position: absolute;
-  min-height: 86%;
+  position: relative;
   min-width: 100%;
-  margin-top: 3.5rem;
-  margin-bottom: 3.5rem;
+  margin-top: 4.5rem;
+  margin-bottom: 4.5rem;
 }
 
 /* popular city card */
@@ -213,11 +217,11 @@ body {
 
 @media screen
   and (min-device-width: 1200px)
-  and (max-device-width: 1600px)
+  /* and (max-device-width: 1600px) */
   and (-webkit-min-device-pixel-ratio: 1) {
 
-    .card-img-top {
-      height: 18rem;
+    .card-img-top.listing-description {
+      height: 35rem;
     }
 }
 

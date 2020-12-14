@@ -42,7 +42,7 @@ class LoginPage extends React.Component {
       modal =
         <div className="card desktop-login-card">
           <div className="card-body text-center">
-            <p>Travel Fever is best viewed on a mobile device for the best experience while our desktop site is under construction.</p>
+            <p>Hey there! Travel Fever is best viewed on a mobile device for the best user experience. However, you can still enjoy this app on desktop!</p>
             <button className ="btn btn-secondary" onClick={() => this.setState({ isModalOpen: false })}> Close</button>
           </div>
         </div>;
@@ -69,7 +69,7 @@ class LoginPage extends React.Component {
 
             <div className="row justify-content-center">
               <form className="col-9 mt-2" onSubmit={this.handleSubmit}>
-                <select className="custom-select custom-select-sm" value={this.state.value} onChange={this.handleChange}>
+                <select className="custom-select custom-select-sm select-user" value={this.state.value} onChange={this.handleChange}>
                   <option value="select-user">Select User</option>
                   {
                     this.state.users.map(user => {

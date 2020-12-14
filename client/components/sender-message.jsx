@@ -9,7 +9,7 @@ function SenderMessage(props) {
         </div>
       </div>
 
-      <div className='sender-icon-container col-2'>
+      <div className='sender-icon-container col-2 d-flex align-items-center justify-content-center'>
         <img src={props.imageUrl}alt={props.imageUrl} className='card-img inbox-icon ' />
       </div>
 

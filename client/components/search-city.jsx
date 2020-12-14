@@ -18,10 +18,10 @@ class SearchCity extends React.Component {
     }
 
     return (
-      <div className="container pr-0 pl-0">
+      <div className="container pr-0 pl-0 ">
         <div>
           <div className="col-12 mt-4 pr-0 pl-0">
-            <select className="custom-select custom-select-sm" onChange={this.handleChange} value={this.props.value} name={this.props.name}>
+            <select className="custom-select custom-select-sm search-city-bar" onChange={this.handleChange} value={this.props.value} name={this.props.name}>
               <option value=''>Select Location</option>
               {
                 this.props.locations.map(data => {

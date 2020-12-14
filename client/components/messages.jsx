@@ -46,17 +46,26 @@ class Messages extends React.Component {
   }
 
   render() {
-    return (
-      <div className="container-flex">
-        {
+
+    let messageBody;
+    if (this.props.messages && !this.props.messages.length) {
+      messageBody = <p className='m-5 text-center'> Send a message to get the conversation started!</p>;
+    } else {
+      messageBody =
           this.props.messages.map(message => {
             if (this.props.user.userId !== message.recipientId) {
-              return <SenderMessage key={message.messageId} content={message.content} imageUrl={this.props.user.imageUrl}/>;
+              return <SenderMessage key={message.messageId} content={message.content} imageUrl={this.props.user.imageUrl} />;
             } else {
               return <RecipientMessage key={message.messageId} content={message.content} imageUrl={this.props.recipientImg} />;
             }
-          })
-        }
+          });
+    }
+
+    return (
+
+      <div className="container-flex">
+
+        {messageBody}
 
         <div className="row">
           <form onSubmit={this.handleSubmit}>
