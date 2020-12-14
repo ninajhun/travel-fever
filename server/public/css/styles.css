@@ -57,7 +57,7 @@ body {
 /* listing card */
 .listing {
   margin: 5%;
-  height: 115px;
+  /* height: 115px; */
   box-shadow: -3px 4px 7px grey;
 }
 
