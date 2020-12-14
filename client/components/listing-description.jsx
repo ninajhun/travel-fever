@@ -33,7 +33,7 @@ class ListingDescription extends React.Component {
       <div>
         <div className="container d-flex align-items-center justify-content-center">
           <div className="card mt-3">
-            <img className="card-img-top" src={this.state.listing.imageUrl} alt="" />
+            <img className="card-img-top listing-description" src={this.state.listing.imageUrl} alt="" />
             <div className="card-body">
               <div className="card-title d-flex align-items-center">
                 <img className="listing-icon" src={this.state.listing.sellerPicture} alt="" />

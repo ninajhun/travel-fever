@@ -57,17 +57,19 @@ body {
 /* listing card */
 .listing {
   margin: 5%;
-  /* height: 115px; */
+  height: 115px;
   box-shadow: -3px 4px 7px grey;
 }
 
+
+
 @media screen
   and (min-device-width: 1200px)
-  and (max-device-width: 1600px)
+  /* and (max-device-width: 1600px) */
   and (-webkit-min-device-pixel-ratio: 1) {
 
     .listing{
-      height: 12rem ;
+      height: 15rem;
       margin: 2rem 15rem;
     }
 }
@@ -215,11 +217,11 @@ body {
 
 @media screen
   and (min-device-width: 1200px)
-  and (max-device-width: 1600px)
+  /* and (max-device-width: 1600px) */
   and (-webkit-min-device-pixel-ratio: 1) {
 
-    .card-img-top {
-      height: 18rem;
+    .card-img-top.listing-description {
+      height: 35rem;
     }
 }
 
