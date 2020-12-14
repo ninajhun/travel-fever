@@ -19,7 +19,7 @@ function FavoriteListingsPage(props) {
       <div>
         <div>
           <div className="d-flex justify-content-center">
-            <h4 className="mt-3 mx-2 pl-4">My Favorites</h4>
+            <h4 className="mt-3 mx-2">My Favorites</h4>
           </div>
           {
             props.listings.map(listing => {
