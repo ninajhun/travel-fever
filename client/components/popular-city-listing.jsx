@@ -7,8 +7,12 @@ class PopularCityListing extends React.Component {
   }
 
   handleClick() {
-    this.props.setView('listings-page', { locationId: this.props.locationId });
     this.props.getCustomerListings(this.props.locationId);
+
+    setTimeout(() => {
+      this.props.setView('listings-page', { locationId: this.props.locationId });
+    }, 100);
+
   }
 
   render() {
