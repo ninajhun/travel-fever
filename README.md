@@ -3,6 +3,9 @@
 ## About 
  Travel Fever is an application for travelers who want to connect with locals to get personalized travel information, itineraries, and tours in a marketplace. 
  * Users can create listings, view other users listings, buy a listing, and message a seller once they complete a purchase. 
+ 
+## Live Link 
+https://travel-fever.ninajhun.com/
 
 ## Technologies Used
 * React.js
