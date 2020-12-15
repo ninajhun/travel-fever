@@ -44,3 +44,7 @@ npm run dev
 ```
 6. Access application by going to [https://localhost:3000](https://localhost:3000) in the browser
 
+## Preview
+
+![Site Preview](travel-fever-preview.png)
+
