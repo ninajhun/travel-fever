@@ -17,6 +17,23 @@ https://travel-fever.ninajhun.com/
 * CSS3
 * AWS EC2
 
+## Features
+* User can select a user
+* User can create a listing
+* User can view a list of listings
+* User can view a listing description 
+* User can filter listings by location 
+* User can favorite a listing	
+* User can view their favorite listings
+* User can view popular cities on home page
+* Seller can view their listings
+* Seller can delete a listing
+* User can purchase a listing 
+* User can view inbox
+* User can view messages
+* User can send a message to another user
+
+
 ## Getting Started
 1. Clone the repo and navigate to the directory
 ```shell 
